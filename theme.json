@@ -1,4 +1,279 @@
 {
+	"settings": {
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFace": [
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "100",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-100-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "200",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-200-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-300-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-400-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-500-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-600-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-700-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-800-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "normal",
+							"fontWeight": "900",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-900-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "100",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-100-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "200",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-200-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "300",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-300-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-400-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "500",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-500-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "600",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-600-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-700-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "800",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-800-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Noto Serif\"",
+							"fontStyle": "italic",
+							"fontWeight": "900",
+							"src": [
+								"file:./assets/fonts/noto-serif/noto-serif-900-italic.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Noto Serif\", serif",
+					"name": "Noto Serif",
+					"slug": "noto-serif"
+				},
+				{
+					"fontFace": [
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-300-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-400-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-500-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-600-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-700-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-800-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "italic",
+							"fontWeight": "300",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-300-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "italic",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-400-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "italic",
+							"fontWeight": "500",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-500-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "italic",
+							"fontWeight": "600",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-600-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "italic",
+							"fontWeight": "700",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-700-italic.woff2"
+							]
+						},
+						{
+							"fontFamily": "\"Open Sans\"",
+							"fontStyle": "italic",
+							"fontWeight": "800",
+							"src": [
+								"file:./assets/fonts/open-sans/open-sans-800-italic.woff2"
+							]
+						}
+					],
+					"fontFamily": "\"Open Sans\", sans-serif",
+					"name": "Open Sans",
+					"slug": "open-sans"
+				}
+			]
+		}
+	},
+	"styles": {
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--noto-serif)",
+					"fontStyle": "normal",
+					"fontWeight": "700"
+				}
+			}
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--open-sans)",
+			"fontSize": "var(--wp--preset--font-size--small)"
+		}
+	},
 	"version": 3,
 	"$schema": "https://schemas.wp.org/wp/6.8/theme.json"
 }
