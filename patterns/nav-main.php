@@ -6,7 +6,7 @@
 ?>
 
 <!-- wp:navigation {"overlayMenu":"never","className":"main-navigation","style":{"spacing":{"blockGap":"var:preset|spacing|60"}},"layout":{"type":"flex","justifyContent":"left","orientation":"vertical"},"setCascadingProperties":true,"ariaLabel":"<?php esc_attr_e( 'Main Menu', 'personal-website' ); ?>"} -->
-	<!-- wp:navigation-link {"label":"<?php esc_html_e( 'About Me', 'personal-website' ); ?>","url":"<?php echo esc_url( home_url( 'about/' ) ); ?>","kind":"post-type"} /-->
+	<!-- wp:navigation-link {"label":"<?php esc_html_e( 'About Me', 'personal-website' ); ?>","url":"<?php echo esc_url( home_url() ); ?>","kind":"post-type"} /-->
 	<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Portfolio', 'personal-website' ); ?>","url":"<?php echo esc_url( home_url( 'portfolio/' ) ); ?>","kind":"post-type"} /-->
 	<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Resume', 'personal-website' ); ?>","opensInNewTab":true,"url":"https://resume.giacomosecchi.com/","kind":"custom"} /-->
 	<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Servizi Offerti', 'personal-website' ); ?>","url":"<?php echo esc_url( home_url( 'servizi/' ) ); ?>","kind":"post-type"} /-->
