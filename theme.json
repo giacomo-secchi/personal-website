@@ -1,5 +1,39 @@
 {
 	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#eeeeff",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#1a1b41",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#058ed9",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#06d6a0",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#ffb100",
+					"name": "Tertiary",
+					"slug": "tertiary"
+				},
+				{
+					"color": "#837f7f",
+					"name": "Dark Gray",
+					"slug": "dark-gray"
+				}
+			]
+		},
 		"typography": {
 			"fontFamilies": [
 				{
