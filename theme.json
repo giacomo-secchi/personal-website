@@ -294,18 +294,36 @@
 		}
 	},
 	"styles": {
+		"blocks": {
+			"core/navigation": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|noto-serif",
+					"fontSize": "var:preset|font-size|xx-large",
+					"lineHeight": "1",
+					"fontWeight": "600"
+				}
+			}
+		},
+		"color": {
+			"background": "var:preset|color|white",
+			"text": "var:preset|color|contrast"
+		},
 		"elements": {
 			"heading": {
+				"color": {
+					"text": "var:preset|color|primary"
+				},
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--noto-serif)",
+					"fontFamily": "var:preset|font-family|noto-serif",
+					"fontSize": "var:preset|font-size|large",
 					"fontStyle": "normal",
-					"fontWeight": "700"
+					"fontWeight": "600"
 				}
 			}
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-family--open-sans)",
-			"fontSize": "var(--wp--preset--font-size--small)"
+			"fontFamily": "var:preset|font-family|open-sans",
+			"fontSize": "var:preset|font-size|small"
 		}
 	},
 	"version": 3,
