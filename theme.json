@@ -1,6 +1,13 @@
 {
 	"settings": {
 		"color": {
+			"gradients": [
+				{
+					"gradient": "linear-gradient(to bottom right,var(--wp--preset--color--base) 0%,var(--wp--preset--color--white) 100%)",
+					"name": "Primary to Base",
+					"slug": "primary-base"
+				}
+			],
 			"palette": [
 				{
 					"color": "#eeeeff",
@@ -294,18 +301,8 @@
 		}
 	},
 	"styles": {
-		"blocks": {
-			"core/navigation": {
-				"typography": {
-					"fontFamily": "var:preset|font-family|noto-serif",
-					"fontSize": "var:preset|font-size|xx-large",
-					"lineHeight": "1",
-					"fontWeight": "600"
-				}
-			}
-		},
 		"color": {
-			"background": "var:preset|color|white",
+			"gradient": "var:preset|gradient|primary-base",
 			"text": "var:preset|color|contrast"
 		},
 		"elements": {
@@ -314,16 +311,12 @@
 					"text": "var:preset|color|primary"
 				},
 				"typography": {
-					"fontFamily": "var:preset|font-family|noto-serif",
-					"fontSize": "var:preset|font-size|large",
-					"fontStyle": "normal",
-					"fontWeight": "600"
+					"fontFamily": "var:preset|font-family|noto-serif"
 				}
 			}
 		},
 		"typography": {
-			"fontFamily": "var:preset|font-family|open-sans",
-			"fontSize": "var:preset|font-size|small"
+			"fontFamily": "var:preset|font-family|open-sans"
 		}
 	},
 	"version": 3,
