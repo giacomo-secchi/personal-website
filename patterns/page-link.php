@@ -23,8 +23,16 @@
 		} -->
 		<h1 class="wp-block-heading has-text-align-center has-x-large-font-size"></h1>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"0"}}}} -->
-		<p class="has-text-align-center" style="margin-top:0"><?php echo esc_html__( 'Senior Web Developer', 'personal-website' ); ?></p>
+		<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"0"}}},
+			"metadata":{
+				"bindings":{
+					"content":{
+						"source":"personal-website/job-position"
+					}
+				}
+			}  
+		} -->
+		<p class="has-text-align-center" style="margin-top:0"></p>
 		<!-- /wp:paragraph -->
 		<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|dark-gray"}}}},"textColor":"dark-gray","fontSize":"x-small",
 			"metadata":{
