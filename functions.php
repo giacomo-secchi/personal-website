@@ -173,7 +173,6 @@ function save_personal_website_custom_user_fields( $user_id ) {
     update_user_meta( $user_id, 'job_role', $_POST['job_role'] );
 }
 
-
 /**
  * Retrieves the portfolio administrator user object based on the saved login name.
  *
