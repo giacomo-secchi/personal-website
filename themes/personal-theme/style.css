@@ -1,0 +1,163 @@
+/*
+Theme Name: Personal Website
+Theme URI: https://github.com/giacomo-secchi/personal-website
+Author: Giacomo Secchi
+Author URI: https://giacomosecchi.com/
+Description: A personal website theme for WordPress, designed to showcase my portfolio.
+Requires at least: 6.8
+Tested up to: 6.8
+Requires PHP: 5.7
+Version: 0.1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Template: frost
+Text Domain: personal-website
+Tags:
+*/
+
+:root {
+	--light-gray: color-mix(in srgb, var(--wp--preset--color--contrast) 4%, var(--wp--preset--color--base));
+	--dark-gray: color-mix(in srgb, var(--wp--preset--color--contrast) 24%, var(--wp--preset--color--base));
+}
+
+::-webkit-scrollbar {
+	height: 4px;
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--dark-gray);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--wp--preset--color--contrast);
+}
+
+/* Needed until https://github.com/WordPress/gutenberg/issues/36122 is fixed */
+.has-drop-cap:not(:focus)::first-letter {
+	font-size: var(--wp--custom--dropcap--typography--font-size);
+	font-weight: var(--wp--custom--dropcap--typography--font-weight);
+	font-family: var(--wp--custom--dropcap--typography--font-family);
+	margin: var(--wp--custom--dropcap--margin);
+}
+
+
+
+
+/*
+
+.post-type-archive-jetpack-portfolio .wp-block-post-template {
+	background: transparent;
+	margin: 0 calc(-1 * var(--wp--preset--spacing--70));
+	max-width: unset;
+}
+
+.jetpack-portfolio {
+	background: var(--wp--preset--color--white);
+	padding: var(--wp--preset--spacing--70);
+	overflow: hidden;
+}
+
+.wp-block-categories {
+    display: flex;
+    list-style: none;
+	gap: var(--wp--preset--spacing--50);
+	padding: 0;
+	overflow-x: auto;
+}
+
+.wp-block-categories a {
+    color: var(--wp--preset--color--primary);
+    text-decoration: none;
+	white-space: nowrap;
+}
+
+.taxonomy-jetpack-portfolio-type a {
+	font-weight: 300;
+	text-decoration: none;
+}
+
+.taxonomy-jetpack-portfolio-type a:hover,
+.wp-block-categories a:hover,
+.wp-block-categories a.active {
+	text-decoration: underline;
+	text-decoration-color: var( --wp--preset--color--primary ) !important;
+	text-decoration-thickness: var( --wp--custom--text-decoration--thickness ) !important;
+	text-underline-offset: var( --wp--custom--text-underline--offset );
+}
+
+
+.post-type-archive-jetpack-portfolio .wp-block-read-more:after {
+	font: 18px/100% dashicons;
+	content: "\f344";
+	position: relative;
+	padding-left: 3px;
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	transform: rotate(-45deg);
+}
+
+ .layer-open:after {
+	content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    overflow-y: auto;
+}
+
+.popup {
+	background: var(--wp--preset--color--base);
+	margin: clamp(
+		var(--wp--preset--spacing--40),
+		var(--wp--preset--spacing--40) + 2vw,
+		var(--wp--preset--spacing--60)
+	);
+    position: fixed;
+	z-index: 99999999;
+	top:0;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	overflow-y: auto;
+}
+
+.popup-content {
+	margin: var(--wp--preset--spacing--80);
+    height: 100%;
+	max-height: 100vh;
+}
+
+.popup-close {
+	font-family: inherit;
+	font-weight: 300;
+	position: sticky;
+    top: 0;
+    float: right;
+    margin-right: var(--wp--preset--spacing--50);
+    background: transparent;
+    border: none;
+    font-size: var(--wp--preset--font-size--xx-large);
+    cursor: pointer;
+}
+
+
+.taxonomy-jetpack-portfolio-tag.wp-block-post-terms a {
+	color: var(--wp--preset--color--contrast);
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.taxonomy-jetpack-portfolio-type .wp-block-post-terms__prefix,
+.taxonomy-jetpack-portfolio-tag .wp-block-post-terms__prefix {
+	font-weight: bold;
+	font-size: var(--wp--preset--font-size--small);
+	text-transform: uppercase;
+} */
