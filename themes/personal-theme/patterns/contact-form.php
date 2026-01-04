@@ -4,7 +4,7 @@
  * Slug: personal-website/contact-form
  * Keywords: contact
  * Categories: contact
- * Description: Contact section with social media links, email, and multiple location details.
+ * Description: Contact section with message.
  */
 ?>
 
