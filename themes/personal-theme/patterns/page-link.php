@@ -19,7 +19,7 @@
 					"source":"personal-website/user-full-name"
 				}
 			}
-		}  
+		}
 		} -->
 		<h1 class="wp-block-heading has-text-align-center has-x-large-font-size"></h1>
 		<!-- /wp:heading -->
@@ -30,7 +30,7 @@
 						"source":"personal-website/job-position"
 					}
 				}
-			}  
+			}
 		} -->
 		<p class="has-text-align-center" style="margin-top:0"></p>
 		<!-- /wp:paragraph -->
@@ -41,7 +41,7 @@
 						"source":"personal-website/experience-text"
 					}
 				}
-			} 
+			}
 		} -->
 		<p class="has-text-align-center has-dark-gray-color has-text-color has-link-color has-x-small-font-size" style="margin-top:0"></p>
 		<!-- /wp:paragraph -->
@@ -68,13 +68,13 @@
 		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","orientation":"horizontal"},"style":{"spacing":{"blockGap":"10px","margin":{"bottom":"var:preset|spacing|small"}}}} -->
 		<div class="wp-block-buttons" style="margin-bottom:var(--wp--preset--spacing--small)">
 			<!-- wp:button {"width":75} -->
-			<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link" href="<?php echo esc_url( home_url( 'portfolio/' ) ); ?>"><?php echo esc_html__( 'View My Portfolio', 'personal-website' ); ?></a></div>
+			<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link" href="<?php echo esc_url( get_post_type_archive_link( 'jetpack-portfolio' ) ); ?>"><?php echo esc_html__( 'View My Portfolio', 'personal-website' ); ?></a></div>
 			<!-- /wp:button -->
 			<!-- wp:button {"width":75} -->
 			<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php echo esc_html__( 'Read My Blog', 'frost' ); ?></a></div>
 			<!-- /wp:button -->
 			<!-- wp:button {"width":75} -->
-			<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link" href="https://resume.giacomosecchi.com/" target="_blank" rel="noreferrer noopener"><?php echo esc_html__( 'Get My Resume', 'personal-website' ); ?></a></div>
+			<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link" href="https://resume.giacomosecchi.com/" target="_blank" rel="noreferrer noopener"><?php echo esc_html__( 'Download My Resume', 'personal-website' ); ?></a></div>
 			<!-- /wp:button -->
 			<!-- wp:button {"width":75} -->
 			<div class="wp-block-button has-custom-width wp-block-button__width-75"><a class="wp-block-button__link" href="https://write-poetry.com/" target="_blank" rel="noreferrer noopener"><?php echo esc_html__( 'Contribute to My WordPress Project', 'frost' ); ?></a></div>
