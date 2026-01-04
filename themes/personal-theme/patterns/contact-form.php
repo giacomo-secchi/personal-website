@@ -12,7 +12,7 @@
 <p style="line-height:1.5"><?php echo esc_html__( 'Drop me a message below and I’ll reach out soon.', 'personal-website' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:jetpack/contact-form {"confirmationType":"text","jetpackCRM":false,"salesforceData":{"organizationId":"","sendToSalesforce":false},"mailpoet":{"listId":null,"listName":null,"enabledForForm":false},"metadata":{"categories":["forms"],"patternName":"contact-form","name":"Contact Form"}} -->
+<!-- wp:jetpack/contact-form {"to":"info@giacomosecchi.com","confirmationType":"text","jetpackCRM":false,"salesforceData":{"organizationId":"","sendToSalesforce":false},"mailpoet":{"listId":null,"listName":null,"enabledForForm":false},"metadata":{"categories":["forms"],"patternName":"contact-form","name":"Contact Form"}} -->
 <div class="wp-block-jetpack-contact-form"><!-- wp:jetpack/field-name {"id":"","required":true} -->
 <div><!-- wp:jetpack/label {"label":"Name"} /-->
 
