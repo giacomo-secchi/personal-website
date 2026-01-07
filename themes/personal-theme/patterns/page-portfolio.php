@@ -11,7 +11,7 @@
 	<!-- wp:group {"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading {"textAlign":"center","style":{"typography":{"letterSpacing":"-1px"}},"className":"wp-block-heading","fontSize":"max-60"} -->
-		<h2 class="wp-block-heading has-text-align-center has-max-60-font-size" id="text-on-left-image-on-right" style="letter-spacing:-1px"><?php echo esc_html__( 'Metodology', 'personal-website' ); ?></h2>
+		<h2 class="wp-block-heading has-text-align-center has-max-60-font-size" id="text-on-left-image-on-right" style="letter-spacing:-1px"><?php echo esc_html__( 'Methodology', 'personal-website' ); ?></h2>
 		<!-- /wp:heading -->
 		<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1.5"}} -->
 		<p class="has-text-align-center" style="line-height:1.5"><?php echo wp_kses( __( 'A strategic <strong>4-stage workflow</strong> designed to transform<br>complex ideas into <strong>digital solutions</strong>.', 'personal-website' ) , array( 'strong' => array(), 'br' => array() ) ); ?></p>
