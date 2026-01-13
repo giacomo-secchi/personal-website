@@ -29,7 +29,7 @@
 		?>
 		<!-- wp:navigation {"layout":{"type":"flex","setCascadingProperties":true,"ariaLabel":"<?php esc_attr_e( 'Main Menu', 'personal-website' ); ?>"} -->
 			<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Blog', 'personal-website' ); ?>","type":"page","id":<?php echo $blog_id; ?>,"url":"<?php echo esc_url( $blog_url ); ?>","kind":"post-type"} /-->
-			<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Portfolio', 'personal-website' ); ?>","type":"portfolio","url":"<?php echo esc_url( get_post_type_archive_link( 'jetpack-portfolio' ) ); ?>","kind":"post-type"} /-->
+			<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Portfolio', 'personal-website' ); ?>","type":"jetpack-portfolio","url":"<?php echo esc_url( get_post_type_archive_link( 'jetpack-portfolio' ) ); ?>","kind":"post-type"} /-->
 			<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Resume', 'personal-website' ); ?>","opensInNewTab":true,"url":"https://resume.giacomosecchi.com/","kind":"custom"} /-->
 			<!-- wp:navigation-link {"label":"<?php esc_html_e( 'WritePoetry', 'personal-website' ); ?>","opensInNewTab":true,"url":"https://write-poetry.com/","kind":"custom"} /-->
 			<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Get in Touch', 'personal-website' ); ?>","type":"page","id":<?php echo $contact_id; ?>,"url":"<?php echo esc_url( $contact_url ); ?>","kind":"post-type","isTopLevelLink":true} /-->
