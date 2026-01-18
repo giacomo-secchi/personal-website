@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"slug": "comma-list",
+	"title": "Comma-separated List",
+	"blockTypes": [
+		"core/categories"
+	],
+	"styles": {
+		"css": "& li + li::before { content: \", \"; } & li { list-style: none; } & li { display: inline; margin-right: -4px; }"
+	}
+}

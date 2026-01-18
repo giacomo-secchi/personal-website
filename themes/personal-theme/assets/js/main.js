@@ -1,6 +1,6 @@
 ( () => {
     'use strict'
- 
+
     const filterButtons = document.querySelectorAll('.wp-block-categories a');
     const portfolioItems = document.querySelectorAll('.wp-block-post');
     let currentActiveFilter = null;
@@ -10,7 +10,7 @@
             e.preventDefault();
 
             const category = this.getAttribute('href').split('/').filter(Boolean).pop();
-            
+
             // Se clicco sullo stesso filtro già attivo
             if ( currentActiveFilter === category ) {
                 // Resetta mostrando tutto
@@ -20,17 +20,17 @@
                 currentActiveFilter = null;
                 return;
             }
-            
+
             // Applica il nuovo filtro
             portfolioItems.forEach( item => {
-                
+
                 if( item.classList.contains( `jetpack-portfolio-type-${category}` ) ) {
                     item.classList.remove( 'd-none' );
                 } else {
                     item.classList.add( 'd-none' );
                 }
             });
-            
+
             // Aggiorna lo stato attivo
             filterButtons.forEach( btn => btn.classList.remove( 'active' ) );
             this.classList.add( 'active' );
@@ -38,15 +38,15 @@
         });
     });
 
-     
+
     document.querySelectorAll( '.wp-block-read-more' ).forEach( button => {
         button.addEventListener( 'click', async ( e ) => {
             e.preventDefault();
-     
+
             const popupContainer = document.querySelector( '.popup' );
             const popupContent = document.querySelector( '.popup-content' );
 
-  
+
             openPopup();
 
             popupContent.innerHTML = `<div class="loading-message"> ${wp.i18n.__('Loading…', 'portfolio')}</div>`;
@@ -74,7 +74,7 @@
                     ${wp.i18n.__('Errore di caricamento', 'portfolio')}
                 </p>`;
                 console.error('Error fetching project:', error);
-            
+
             }
 
             // Close the popup when clicking outside of it.
@@ -94,15 +94,15 @@
         }
         // Altrimenti, gestisci il "forward" (es: se l'utente clicca AVANTI)
         else if (e.state && e.state.project) {
-      
+
            openPopup(e.state.project); // Riapri il popup con il progetto corretto
         }
     } );
- 
+
     function closePopup() {
         const popupContainer = document.querySelector( '.popup' );
         const popupContent = popupContainer.querySelector('.popup-content');
-    
+
         if ( popupContent ) {
             // Reset popup content.
             popupContent.innerHTML = '';
@@ -117,12 +117,12 @@
     }
 
     function openPopup( ) {
-        const popupContainer = document.querySelector( '.popup' );  
+        const popupContainer = document.querySelector( '.popup' );
 
         document.body.classList.add( 'overflow-hidden', 'layer-open' );
         popupContainer.classList.remove( 'd-none' );
     }
- 
+
 
 } )();
 
@@ -140,4 +140,3 @@
 
 
 
- 

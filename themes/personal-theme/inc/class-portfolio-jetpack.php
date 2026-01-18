@@ -32,12 +32,24 @@ if ( ! class_exists( 'Portfolio_Jetpack' ) ) :
 		 */
 		public function __construct() {
 
-			// add_action( 'wp_head', function() {
-			// 	if ( is_archive( 'jetpack-portfolio' ) ) {
-			// 		add_filter( 'wp_body_open',  array( $this, 'popup_template' ), 10, 2 );
-			// 	}
-			// } );
- 			
+			add_action( 'wp_head', function() {
+				if ( is_archive( 'jetpack-portfolio' ) ) {
+					add_filter( 'wp_body_open',  array( $this, 'popup_template' ), 10, 2 );
+				}
+			} );
+
+
+			function theme_enqueue_scripts() {
+    wp_enqueue_script(
+        'theme-main-js', // Handle
+        get_stylesheet_directory_uri() . '/assets/js/main.js', // Path file
+        array('wp-api-fetch','wp-i18n'), // Dependencies
+        null, // Version
+        true // Load in footer
+    );
+}
+
+add_action( 'wp_enqueue_scripts', 'theme_enqueue_scripts' );
 
 			add_filter( 'render_block_core/read-more', array( $this, 'modify_readmore_blocks' ), 10, 2 );
 
@@ -46,26 +58,26 @@ if ( ! class_exists( 'Portfolio_Jetpack' ) ) :
 
 			add_filter( 'render_block_core/post-terms', array( $this, 'remove_taxonomy_links' ), 10, 2 );
 		}
- 
+
 
 
 
 		function modify_readmore_blocks( $block_content, $block ) {
 			if ( isset( $block['blockName'] ) && 'core/read-more' === $block['blockName'] ) {
 				global $post;
-				
+
 				if ( $post && isset( $post->ID ) ) {
 					// Add the custom class to the block content using the HTML API.
 					$processor = new WP_HTML_Tag_Processor( $block_content );
-					
+
 					if ( $processor->next_tag( 'a' ) ) {
 						$processor->set_attribute( 'data-project-id', $post->ID );
-						
+
 						return $processor->get_updated_html();
 					}
 				}
-			}	
-			
+			}
+
 			return $block_content;
 		}
 
@@ -75,16 +87,16 @@ if ( ! class_exists( 'Portfolio_Jetpack' ) ) :
 			if ( isset( $block['attrs']['term'] ) && 'jetpack-portfolio-tag' === $block['attrs']['term'] ) {
 				// Remove all tag links from the block content.
 				$processor = new \WP_HTML_Tag_Processor( $block_content );
-        
+
 				while ( $processor->next_tag( 'a' ) ) {
 					$processor->remove_attribute( 'href' );
 					$processor->remove_attribute( 'rel' );
 				}
-        
+
         		$block_content = $processor->get_updated_html();
 
 			}
-			
+
 			// Return the updated HTML content
 			return $block_content;
 		}
@@ -102,14 +114,14 @@ if ( ! class_exists( 'Portfolio_Jetpack' ) ) :
                 <div class="popup d-none" aria-hidden="true" role="dialog">
                    	<button type="button" class="popup-close" data-dismiss="modal" aria-label="' . esc_html__( 'Close', 'portfolio' ) . '">
 						<span aria-hidden="true">×</span>
-					</button>	
-					<div class="popup-content" aria-labelledby="popup-title"></div>	
+					</button>
+					<div class="popup-content" aria-labelledby="popup-title"></div>
                 </div>';
 		}
 
 		function get_project_data() {
 			check_ajax_referer( 'popup_nonce', 'nonce' );
-			
+
 			$project_id = intval( $_POST['project_id'] );
 			$project = get_post( $project_id );
 

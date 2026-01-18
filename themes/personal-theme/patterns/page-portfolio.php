@@ -91,26 +91,14 @@
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","right":"30px","left":"30px"},"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
-	<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"default"}} -->
-	<div class="wp-block-group">
+	<!-- wp:group {"align":"center","style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"default"}} -->
+	<div class="wp-block-group has-text-align-center">
 		<!-- wp:query-title {"type":"archive","textAlign":"center","style":{"typography":{"letterSpacing":"-1px"}},"level":2,"showPrefix":false,"fontSize":"max-60"} /-->
-		<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|medium"}}},
-		  "metadata":{
-				"bindings":{
-					"content":{
-						"source":"personal-website/experience-text"
-					}
-				}
-			}
-		} -->
-		<p class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--medium)"><?php echo esc_html__( 'The talented folks who work on the Frost theme.', 'frost' ); ?></p>
-		<!-- /wp:paragraph -->
+		<!-- wp:categories {"taxonomy":"jetpack-portfolio-type","className":"is-style-comma-list","style":{"spacing":{"padding":{"left":"0"},"margin":{"bottom":"var:preset|spacing|medium"}}}} /-->
 	</div>
 	<!-- /wp:group -->
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
-<!-- wp:categories {"taxonomy":"jetpack-portfolio-type"} /-->
-
 		<!-- wp:pattern {"slug":"personal-website/projects-grid"} /-->
 	</div>
 	<!-- /wp:group -->

@@ -1,51 +1,56 @@
 <?php
 
+add_filter( 'render_block_core/categories', function( $content, $block ) {
+
+    if (
+        empty( $block['attrs']['taxonomy'] ) ||
+        $block['attrs']['taxonomy'] !== 'jetpack-portfolio-type'
+    ) {
+        return $content;
+    }
+
+    if (
+        ! is_post_type_archive( 'jetpack-portfolio' ) &&
+        ! is_tax( 'jetpack-portfolio-type' ) &&
+        ! is_tax( 'jetpack-portfolio-tag' ) &&
+        ! is_page( 'portfolio' )
+    ) {
+        return $content;
+    }
+
+    $user = get_personal_website_admin_user();
+    if ( ! $user ) {
+        return $content;
+    }
+
+    $since = (int) get_user_meta( $user->ID, 'start_year', true );
+    if ( ! $since ) {
+        return $content;
+    }
+
+    $years = (int) date( 'Y' ) - $since;
+
+    $template = get_user_meta(
+        $user->ID,
+        'portfolio_experience_text',
+        true
+    );
+
+    if ( empty( $template ) ) {
+        return $content;
+    }
+
+    return sprintf(
+    	'<p>%s</p>%s',
+		esc_html( sprintf( $template, $years ) ),
+    	$content
+	);
+
+}, 10, 2 );
+
+
 
 add_action( 'init', function() {
-    register_block_bindings_source( 'personal-website/experience-text', array(
-        'label'              => __( 'Experience Phrase', 'personal-website' ),
-        'get_value_callback' => function( $source_args ) {
-
-			// 1. CONTROLLO CONDIZIONALE: Visualizza solo se siamo nel portfolio
-    	    // Controlliamo se è il post type archive di Jetpack o una pagina specifica
-			$is_portfolio = is_post_type_archive( 'jetpack-portfolio' ) ||
-							is_tax( 'jetpack-portfolio-type' ) ||
-							is_tax( 'jetpack-portfolio-tag' ) ||
-							is_page( 'portfolio' );
-
-            $user = get_personal_website_admin_user();
-
-            if ( ! $user ) {
-                return;
-            }
-
-            $since = get_user_meta( $user->ID, 'start_year', true );
-            $years = (int) date('Y') - $since;
-            $user_data = get_userdata( $user->ID );
-			$template = $user_data->description;
-
-
-			if ( $is_portfolio ) {
-				$template = get_user_meta( $user->ID, 'portfolio_experience_text', true );
-			}
-
-            if ( ! $user_data ) {
-                return '';
-            }
-
-			if ( empty( $template ) ) {
-            	return '';
-        	}
-
-            return sprintf(
-                esc_html( __( $template, 'personal-website' ) ),
-                $years
-            );
-        },
-    ) );
-
-
-
 
 
 
@@ -98,8 +103,9 @@ add_action( 'init', function() {
             return sprintf( '<a href="mailto:%s">%s</a>', $safe_email, $safe_email );
         }
     ) );
-} );
 
+
+} );
 
 
 /**

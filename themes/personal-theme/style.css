@@ -50,47 +50,6 @@ Tags:
 
 /*
 
-.post-type-archive-jetpack-portfolio .wp-block-post-template {
-	background: transparent;
-	margin: 0 calc(-1 * var(--wp--preset--spacing--70));
-	max-width: unset;
-}
-
-.jetpack-portfolio {
-	background: var(--wp--preset--color--white);
-	padding: var(--wp--preset--spacing--70);
-	overflow: hidden;
-}
-
-.wp-block-categories {
-    display: flex;
-    list-style: none;
-	gap: var(--wp--preset--spacing--50);
-	padding: 0;
-	overflow-x: auto;
-}
-
-.wp-block-categories a {
-    color: var(--wp--preset--color--primary);
-    text-decoration: none;
-	white-space: nowrap;
-}
-
-.taxonomy-jetpack-portfolio-type a {
-	font-weight: 300;
-	text-decoration: none;
-}
-
-.taxonomy-jetpack-portfolio-type a:hover,
-.wp-block-categories a:hover,
-.wp-block-categories a.active {
-	text-decoration: underline;
-	text-decoration-color: var( --wp--preset--color--primary ) !important;
-	text-decoration-thickness: var( --wp--custom--text-decoration--thickness ) !important;
-	text-underline-offset: var( --wp--custom--text-underline--offset );
-}
-
-
 .post-type-archive-jetpack-portfolio .wp-block-read-more:after {
 	font: 18px/100% dashicons;
 	content: "\f344";
@@ -146,18 +105,4 @@ Tags:
     border: none;
     font-size: var(--wp--preset--font-size--xx-large);
     cursor: pointer;
-}
-
-
-.taxonomy-jetpack-portfolio-tag.wp-block-post-terms a {
-	color: var(--wp--preset--color--contrast);
-	font-weight: 400;
-	text-decoration: none;
-}
-
-.taxonomy-jetpack-portfolio-type .wp-block-post-terms__prefix,
-.taxonomy-jetpack-portfolio-tag .wp-block-post-terms__prefix {
-	font-weight: bold;
-	font-size: var(--wp--preset--font-size--small);
-	text-transform: uppercase;
-} */
+}*/
