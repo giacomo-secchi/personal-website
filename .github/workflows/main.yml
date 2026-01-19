@@ -19,6 +19,7 @@ jobs:
     needs: build
     uses: WritePoetry/reusable-workflows/.github/workflows/remote-sync.yml@main
     with:
+      artifact_name: ${{ github.event.repository.name }}-build
       host: ${{ vars.HOST }}
       username: ${{ vars.USERNAME }}
       folder: ${{ vars.FOLDER }}

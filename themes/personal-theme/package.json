@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "description": "",
+	  "engines": {
+    "node": "22.18.0",
+    "npm": "10.9.3"
+  },
   "devDependencies": {
     "@wordpress/scripts": "^31.3.0",
     "@writepoetry/webpack-utils": "github:writepoetry/webpack-utils",
