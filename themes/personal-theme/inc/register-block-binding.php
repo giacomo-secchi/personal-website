@@ -1,58 +1,9 @@
 <?php
 
-add_filter( 'render_block_core/categories', function( $content, $block ) {
-
-    if (
-        empty( $block['attrs']['taxonomy'] ) ||
-        $block['attrs']['taxonomy'] !== 'jetpack-portfolio-type'
-    ) {
-        return $content;
-    }
-
-    if (
-        ! is_post_type_archive( 'jetpack-portfolio' ) &&
-        ! is_tax( 'jetpack-portfolio-type' ) &&
-        ! is_tax( 'jetpack-portfolio-tag' ) &&
-        ! is_page( 'portfolio' )
-    ) {
-        return $content;
-    }
-
-    $user = get_personal_website_admin_user();
-    if ( ! $user ) {
-        return $content;
-    }
-
-    $since = (int) get_user_meta( $user->ID, 'start_year', true );
-    if ( ! $since ) {
-        return $content;
-    }
-
-    $years = (int) date( 'Y' ) - $since;
-
-    $template = get_user_meta(
-        $user->ID,
-        'portfolio_experience_text',
-        true
-    );
-
-    if ( empty( $template ) ) {
-        return $content;
-    }
-
-    return sprintf(
-    	'<p>%s</p>%s',
-		esc_html( sprintf( $template, $years ) ),
-    	$content
-	);
-
-}, 10, 2 );
 
 
 
 add_action( 'init', function() {
-
-
 
     register_block_bindings_source( 'personal-website/user-full-name', array(
         'label'              => __( 'User Name and Surname', 'personal-website' ),

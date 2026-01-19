@@ -106,3 +106,8 @@ Tags:
     font-size: var(--wp--preset--font-size--xx-large);
     cursor: pointer;
 }*/
+
+
+.is-hidden {
+	display: none !important;
+}
