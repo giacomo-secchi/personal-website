@@ -5,21 +5,9 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    uses: WritePoetry/reusable-workflows/.github/workflows/build.yml@main
-    with:
-      artifact_name: ${{ github.event.repository.name }}-build
-    permissions:
-      contents: write
-      packages: read
-      actions: read
-    secrets: inherit
-
   deploy:
-    needs: build
     uses: WritePoetry/reusable-workflows/.github/workflows/remote-sync.yml@main
     with:
-      artifact_name: ${{ github.event.repository.name }}-build
       host: ${{ vars.HOST }}
       username: ${{ vars.USERNAME }}
       folder: ${{ vars.FOLDER }}
