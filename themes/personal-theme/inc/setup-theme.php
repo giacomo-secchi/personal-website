@@ -30,4 +30,8 @@ add_action( 'after_setup_theme', function(){
 	 * Jetpack Portfolio support.
 	 */
     add_theme_support( 'jetpack-portfolio' );
+
+
+
+    add_image_size( 'square-large', 800, 800, true );
 } );

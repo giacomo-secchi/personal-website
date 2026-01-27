@@ -7,6 +7,8 @@
  */
 ?>
 
+
+
 <!-- wp:query {"queryId":2,"query":{"perPage":10,"pages":0,"offset":0,"postType":"jetpack-portfolio","order":"desc","orderBy":"meta_value_num","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[],"format":[],"meta_query":{"queries":[{"id":"1068ab7a-c0fa-4f48-8074-1fc1035ea23c","meta_key":"project_year","meta_value":"","meta_compare":"NOT EXISTS","meta_type":"NUMERIC"},{"id":"3f382842-04b6-4d6a-9e72-e6f20f701d76","meta_key":"project_year","meta_value":"","meta_compare":"EXISTS","meta_type":"NUMERIC"}],"relation":"OR"}},"namespace":"advanced-query-loop"} -->
 <div class="wp-block-query"><!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"grid","columnCount":3}} -->
 <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /-->

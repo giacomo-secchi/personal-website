@@ -99,7 +99,7 @@
 	<!-- /wp:group -->
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:pattern {"slug":"personal-website/projects-grid"} /-->
+		<!-- wp:pattern {"slug":"frost/portfolio"} /-->
 	</div>
 	<!-- /wp:group -->
 </div>

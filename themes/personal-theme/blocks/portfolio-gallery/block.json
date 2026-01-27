@@ -1,0 +1,8 @@
+{
+  "apiVersion": 2,
+  "name": "personal-website/portfolio-gallery",
+  "title": "Portfolio Gallery",
+  "category": "media",
+  "icon": "images-alt2",
+  "render": "file:./render.php"
+}
