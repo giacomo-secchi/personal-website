@@ -11,5 +11,10 @@ jobs:
       host: ${{ vars.HOST }}
       username: ${{ vars.USERNAME }}
       folder: ${{ vars.FOLDER }}
+      paths: |
+        [
+          {"from": "themes", "to": "/themes/", "exclude": "resources"},
+          {"from": "mu-plugins", "to": "/mu-plugins/"}
+        ]
     secrets:
       ssh-key: ${{ secrets.SSH_KEY }}
