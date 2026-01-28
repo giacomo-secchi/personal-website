@@ -16,9 +16,6 @@
 	<div class="wp-block-columns alignwide are-vertically-aligned-center is-style-columns-reverse">
 		<!-- wp:column {"verticalAlignment":"center","width":""} -->
 		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:heading {"fontSize":"x-large","anchor":"sample-heading"} -->
-			<h2 class="wp-block-heading has-x-large-font-size" id="sample-heading"><?php echo esc_html__( 'Build with Frost', 'frost' ); ?></h2>
-			<!-- /wp:heading -->
 			<!-- wp:post-title {"level":2,"fontSize":"x-large"} /-->
 			<!-- wp:post-excerpt /-->
 			<!-- wp:buttons -->

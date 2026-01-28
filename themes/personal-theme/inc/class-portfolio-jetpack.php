@@ -3,7 +3,7 @@
  * Portfolio Website Child Class
  *
  * @since    0.1.0
- * @package  Portfolio
+ * @package  personal-website
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -84,6 +84,9 @@ if ( ! class_exists( 'Portfolio_Jetpack' ) ) :
 			// add_filter( 'render_block_core/post-terms', array( $this, 'remove_taxonomy_links' ), 10, 2 );
 
 
+
+			
+			
 			add_filter( 'render_block_core/categories', function( $content, $block ) {
 				if (
 					empty( $block['attrs']['taxonomy'] ) ||
