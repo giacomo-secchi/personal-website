@@ -4,5 +4,6 @@
   "title": "Portfolio Gallery",
   "category": "media",
   "icon": "images-alt2",
+  "editorScript": "file:./index.js",
   "render": "file:./render.php"
 }

@@ -11,7 +11,5 @@ if ( class_exists( 'Jetpack' ) ) {
 }
 
 add_action( 'init', function () {
-     register_block_type(
-		get_stylesheet_directory() . '/blocks/portfolio-gallery'
-	 );
+     register_block_type( get_theme_file_path( '/blocks/portfolio-gallery' ) );
 } );
