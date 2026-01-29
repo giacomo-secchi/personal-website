@@ -33,6 +33,9 @@
 			<!-- /wp:columns -->
 		</div>
 		<!-- /wp:group -->
+		<!-- wp:separator {"backgroundColor":"base","className":"has-text-color has-background-color has-alpha-channel-opacity has-base-background-color has-background is-style-wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}}} -->
+		<hr class="wp-block-separator has-text-color has-base-color has-alpha-channel-opacity has-base-background-color has-background has-background-color is-style-wide" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+		<!-- /wp:separator -->
 	<!-- /wp:post-template -->
 
 	<!-- wp:query-pagination -->
