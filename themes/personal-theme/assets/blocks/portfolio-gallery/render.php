@@ -47,17 +47,17 @@ HTML;
 }
 
 /**
- * Wrap everything in the Gallery Block markup
+ * Wrap everything in the Gallery Block markup.
  * We include the required wrapper div to match the modern Block Editor output.
  */
-$gallery_markup = <<<HTML
+$content = <<<HTML
     <!-- wp:gallery {"columns":0,"linkTo":"none","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}}} -->
     <figure class="wp-block-gallery has-nested-images columns-0 is-cropped">{$inner_blocks_html}</figure>
     <!-- /wp:gallery -->
 HTML;
 
-// Final Output: Process the block string through the WordPress block renderer
-echo do_blocks( $gallery_markup );
+// Final Output: Process the block string through the WordPress block renderer.
+echo do_blocks( $content );
 
 
  

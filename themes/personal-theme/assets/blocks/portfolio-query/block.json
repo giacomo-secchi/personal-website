@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "personal-website/portfolio-query",
+  "title": "Portfolio Query",
+  "category": "widgets",
+  "icon": "filter",
+  "description": "Portfolio query with categories and filters.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {},
+  "render": "file:./render.php",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

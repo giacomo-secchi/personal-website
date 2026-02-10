@@ -3,20 +3,25 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "wp-scripts build --webpack-src-dir=resources --output-path=assets",
-    "start": "wp-scripts start --webpack-src-dir=resources --output-path=assets"
+    "build": "wp-scripts build --webpack-src-dir=resources --output-path=assets  --experimental-modules",
+    "packages-update": "wp-scripts packages-update",
+    "start": "wp-scripts start --webpack-src-dir=resources --output-path=assets  --experimental-modules"
   },
   "author": "",
   "license": "ISC",
   "description": "",
-	  "engines": {
+  "engines": {
     "node": "22.18.0",
     "npm": "10.9.3"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^31.3.0",
+    "@wordpress/scripts": "^31.4.0",
     "@writepoetry/webpack-utils": "github:writepoetry/webpack-utils",
     "copy-webpack-plugin": "^13.0.1",
     "webpack-remove-empty-scripts": "^1.1.1"
+  },
+  "dependencies": {
+    "@wordpress/interactivity": "^6.39.0",
+    "@wordpress/interactivity-router": "^2.39.0"
   }
 }

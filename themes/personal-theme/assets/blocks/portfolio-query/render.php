@@ -1,12 +1,17 @@
 <?php
 /**
- * Title: Portfolio with heading, text, images.
- * Slug: frost/portfolio
- * Categories: featured
+ * Portfolio Filter block render.
+ *
+ * @package personal-website
  */
-?>
 
-<!-- wp:query {"query":{"perPage":10,"pages":0,"offset":0,"postType":"jetpack-portfolio","order":"desc","orderBy":"meta_value_num","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[],"format":[],"meta_query":{"queries":[{"id":"1068ab7a-c0fa-4f48-8074-1fc1035ea23c","meta_key":"project_year","meta_value":"","meta_compare":"NOT EXISTS","meta_type":"NUMERIC"},{"id":"3f382842-04b6-4d6a-9e72-e6f20f701d76","meta_key":"project_year","meta_value":"","meta_compare":"EXISTS","meta_type":"NUMERIC"}],"relation":"OR"}},"namespace":"advanced-query-loop"} -->
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+ 
+$content = <<<HTML
+<!-- wp:query {"query":{"perPage":10,"pages":0,"offset":0,"postType":"jetpack-portfolio","order":"desc","orderBy":"meta_value_num","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
 <div class="wp-block-query">
 	<!-- wp:post-template {"layout":{"type":"default"}} -->
 		<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
@@ -26,7 +31,7 @@
 				<!-- /wp:column -->
 				<!-- wp:column {"verticalAlignment":"center","width":""} -->
 				<div class="wp-block-column is-vertically-aligned-center">
-					<!-- wp:personal-website/portfolio-gallery /-->	
+					<!-- wp:personal-website/portfolio-gallery /-->
 				</div>
 				<!-- /wp:column -->
 			</div>
@@ -47,5 +52,61 @@
 	<!-- /wp:query-pagination -->
 </div>
 <!-- /wp:query -->
+HTML; 
+
+
+
+add_action( 'pre_get_posts', function ( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+    
+	if ( 
+		! is_post_type_archive( 'jetpack-portfolio' ) || 
+		( ! is_tax( 'jetpack-portfolio-type' ) )
+	) {
+		return;
+	}
+
+	// limit to 10 items per page.
+	$query->set( 'posts_per_page', 10 );
+
+	// Order by the 'project_year' meta field, treating it as a numeric value.
+	$query->set( 'meta_key', 'project_year' );
+	$query->set( 'orderby', 'meta_value_num' );
+	$query->set( 'order', 'DESC' );
+
+	// filter projects without year to the end of the list.
+	$meta_query = array(
+		'relation' => 'OR',
+		array(
+			'key'     => 'project_year',
+			'compare' => 'NOT EXISTS',
+			'type'    => 'NUMERIC',
+		),
+		array(
+			'key'     => 'project_year',
+			'compare' => 'EXISTS',
+			'type'    => 'NUMERIC',
+		),
+	);
+
+	$query->set( 'meta_query', $meta_query );
+} );
+
+?>
+
+<div
+	<?php echo get_block_wrapper_attributes( array( 
+        'class'               => 'portfolio-query',
+        'data-wp-interactive' => 'portfolioApp',
+        'data-wp-context'     => wp_json_encode( array( 'isLoading' => false ) ),
+        'data-wp-class--is-loading' => 'state.isLoading',
+		'data-wp-router-region' => 'portfolio-query-results',
+    ) ); ?>
+>
+	<?php echo do_blocks( $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+</div>
+
 
 

@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/portfolio-filter/style-index.css","mappings":";;;AAAA;EAAwC;AAExC,C","sources":["webpack://personal-theme/./resources/blocks/portfolio-filter/style.scss"],"sourcesContent":[".wp-block-categories-list .is-active {  color: var(--wp--preset--color--primary) !important; }"],"names":[],"ignoreList":[],"sourceRoot":""}

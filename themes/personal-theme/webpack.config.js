@@ -4,7 +4,7 @@
 
 // WordPress webpack config.
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
-const { getProjectSourcePath } = require('@wordpress/scripts/utils/config');
+const { getProjectSourcePath } = require( '@wordpress/scripts/utils/config' );
 
 
 // Plugins.
@@ -20,12 +20,6 @@ const projectSourcePath = getProjectSourcePath();
 // Add any new entry points by extending the webpack config.
 module.exports = {
 	...defaultConfig,
-	resolve: {
-        ...defaultConfig.resolve,
-        alias: {
-            ...defaultConfig.resolve.alias
-        },
-    },
 	...{
 		entry: {
 			...getAllAssets( {

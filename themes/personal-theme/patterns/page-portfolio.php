@@ -94,12 +94,12 @@
 	<!-- wp:group {"align":"center","style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group has-text-align-center">
 		<!-- wp:query-title {"type":"archive","textAlign":"center","style":{"typography":{"letterSpacing":"-1px"}},"level":2,"showPrefix":false,"fontSize":"max-60"} /-->
-		<!-- wp:categories {"taxonomy":"jetpack-portfolio-type","className":"is-style-comma-list","style":{"spacing":{"padding":{"left":"0"},"margin":{"bottom":"var:preset|spacing|medium"}}}} /-->
+		<!-- wp:personal-website/portfolio-filter /-->
 	</div>
 	<!-- /wp:group -->
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:pattern {"slug":"frost/portfolio"} /-->
+		<!-- wp:personal-website/portfolio-query /-->
 	</div>
 	<!-- /wp:group -->
 </div>
