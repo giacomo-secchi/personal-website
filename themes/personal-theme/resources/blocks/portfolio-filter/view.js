@@ -18,7 +18,7 @@ store('portfolioApp', {
 
             const context = getContext();
             const state = store('portfolioApp').state;
-            const targetUrl = event.target.href;
+            let targetUrl = event.target.href;
  
             if (state.currentCategoryId === context.catId) {
                 // Se clicco il tasto già attivo -> resetto a 0

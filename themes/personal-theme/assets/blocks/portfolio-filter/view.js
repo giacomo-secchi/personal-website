@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
       event.preventDefault();
       const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
       const state = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('portfolioApp').state;
-      const targetUrl = event.target.href;
+      let targetUrl = event.target.href;
       if (state.currentCategoryId === context.catId) {
         // Se clicco il tasto già attivo -> resetto a 0
         state.currentCategoryId = 0;
