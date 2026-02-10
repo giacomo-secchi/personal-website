@@ -94,12 +94,7 @@ __webpack_require__.r(__webpack_exports__);
       event.preventDefault();
       const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
       const state = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('portfolioApp').state;
-      var targetUrl = event.target.href;
-      const {
-        actions
-      } = yield Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! @wordpress/interactivity-router */ "@wordpress/interactivity-router"));
-
-      // --- INTEGRAZIONE LOGICA TOGGLE ---
+      const targetUrl = event.target.href;
       if (state.currentCategoryId === context.catId) {
         // Se clicco il tasto già attivo -> resetto a 0
         state.currentCategoryId = 0;
@@ -108,14 +103,16 @@ __webpack_require__.r(__webpack_exports__);
         // Se clicco un tasto diverso -> imposto il nuovo ID
         state.currentCategoryId = context.catId;
       }
-      if (targetUrl) {
-        // Eseguiamo la navigazione client-side
-        // WordPress scaricherà solo i pezzi di HTML che cambiano!
-        yield actions.navigate(targetUrl);
-
-        // Opzionale: aggiorna lo stato locale se ti serve per altre classi CSS
-        // store('portfolioApp').state.currentUrl = targetUrl;
+      if (!targetUrl) {
+        return;
       }
+
+      // We import the package dynamically to reduce the initial JS bundle size.
+      // Async actions are defined as generators so the import() must be called with `yield`.
+      const {
+        actions
+      } = yield Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! @wordpress/interactivity-router */ "@wordpress/interactivity-router"));
+      yield actions.navigate(targetUrl);
     }
   }
 });
