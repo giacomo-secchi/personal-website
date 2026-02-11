@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { store, getContext, getElement } from '@wordpress/interactivity';
+import { store, getContext, getElement, withSyncEvent } from '@wordpress/interactivity';
 
 store('portfolioApp', {
     state: {
@@ -13,7 +13,8 @@ store('portfolioApp', {
         }
     },
     actions: {
-        *updateFilter(event) {
+        // The withSyncEvent() utility needs to be used because preventDefault() requires synchronous event access.
+        updateFilter: withSyncEvent( function* ( event ) {
             event.preventDefault();
 
             const context = getContext();
@@ -21,16 +22,14 @@ store('portfolioApp', {
             let targetUrl = event.target.href;
  
             if (state.currentCategoryId === context.catId) {
-                // Se clicco il tasto già attivo -> resetto a 0
+                // if the clicked category is already active, reset the filter by setting the current category ID to 0 and navigating to the main portfolio URL.
                 state.currentCategoryId = 0;
                 targetUrl = context.portfolioUrl;
 
             } else {
-                // Se clicco un tasto diverso -> imposto il nuovo ID
+                // Set the current category ID in the state, so it can be used by other components if needed.
                 state.currentCategoryId = context.catId;
             }
-
-
 
             if (! targetUrl) {
                 return;
@@ -43,6 +42,6 @@ store('portfolioApp', {
             );
 
             yield actions.navigate( targetUrl );
-        }
+        } ),
     }
 });
