@@ -113,8 +113,4 @@ Tags:
 }
 
 
-@media only screen and (min-width: 782px) {
-	.wp-block-post.jetpack-portfolio:nth-of-type(even) .wp-block-columns {
-		flex-direction: row-reverse;
-	}
-}
+

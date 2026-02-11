@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  
 $content = <<<HTML
 <!-- wp:query {"query":{"perPage":10,"pages":0,"offset":0,"postType":"jetpack-portfolio","order":"desc","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
-<div class="wp-block-query">
+<div class="wp-block-query" data-wp-class--is-loading="state.isLoading">
 	<!-- wp:post-template {"layout":{"type":"default"}} -->
 		<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 		<div class="wp-block-group alignwide">
@@ -64,8 +64,6 @@ HTML;
 	<?php echo get_block_wrapper_attributes( array( 
         'class'               => 'portfolio-query',
         'data-wp-interactive' => 'portfolioApp',
-        'data-wp-context'     => wp_json_encode( array( 'isLoading' => false ) ),
-        'data-wp-class--is-loading' => 'state.isLoading',
 		'data-wp-router-region' => 'portfolio-query-results',
     ) ); ?>
 >

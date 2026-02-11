@@ -3,13 +3,13 @@
  */
 import { store, getContext, getElement, withSyncEvent } from '@wordpress/interactivity';
 
-store('portfolioApp', {
+store( 'portfolioApp', {
     state: {
         currentCategoryId: 0,
         isLoading: false,
         get isCategoryActive() {
             const { catId } = getContext();
-            return store('portfolioApp').state.currentCategoryId === catId;
+            return store( 'portfolioApp' ).state.currentCategoryId === catId;
         }
     },
     actions: {
@@ -18,11 +18,13 @@ store('portfolioApp', {
             event.preventDefault();
 
             const context = getContext();
-            const state = store('portfolioApp').state;
+            const state = store( 'portfolioApp' ).state;
             let targetUrl = event.target.href;
+
+            state.isLoading = true;
  
+            // if the clicked category is already active, reset the filter by setting the current category ID to 0 and navigating to the main portfolio URL.
             if (state.currentCategoryId === context.catId) {
-                // if the clicked category is already active, reset the filter by setting the current category ID to 0 and navigating to the main portfolio URL.
                 state.currentCategoryId = 0;
                 targetUrl = context.portfolioUrl;
 
@@ -31,7 +33,7 @@ store('portfolioApp', {
                 state.currentCategoryId = context.catId;
             }
 
-            if (! targetUrl) {
+            if ( ! targetUrl ) {
                 return;
             }
 
@@ -40,8 +42,10 @@ store('portfolioApp', {
             const { actions } = yield import(
                 '@wordpress/interactivity-router'
             );
-
             yield actions.navigate( targetUrl );
+
+            // Once the navigation is complete, we can disable the loading state.
+            state.isLoading = false;
         } ),
     }
 });

@@ -98,7 +98,6 @@ wp_interactivity_state( 'portfolioApp', array(
 
 $context = array(
 	'id'     => $unique_id,
-    'isOpen' => false,
     'portfolioUrl' => get_post_type_archive_link( 'jetpack-portfolio' ),
 );
  

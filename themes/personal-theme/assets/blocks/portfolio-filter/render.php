@@ -18,6 +18,7 @@ add_filter( 'render_block_core/categories', function( $block_content, $block ) {
         ! is_tax( 'jetpack-portfolio-tag' ) &&
         ! is_page( 'portfolio' )
     ) {
+        
         return $block_content;
     }
 
@@ -53,6 +54,9 @@ add_filter( 'render_block_core/categories', function( $block_content, $block ) {
     }
 
     $block_content = $processor->get_updated_html();
+
+ 
+    
 
     $user = get_personal_website_admin_user();
     if ( ! $user ) {
@@ -94,7 +98,6 @@ wp_interactivity_state( 'portfolioApp', array(
 
 $context = array(
 	'id'     => $unique_id,
-    'isOpen' => false,
     'portfolioUrl' => get_post_type_archive_link( 'jetpack-portfolio' ),
 );
  
