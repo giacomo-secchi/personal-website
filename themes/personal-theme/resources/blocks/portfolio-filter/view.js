@@ -5,9 +5,8 @@ import { store, getContext, getElement, withSyncEvent } from '@wordpress/interac
 
 store( 'portfolioApp', {
     state: {
-        currentCategoryId: 0,
         isLoading: false,
-        get isCategoryActive() {
+        get isCategoryActive() { 
             const { catId } = getContext();
             return store( 'portfolioApp' ).state.currentCategoryId === catId;
         }
@@ -19,6 +18,7 @@ store( 'portfolioApp', {
 
             const context = getContext();
             const state = store( 'portfolioApp' ).state;
+            
             let targetUrl = event.target.href;
 
             state.isLoading = true;

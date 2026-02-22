@@ -1,1 +1,5 @@
-.wp-block-categories-list .is-active {  color: var(--wp--preset--color--primary) !important; }
+.wp-block-categories-list {
+    .current-cat {
+        color: var(--wp--preset--color--primary) !important;
+    }
+}
