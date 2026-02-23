@@ -1,0 +1,35 @@
+.wp-block-personal-website-popup {
+	background: var(--wp--preset--color--base);
+	// margin: clamp(
+	// 	var(--wp--preset--spacing--40),
+	// 	var(--wp--preset--spacing--40) + 2vw,
+	// 	var(--wp--preset--spacing--60)
+	// );
+    position: fixed;
+	z-index: 1;
+	top:0;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	overflow-y: auto;
+	padding: var(--wp--preset--spacing--80);
+	margin-block-start: 0 !important;
+	// .popup-content {
+	// 	margin: var(--wp--preset--spacing--80);
+	// 	height: 100%;
+	// 	max-height: 100vh;
+	// }
+
+	.popup-close {
+		font-family: inherit;
+		font-weight: 300;
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: var(--wp--preset--spacing--80);
+		background: transparent;
+		border: none;
+		font-size: var(--wp--preset--font-size--max-60);
+		cursor: pointer;
+	}
+}

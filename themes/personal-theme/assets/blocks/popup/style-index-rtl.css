@@ -1,0 +1,27 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./resources/blocks/popup/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+.wp-block-personal-website-popup {
+  background: var(--wp--preset--color--base);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-y: auto;
+  padding: var(--wp--preset--spacing--80);
+  margin-block-start: 0 !important;
+}
+.wp-block-personal-website-popup .popup-close {
+  font-family: inherit;
+  font-weight: 300;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: var(--wp--preset--spacing--80);
+  background: transparent;
+  border: none;
+  font-size: var(--wp--preset--font-size--max-60);
+  cursor: pointer;
+}

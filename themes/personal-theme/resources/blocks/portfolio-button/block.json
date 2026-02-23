@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "personal-website/portfolio-button",
+  "title": "Portfolio Button",
+  "category": "widgets",
+  "usesContext": [ "postId" ],
+  "icon": "filter",
+  "description": "Portfolio button with interactivity.",
+  "supports": {
+    "html": false,
+    "interactivity": true
+  },
+  "render": "file:./render.php"
+}

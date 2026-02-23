@@ -9,10 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
- 
-$content = <<<HTML
+ob_start();
+?>
+
 <!-- wp:query {"query":{"perPage":10,"pages":0,"offset":0,"postType":"jetpack-portfolio","order":"desc","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
-<div class="wp-block-query" data-wp-class--is-loading="state.isLoading">
+<div class="wp-block-query">
 	<!-- wp:post-template {"layout":{"type":"default"}} -->
 		<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 		<div class="wp-block-group alignwide">
@@ -22,11 +23,7 @@ $content = <<<HTML
 				<div class="wp-block-column is-vertically-aligned-center">
 					<!-- wp:post-title {"level":2,"fontSize":"x-large"} /-->
 					<!-- wp:post-excerpt /-->
-					<!-- wp:buttons -->
-					<div class="wp-block-buttons"><!-- wp:button -->
-					<div class="wp-block-button"><a href="<?php the_permalink(); ?>" class="wp-block-button__link wp-element-button"><?php echo esc_html__( 'View Project', 'frost' ); ?></a></div>
-					<!-- /wp:button --></div>
-					<!-- /wp:buttons -->
+					<!-- wp:personal-website/portfolio-button /-->
 				</div>
 				<!-- /wp:column -->
 				<!-- wp:column {"verticalAlignment":"center","width":""} -->
@@ -52,23 +49,27 @@ $content = <<<HTML
 	<!-- /wp:query-pagination -->
 </div>
 <!-- /wp:query -->
-HTML; 
 
+<?php 
 
+$block_content = do_blocks( ob_get_clean() );
 
+$processor = new WP_HTML_Tag_Processor( $block_content );
 
-
+while ( $processor->next_tag( array( 'tag_name' => 'DIV', 'class_name' => 'wp-block-query' ) ) ) {
+    $processor->set_attribute( 'data-wp-class--is-loading', 'state.isLoading' );
+}
 ?>
 
 <div
 	<?php echo get_block_wrapper_attributes( array( 
-        'class'               => 'portfolio-query',
         'data-wp-interactive' => 'portfolioApp',
 		'data-wp-router-region' => 'portfolio-query-results',
     ) ); ?>
 >
-	<?php echo do_blocks( $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo $processor->get_updated_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>
 
 
 
+ 

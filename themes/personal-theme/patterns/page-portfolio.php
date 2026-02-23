@@ -100,6 +100,7 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:personal-website/portfolio-query /-->
+		<!-- wp:personal-website/popup /-->
 	</div>
 	<!-- /wp:group -->
 </div>

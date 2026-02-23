@@ -9,16 +9,6 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__;
 
-/***/ },
-
-/***/ "@wordpress/interactivity-router"
-/*!**************************************************!*\
-  !*** external "@wordpress/interactivity-router" ***!
-  \**************************************************/
-(module) {
-
-module.exports = import("@wordpress/interactivity-router");;
-
 /***/ }
 
 /******/ });
@@ -69,56 +59,84 @@ module.exports = import("@wordpress/interactivity-router");;
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
-/*!***************************************************!*\
-  !*** ./resources/blocks/portfolio-filter/view.js ***!
-  \***************************************************/
+/*!******************************************!*\
+  !*** ./resources/blocks/overlay/view.js ***!
+  \******************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/interactivity */ "@wordpress/interactivity");
 /**
- * WordPress dependencies
+ * Use this file for JavaScript code that you want to run in the front-end 
+ * on posts/pages that contain this block.
+ *
+ * When this file is defined as the value of the `viewScript` property
+ * in `block.json` it will be enqueued on the front end of the site.
+ *
+ * Example:
+ *
+ * ```js
+ * {
+ *   "viewScript": "file:./view.js"
+ * }
+ * ```
+ *
+ * If you're not making any changes to this file because your project doesn't need any 
+ * JavaScript running in the front-end, then you should delete this file and remove 
+ * the `viewScript` property from `block.json`. 
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 
-(0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('portfolioApp', {
+
+(0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('overlay', {
   state: {
-    isLoading: false,
-    get isCategoryActive() {
-      const {
-        catId
-      } = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
-      return (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('portfolioApp').state.currentCategoryId === catId;
-    }
+    isPopupOpen: false,
+    currentTitle: '',
+    currentContent: ''
   },
   actions: {
-    // The withSyncEvent() utility needs to be used because preventDefault() requires synchronous event access.
-    updateFilter: (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.withSyncEvent)(function* (event) {
+    *openPopup(event) {
       event.preventDefault();
+      const state = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('overlay').state;
       const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
-      const state = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('portfolioApp').state;
-      let targetUrl = event.target.href;
-      state.isLoading = true;
 
-      // if the clicked category is already active, reset the filter by setting the current category ID to 0 and navigating to the main portfolio URL.
-      if (state.currentCategoryId === context.catId) {
-        state.currentCategoryId = 0;
-        targetUrl = context.portfolioUrl;
-      } else {
-        // Set the current category ID in the state, so it can be used by other components if needed.
-        state.currentCategoryId = context.catId;
+      // Opzionale: blocca lo scroll del body
+      document.body.style.overflow = 'hidden';
+      // Popoliamo lo stato con i dati del contesto
+      state.currentTitle = 'Caricamento...'; // O stringa vuota ''
+      state.currentContent = '';
+      state.isPopupOpen = true;
+    },
+    closePopup: () => {
+      const state = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('overlay').state;
+      state.isPopupOpen = false;
+      // Ripristina lo scroll
+      document.body.style.overflow = '';
+    }
+  },
+  callbacks: {
+    // Logica che reagisce ai cambiamenti di stato
+    handleKeyPress: event => {
+      const state = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('popup').state;
+      // Chiudi con il tasto ESC
+      if (state.isPopupOpen && event.key === 'Escape') {
+        state.isPopupOpen = false;
       }
-      if (!targetUrl) {
-        return;
-      }
-
-      // We import the package dynamically to reduce the initial JS bundle size.
-      // Async actions are defined as generators so the import() must be called with `yield`.
+    },
+    renderContent: () => {
       const {
-        actions
-      } = yield Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! @wordpress/interactivity-router */ "@wordpress/interactivity-router"));
-      yield actions.navigate(targetUrl);
+        currentContent
+      } = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.store)('popup').state;
+      const {
+        ref
+      } = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getElement)();
 
-      // Once the navigation is complete, we can disable the loading state.
-      state.isLoading = false;
-    })
+      // Se abbiamo contenuto e il riferimento all'elemento DOM
+      if (ref && currentContent) {
+        ref.innerHTML = currentContent;
+      } else if (ref && !currentContent) {
+        ref.innerHTML = ''; // Pulisce se il contenuto viene resettato
+      }
+    }
   }
 });
 })();

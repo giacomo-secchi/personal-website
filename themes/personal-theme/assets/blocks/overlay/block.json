@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "personal-website/overlay",
+  "title": "Overlay",
+  "category": "widgets",
+  "icon": "filter",
+  "description": "Overlay block.",
+  "supports": {
+    "html": false,
+    "interactivity": true
+  },
+  "attributes": {},
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js"
+}
