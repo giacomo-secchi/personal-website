@@ -1,0 +1,23 @@
+/* Dark styles */
+.theme-dark body {
+    --wp--preset--color--primary: var(
+        --wp--preset--color--custom-primary-dark,
+        var(--wp--custom--color--primary-dark)
+    );
+    --wp--preset--color--secondary: var(
+        --wp--preset--color--custom-secondary-dark,
+        var(--wp--custom--color--secondary-dark)
+    );
+    --wp--preset--color--base: var(
+        --wp--preset--color--custom-base-dark,
+        var(--wp--custom--color--base-dark)
+    );
+    --wp--preset--color--contrast: var(
+        --wp--preset--color--custom-contrast-dark,
+        var(--wp--custom--color--contrast-dark)
+    );
+    --wp--preset--color--white: var(
+        --wp--preset--color--custom-white-dark,
+        var(--wp--custom--color--white-dark)
+    );
+}
