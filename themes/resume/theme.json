@@ -50,6 +50,15 @@
 				"vw"
 			]
 		},
+		"shadow": {
+			"presets": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"shadow": "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)"
+				} 
+			]
+		},
 		"typography": {
 			"fontFamilies": [
 				{
@@ -148,6 +157,13 @@
 		"useRootPaddingAwareAlignments": true
 	},
 	"styles": {
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|noto-serif"
+				}
+			}
+		},
 		"color": {
 			"background": "var:preset|color|base",
 			"text": "var:preset|color|contrast"
