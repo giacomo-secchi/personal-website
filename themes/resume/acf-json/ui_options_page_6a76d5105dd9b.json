@@ -1,0 +1,26 @@
+{
+    "key": "ui_options_page_6a76d5105dd9b",
+    "title": "Resume Settings",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Resume Settings",
+    "menu_slug": "resume-settings",
+    "parent_slug": "none",
+    "advanced_configuration": 1,
+    "icon_url": "",
+    "menu_title": "Profile Informations",
+    "position": 15,
+    "redirect": 0,
+    "description": "",
+    "menu_icon": {
+        "type": "dashicons",
+        "value": "dashicons-admin-users"
+    },
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1787810972
+}

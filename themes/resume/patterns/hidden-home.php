@@ -25,6 +25,14 @@
 		<!-- wp:heading {"level":2} -->
 		<h2 class="wp-block-heading">Web Developer / Ecommerce Specialist</h2>
 		<!-- /wp:heading -->
+
+		<!-- wp:resume/list-section {"fieldName":"profile_description"} /-->
+		<!-- wp:resume/resume-section {"postType":"experience"} /-->
+		<!-- wp:resume/resume-section {"postType":"internship"} /-->
+		<!-- wp:resume/resume-section {"postType":"project"} /-->
+		<!-- wp:resume/resume-section {"postType":"education"} /-->
+		<!-- wp:resume/resume-section {"postType":"event_presentation"} /-->
+		<!-- wp:resume/resume-section {"postType":"publication"} /-->
 	</div>
 	<!-- /wp:column -->
 

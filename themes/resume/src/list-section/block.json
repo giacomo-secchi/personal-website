@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "resume/list-section",
+	"version": "0.1.0",
+	"title": "List Section",
+	"category": "widgets",
+	"icon": "editor-ul",
+	"description": "Lists a repeater field from the profile options page (e.g. Skills, Languages).",
+	"example": {},
+	"attributes": {
+		"fieldName": {
+			"type": "string",
+			"default": "skills"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "resume-section",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
