@@ -1,5 +1,8 @@
 <?php
 
+// Bootstrap Icons collection for the core/icon block.
+require get_stylesheet_directory() . '/inc/bootstrap-icons.php';
+
 // Custom Advanced Custom Fields Plugin settings
 if ( class_exists( 'ACF' ) ) {
     require get_stylesheet_directory() . '/inc/acf.php';
@@ -21,6 +24,6 @@ if ( defined( 'WPSEO_VERSION' ) ) {
 }
 
 add_action( 'init', function () {
-    wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' ); 
+    wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
 } );
 
