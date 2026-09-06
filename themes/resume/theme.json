@@ -174,8 +174,9 @@
 	},
 	"templateParts": [
 		{
-			"area": "header",
-			"name": "header"
+			"area": "uncategorized",
+			"name": "utilities",
+			"title": "Utilities"
 		},
 		{
 			"area": "footer",
