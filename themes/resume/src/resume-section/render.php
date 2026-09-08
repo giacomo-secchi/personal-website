@@ -13,22 +13,21 @@
 $post_type        = $attributes['postType'];
 $post_type_object = get_post_type_object( $post_type );
 
-$items = get_posts( array(
-	'post_type'      => $post_type,
-	'posts_per_page' => -1,
-	'orderby'        => array(
-		'menu_order' => 'ASC',
-		'date'       => 'DESC',
-	),
-) );
+// Newest first, by the entry's real-world date (see inc/resume-entries.php).
+$items = resume_get_section_entries( $post_type );
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
-	<dt><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
+	<dt><?php echo resume_render_section_icon( $attributes['sectionIcon'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted inline SVG. ?><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
 
 	<dd>
-		<section id="<?php echo esc_attr( $post_type ); ?>">
+		<section id="<?php echo esc_attr( $post_type ); ?>" data-wp-interactive="resume/tabs">
 			<?php foreach ( $items as $item ) : ?>
 				<?php
+				$views = get_field( 'resume_visibility', $item->ID );
+				if ( empty( $views ) ) {
+					$views = array( 'resume', 'cv' );
+				}
+
 				$organization = get_field( 'company_name', $item );
 				$summary      = has_excerpt( $item ) ? get_the_excerpt( $item ) : '';
 				$start        = get_field( 'start_date', $item ) ?: get_field( 'start_year', $item );
@@ -46,7 +45,11 @@ $items = get_posts( array(
 					$time_text = '';
 				}
 				?>
-				<div class="resume-entry">
+				<div
+					class="resume-entry"
+					<?php echo wp_interactivity_data_wp_context( array( 'views' => array_values( $views ) ) ); ?>
+					data-wp-bind--hidden="state.isEntryHidden"
+				>
 					<h3><?php echo esc_html( get_the_title( $item ) ); ?></h3>
 
 					<?php if ( $organization ) : ?>

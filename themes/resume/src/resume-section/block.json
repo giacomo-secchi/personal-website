@@ -12,15 +12,20 @@
 		"postType": {
 			"type": "string",
 			"default": "experience"
+		},
+		"sectionIcon": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"interactivity": true
 	},
 	"textdomain": "resume-section",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"render": "file:./render.php",
-	"viewScript": "file:./view.js"
+	"viewScriptModule": "file:./view.js"
 }

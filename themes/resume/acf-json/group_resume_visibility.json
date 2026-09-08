@@ -1,0 +1,91 @@
+{
+    "key": "group_resume_visibility",
+    "title": "Resume Visibility",
+    "fields": [
+        {
+            "key": "field_resume_visibility",
+            "label": "Show in",
+            "name": "resume_visibility",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "Which front-end view(s) this entry appears in. Leave both checked to always show.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "resume": "Resume",
+                "cv": "CV"
+            },
+            "default_value": [
+                "resume",
+                "cv"
+            ],
+            "return_format": "value",
+            "allow_custom": 0,
+            "custom_choice_button_text": "Add new choice",
+            "save_custom": 0,
+            "layout": "horizontal",
+            "toggle": 0,
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "experience"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "internship"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "education"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event_presentation"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "publication"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "field",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1787928504
+}

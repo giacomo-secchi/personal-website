@@ -1,8 +1,36 @@
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
+ * Front-end styles for the résumé sections.
+ * Loaded wherever a resume/resume-section block is present (i.e. the home page).
+ * The Resume / CV switch styling lives in src/tab-switch/style.scss.
  */
 
-.wp-block-resume-resume-section {}
+.wp-block-resume-resume-section {
+	.resume-entry[hidden] {
+		display: none;
+	}
+}
+
+.resume-section__icon {
+	display: inline-flex;
+	align-items: center;
+	margin-inline-end: 0.5em;
+
+	svg {
+		width: 1em;
+		height: 1em;
+	}
+}
+
+@media print {
+	.wp-block-template-part,
+	.resume-tab-switch,
+	#resume-print-button {
+		display: none !important;
+	}
+
+	// The utility rail lives in the right column; once it is hidden the empty
+	// column would still reserve its flex-basis, so collapse the columns layout.
+	.wp-block-columns {
+		display: block !important;
+	}
+}

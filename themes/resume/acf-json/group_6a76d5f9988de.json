@@ -51,7 +51,7 @@
                     "name": "info",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "e.g. a formatted address, nationality, driving licence...",
+                    "instructions": "The value shown in the listing, e.g. an email address, a phone number, a URL, a nationality...",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -68,20 +68,31 @@
                     "append": ""
                 },
                 {
-                    "key": "field_c0040fa589f3",
-                    "label": "Website URL",
-                    "name": "website_url",
+                    "key": "field_7e3a1c9d2b84",
+                    "label": "Type",
+                    "name": "type",
                     "aria-label": "",
-                    "type": "url",
-                    "instructions": "Optional — makes this entry clickable.",
-                    "required": 0,
+                    "type": "select",
+                    "instructions": "Controls how the Info value is linked in the listing.",
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
+                    "choices": {
+                        "text": "Plain text",
+                        "email": "Email",
+                        "phone": "Phone",
+                        "url": "Website URL"
+                    },
+                    "default_value": "text",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
                     "placeholder": "",
                     "allow_in_bindings": 0,
                     "parent_repeater": "field_3378c524491a"
@@ -90,7 +101,7 @@
         },
         {
             "key": "field_ca9dfb410731",
-            "label": "Skills",
+            "label": "Technical Skills",
             "name": "skills",
             "aria-label": "",
             "type": "repeater",
@@ -107,7 +118,7 @@
             "min": 0,
             "max": 0,
             "collapsed": "field_357628d8a214",
-            "button_label": "Add Skill",
+            "button_label": "Add Technical Skill",
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -129,6 +140,52 @@
                     "allow_in_bindings": 0,
                     "placeholder": "",
                     "parent_repeater": "field_ca9dfb410731",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5a1c9e7b3d02",
+            "label": "Soft Skills",
+            "name": "soft_skills",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_8b4f2c1a6e90",
+            "button_label": "Add Soft Skill",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_8b4f2c1a6e90",
+                    "label": "Soft Skill",
+                    "name": "soft_skill",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "e.g. Teamwork, Communication",
+                    "parent_repeater": "field_5a1c9e7b3d02",
                     "prepend": "",
                     "append": ""
                 }
@@ -222,5 +279,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1787813600
+    "modified": 1788566400
 }

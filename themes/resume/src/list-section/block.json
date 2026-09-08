@@ -12,6 +12,10 @@
 		"fieldName": {
 			"type": "string",
 			"default": "skills"
+		},
+		"sectionIcon": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

@@ -1,7 +1,16 @@
 <?php
 
+// Résumé views (front-end tabs) — shared by resume/tab-switch and the Resume Visibility field
+require get_stylesheet_directory() . '/inc/resume-views.php';
+
 // Bootstrap Icons collection for the core/icon block.
 require get_stylesheet_directory() . '/inc/bootstrap-icons.php';
+
+// Optional Bootstrap icon before each résumé section title.
+require get_stylesheet_directory() . '/inc/section-icons.php';
+
+// Fetching + date ordering for resume/resume-section entries.
+require get_stylesheet_directory() . '/inc/resume-entries.php';
 
 // Custom Advanced Custom Fields Plugin settings
 if ( class_exists( 'ACF' ) ) {

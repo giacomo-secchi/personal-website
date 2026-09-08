@@ -23,11 +23,24 @@ $is_single = count( $rows ) === 1;
 
 $render_item = function ( $row ) {
 	$text   = reset( $row );
-	$url    = $row['website_url'] ?? '';
+	$type   = $row['type'] ?? '';
 	$detail = $row['detail'] ?? '';
+
+	// A `type` subfield (Personal Informations) turns the value into the right link;
+	// other list sections fall back to an explicit `website_url`.
+	if ( 'email' === $type ) {
+		$url = $text ? 'mailto:' . $text : '';
+	} elseif ( 'phone' === $type ) {
+		$url = $text ? 'tel:' . preg_replace( '/[^\d+]/', '', $text ) : '';
+	} elseif ( 'url' === $type ) {
+		$url = $text;
+	} else {
+		$url = $row['website_url'] ?? '';
+	}
 	?>
 	<?php if ( $url ) : ?>
-		<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noreferrer noopener"><?php echo esc_html( $text ); ?></a>
+		<?php $is_external = (bool) preg_match( '#^https?://#i', $url ); ?>
+		<a href="<?php echo esc_url( $url ); ?>"<?php echo $is_external ? ' target="_blank" rel="noreferrer noopener"' : ''; ?>><?php echo esc_html( $text ); ?></a>
 	<?php else : ?>
 		<?php echo esc_html( $text ); ?>
 	<?php endif; ?>
@@ -38,7 +51,7 @@ $render_item = function ( $row ) {
 };
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
-	<dt><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
+	<dt><?php echo resume_render_section_icon( $attributes['sectionIcon'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted inline SVG. ?><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
 
 	<dd>
 		<section id="<?php echo esc_attr( $field_name ); ?>">

@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl, ComboboxControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 /**
@@ -30,8 +30,12 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
+const ICON_OPTIONS = typeof window !== 'undefined' && Array.isArray( window.resumeBootstrapIcons )
+	? window.resumeBootstrapIcons
+	: [];
+
 export default function Edit( { attributes, setAttributes } ) {
-	const { postType } = attributes;
+	const { postType, sectionIcon } = attributes;
 
 	const postTypeOptions = useSelect( ( select ) => {
 		const types = select( coreStore ).getPostTypes( { per_page: -1 } ) || [];
@@ -49,6 +53,14 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ postType }
 						options={ postTypeOptions }
 						onChange={ ( newPostType ) => setAttributes( { postType: newPostType } ) }
+					/>
+					<ComboboxControl
+						label={ __( 'Section icon', 'resume-section' ) }
+						help={ __( 'Bootstrap icon shown before the section title.', 'resume-section' ) }
+						value={ sectionIcon }
+						options={ ICON_OPTIONS }
+						onChange={ ( newIcon ) => setAttributes( { sectionIcon: newIcon || '' } ) }
+						allowReset
 					/>
 				</PanelBody>
 			</InspectorControls>
