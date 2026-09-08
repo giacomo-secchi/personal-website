@@ -64,6 +64,7 @@ jobs:
       host: ${{ vars.HOST }}
       username: ${{ vars.USERNAME }}
       folder: ${{ vars.FOLDER }}
+      transport: sftp          # Cloudways app user = SFTP only, no shell
       checkout: false
       artifact_name: deploy-payload
       mappings: |
