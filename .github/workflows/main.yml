@@ -1,20 +1,75 @@
-name: Deploy to Cloudways
+name: Build & Deploy to Cloudways
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
+  build:
+    name: Build themes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: themes/*/package-lock.json
+
+      - name: Build themes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in themes/personal-theme themes/resume; do
+            echo "::group::build ${dir}"
+            ( cd "${dir}" && npm ci && npm run build --if-present )
+            echo "::endgroup::"
+          done
+
+      - name: Assemble deploy payload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: deploy-payload
+          path: |
+            themes
+            mu-plugins
+            !**/node_modules
+            !**/.git
+            !themes/**/src
+            !themes/personal-theme/resources
+            !**/*.map
+          retention-days: 1
+
   deploy:
-    uses: WritePoetry/reusable-workflows/.github/workflows/remote-sync.yml@main
+    name: Deploy
+    needs: build
+    permissions:
+      contents: read
+      actions: read
+    uses: WritePoetry/reusable-workflows/.github/workflows/deploy.yml@v3
     with:
       host: ${{ vars.HOST }}
       username: ${{ vars.USERNAME }}
       folder: ${{ vars.FOLDER }}
-      paths: |
+      checkout: false
+      artifact_name: deploy-payload
+      mappings: |
         [
-          {"from": "themes", "to": "/themes/", "exclude": "resources"},
+          {"from": "themes", "to": "/themes/"},
           {"from": "mu-plugins", "to": "/mu-plugins/"}
         ]
     secrets:
-      ssh-key: ${{ secrets.SSH_KEY }}
+      ssh_key: ${{ secrets.SSH_KEY }}
