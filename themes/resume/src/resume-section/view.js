@@ -1,20 +1,80 @@
 /**
- * `resume/tabs` — front-end state for the Resume / CV switch.
+ * `resume/tabs` — front-end state for the CV / Resume switch.
  *
- * Writer:  resume/tab-switch buttons (data-wp-on--click / --keydown).
- * Readers: resume/resume-section entries (data-wp-bind--hidden), and the
- *          switch buttons themselves (aria-selected / tabindex).
+ * Store lives here (not in resume/tab-switch) because resume/resume-section
+ * is always present on pages that use the switch.
  *
- * The store lives here because resume/resume-section is always present on the
- * page that uses the switch; resume/tab-switch carries no view module of its own.
+ * Active view is deep-linkable via `?view=`, synced with `history.pushState()`
+ * (no reload); a legacy `#cv` / `#resume` hash is honoured once and upgraded.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/
  */
 import { store, getContext } from '@wordpress/interactivity';
 
+const VIEW_PARAM = 'view';
+
+// Shown when the URL names no (valid) view. Must match the first entry of
+// resume_get_views() in inc/resume-views.php.
+const DEFAULT_VIEW = 'cv';
+
+// View slugs actually rendered as tabs on this page, in DOM order.
+function renderedViews() {
+	return [ ...document.querySelectorAll( '.resume-tab-switch__tab' ) ].map(
+		( tab ) => tab.dataset.view
+	);
+}
+
+// `?view=` wins, then a legacy `#cv` / `#resume` hash, then the first rendered tab.
+function resolveView() {
+	const views = renderedViews();
+	const fallback = views[ 0 ] || DEFAULT_VIEW;
+
+	const requested = new URLSearchParams( window.location.search ).get( VIEW_PARAM );
+	if ( requested && views.includes( requested ) ) {
+		return requested;
+	}
+
+	const hash = window.location.hash.replace( '#', '' );
+	if ( views.includes( hash ) ) {
+		return hash;
+	}
+
+	return fallback;
+}
+
+// Keeps `?view=` in sync with the active view; default view keeps the URL clean
+// (matches the canonical). Other query params and the hash are left untouched.
+function syncUrl( view, method = 'push' ) {
+	const url = new URL( window.location.href );
+
+	if ( view === DEFAULT_VIEW ) {
+		url.searchParams.delete( VIEW_PARAM );
+	} else {
+		url.searchParams.set( VIEW_PARAM, view );
+	}
+
+	const next = url.pathname + url.search + url.hash;
+	if ( next === window.location.pathname + window.location.search + window.location.hash ) {
+		return;
+	}
+
+	window.history[ method === 'replace' ? 'replaceState' : 'pushState' ]( { view }, '', next );
+}
+
+// Drops a legacy `#cv` / `#resume` hash once read; a non-view hash is left alone.
+function stripLegacyHash() {
+	if ( renderedViews().includes( window.location.hash.replace( '#', '' ) ) ) {
+		window.history.replaceState(
+			window.history.state,
+			'',
+			window.location.pathname + window.location.search
+		);
+	}
+}
+
 const { state } = store( 'resume/tabs', {
 	state: {
-		activeView: 'resume',
+		activeView: DEFAULT_VIEW,
 
 		// --- read by resume/tab-switch buttons (each has context { view } ) ---
 		get isSelectedView() {
@@ -36,8 +96,9 @@ const { state } = store( 'resume/tabs', {
 	actions: {
 		setView() {
 			const { view } = getContext();
-			if ( view ) {
+			if ( view && view !== state.activeView ) {
 				state.activeView = view;
+				syncUrl( view );
 			}
 		},
 		handleSwitchKeyDown( event ) {
@@ -64,28 +125,27 @@ const { state } = store( 'resume/tabs', {
 				next = ( current + move + tabs.length ) % tabs.length;
 			}
 
-			state.activeView = tabs[ next ].dataset.view;
+			const nextView = tabs[ next ].dataset.view;
+			if ( nextView && nextView !== state.activeView ) {
+				state.activeView = nextView;
+				syncUrl( nextView );
+			}
 			tabs[ next ].focus();
 		},
 	},
 } );
 
-/**
- * Non-block wiring done imperatively once: pick the initial view (deep-link hash
- * if it matches a rendered tab, otherwise the first tab), and turn the pattern's
- * print button into window.print().
- */
+// Non-block wiring done once: resolve initial view, normalise the address bar,
+// sync with back / forward, and turn the print button into window.print().
 function init() {
-	const views = [ ...document.querySelectorAll( '.resume-tab-switch__tab' ) ].map(
-		( tab ) => tab.dataset.view
-	);
-	const hash = window.location.hash.replace( '#', '' );
+	state.activeView = resolveView();
 
-	if ( views.includes( hash ) ) {
-		state.activeView = hash;
-	} else if ( views.length && ! views.includes( state.activeView ) ) {
-		state.activeView = views[ 0 ];
-	}
+	stripLegacyHash();
+	syncUrl( state.activeView, 'replace' );
+
+	window.addEventListener( 'popstate', () => {
+		state.activeView = resolveView();
+	} );
 
 	const printButton = document.getElementById( 'resume-print-button' );
 	if ( printButton ) {

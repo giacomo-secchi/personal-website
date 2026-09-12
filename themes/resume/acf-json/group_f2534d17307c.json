@@ -3,44 +3,6 @@
     "title": "Education Details",
     "fields": [
         {
-            "key": "field_f70fa36d2ae0",
-            "label": "Start Year",
-            "name": "start_year",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 1,
-            "placeholder": "2003"
-        },
-        {
-            "key": "field_9f37290600d6",
-            "label": "End Year",
-            "name": "end_year",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Lascia vuoto se in corso (verrà mostrato \"Present\").",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 1,
-            "placeholder": "2005"
-        },
-        {
             "key": "field_d8c3a68d0912",
             "label": "Website URL",
             "name": "website_url",
@@ -196,5 +158,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1787730558
+    "modified": 1789018518
 }

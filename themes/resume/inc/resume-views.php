@@ -1,10 +1,14 @@
 <?php
 /**
- * Résumé views — the front-end tabs (Resume / CV / ...).
+ * Résumé views — the front-end tabs (CV / Resume / ...).
  *
  * Single source of truth, consumed by:
  *   - resume/tab-switch  (src/tab-switch/render.php) — renders the tab buttons
  *   - the "Resume Visibility" field (field_resume_visibility) — its checkbox choices
+ *
+ * Order matters: the first view is the default, shown when the URL has no
+ * `?view=` parameter. `resume` is the condensed view that
+ * `resume.giacomosecchi.com` 301-redirects to.
  *
  * Add a view from anywhere:
  *
@@ -18,8 +22,8 @@ function resume_get_views() {
 	return apply_filters(
 		'resume_views',
 		array(
-			'resume' => __( 'Resume', 'resume' ),
 			'cv'     => __( 'CV', 'resume' ),
+			'resume' => __( 'Resume', 'resume' ),
 		)
 	);
 }

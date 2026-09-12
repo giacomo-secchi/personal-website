@@ -1,0 +1,99 @@
+{
+    "key": "group_resume_timeline",
+    "title": "Timeline",
+    "fields": [
+        {
+            "key": "field_f04345780d92",
+            "label": "Start Date",
+            "name": "start_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "j F Y",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_4199aef45f53",
+            "label": "End Date",
+            "name": "end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Leave empty if ongoing (shows \"Present\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "j F Y",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "allow_in_bindings": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "experience"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "internship"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "education"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event_presentation"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "publication"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "modified": 1789018518
+}

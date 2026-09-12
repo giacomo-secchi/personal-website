@@ -76,7 +76,7 @@ add_filter( 'wpseo_schema_person_data', function ( $data ) {
 
 	$performer_in = array();
 	foreach ( get_posts( array( 'post_type' => 'event_presentation', 'posts_per_page' => -1 ) ) as $event ) {
-		$raw_date  = get_field( 'event_date', $event, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
+		$raw_date  = get_field( 'start_date', $event, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
 		$date_time = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
 
 		$entry = array_filter( array(
@@ -155,7 +155,7 @@ class Resume_Publications_Schema_Piece extends \Yoast\WP\SEO\Generators\Schema\A
 		$pieces = array();
 		foreach ( get_posts( array( 'post_type' => 'publication', 'posts_per_page' => -1 ) ) as $publication ) {
 			$permalink = get_permalink( $publication );
-			$raw_date  = get_field( 'event_date', $publication, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
+			$raw_date  = get_field( 'start_date', $publication, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
 			$date_time = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
 
 			$piece = array_filter( array(

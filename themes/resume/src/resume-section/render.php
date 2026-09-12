@@ -13,8 +13,31 @@
 $post_type        = $attributes['postType'];
 $post_type_object = get_post_type_object( $post_type );
 
-// Newest first, by the entry's real-world date (see inc/resume-entries.php).
-$items = resume_get_section_entries( $post_type );
+// Newest first by Start Date; a non-zero menu_order (Page Attributes → Order) still pins.
+$items = get_posts( array(
+	'post_type'      => $post_type,
+	'posts_per_page' => -1,
+	'meta_key'       => 'start_date',
+	'orderby'        => array( 'menu_order' => 'ASC', 'meta_value_num' => 'DESC' ),
+) );
+
+// start_date / end_date are date_picker fields (raw 'Ymd'). Each section shows the
+// precision it needs: the day for talks/papers, the year for study, month + year otherwise.
+$entry_date_formats = array(
+	'event_presentation' => 'j F Y',
+	'publication'        => 'j F Y',
+	'education'          => 'Y',
+);
+$entry_date_format = isset( $entry_date_formats[ $post_type ] ) ? $entry_date_formats[ $post_type ] : 'F Y';
+
+// For these an empty End Date means "still ongoing" ("— Present"); elsewhere a
+// missing End Date is just a single date (talks, papers, one-off projects).
+$present_label_types = array( 'experience', 'internship', 'education' );
+
+$format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
+	$date = $ymd ? DateTimeImmutable::createFromFormat( 'Ymd', $ymd ) : false;
+	return $date ? $date->format( $entry_date_format ) : ''; // English month names, as before; TranslatePress localises the output.
+};
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
 	<dt><?php echo resume_render_section_icon( $attributes['sectionIcon'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted inline SVG. ?><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
@@ -30,19 +53,20 @@ $items = resume_get_section_entries( $post_type );
 
 				$organization = get_field( 'company_name', $item );
 				$summary      = has_excerpt( $item ) ? get_the_excerpt( $item ) : '';
-				$start        = get_field( 'start_date', $item ) ?: get_field( 'start_year', $item );
-				$end          = get_field( 'end_date', $item ) ?: get_field( 'end_year', $item );
-				$single_date  = get_field( 'event_date', $item );
+				$start        = $format_entry_date( get_field( 'start_date', $item, false ) );
+				$end          = $format_entry_date( get_field( 'end_date', $item, false ) );
 				$address      = get_field( 'address', $item );
 				$website_url  = get_field( 'website_url', $item );
 				$description  = $item->post_content;
 
-				if ( $start ) {
-					$time_text = $start . ' — ' . ( $end ? $end : 'Present' );
-				} elseif ( $single_date ) {
-					$time_text = $single_date;
-				} else {
+				if ( ! $start ) {
 					$time_text = '';
+				} elseif ( $end ) {
+					$time_text = $start . ' — ' . $end;
+				} elseif ( in_array( $post_type, $present_label_types, true ) ) {
+					$time_text = $start . ' — Present';
+				} else {
+					$time_text = $start;
 				}
 				?>
 				<div

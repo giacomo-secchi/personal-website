@@ -10,9 +10,11 @@
  * before that both tabs read as inactive for one frame (same as core/tabs).
  */
 
-$options = function_exists( 'resume_get_views' )
-	? resume_get_views()
-	: array( 'resume' => __( 'Resume', 'resume' ), 'cv' => __( 'CV', 'resume' ) );
+$options = resume_get_views();
+
+if ( empty( $options ) ) {
+	return;
+}
 ?>
 <div
 	<?php echo get_block_wrapper_attributes( array( 'class' => 'resume-tab-switch', 'role' => 'tablist' ) ); ?>

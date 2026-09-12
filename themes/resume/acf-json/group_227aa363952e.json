@@ -22,25 +22,6 @@
             "placeholder": ""
         },
         {
-            "key": "field_7dd0c74db71a",
-            "label": "Date",
-            "name": "event_date",
-            "aria-label": "",
-            "type": "date_picker",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "d F Y",
-            "return_format": "d F Y",
-            "first_day": 1,
-            "allow_in_bindings": 1
-        },
-        {
             "key": "field_831b889422a0",
             "label": "URL",
             "name": "website_url",
@@ -85,5 +66,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1787749780
+    "modified": 1789018518
 }

@@ -13,8 +13,11 @@ It is built and deployed by the monorepo's CI — see [Deployment](#deployment).
 
 - Full-site-editing theme (`theme.json` v3, block templates and template parts)
 - One-page résumé assembled from ACF custom post types plus a profile options page
-- **Resume / CV toggle** built on the WordPress Interactivity API — each entry
-  declares which views it belongs to; the active view is deep-linkable via the URL hash
+- **CV / Resume toggle** built on the WordPress Interactivity API — each entry
+  declares which views it belongs to; the active view is driven by the `?view=`
+  query parameter (`?view=resume` for the condensed view, no parameter for the
+  default `cv` view) and kept in sync with `history.pushState()` — no reload,
+  back / forward aware, canonical URL stays parameter-free
 - "Download printable version" button (`window.print()`) with dedicated `@media print` styles
 - Dark-mode support via the Tabor *Dark Mode Toggle* block and `assets/css/dark-mode.css`
 - Bootstrap Icons available to the core Icon block, and an optional section icon per résumé section
@@ -79,7 +82,7 @@ resume/
 │   └── fonts/           self-hosted woff2 (Open Sans, Noto Serif)
 ├── build/               compiled blocks + copied Bootstrap Icons (generated)
 ├── inc/                 PHP modules, wired up in functions.php
-│   ├── resume-views.php         defines the front-end views (Resume / CV)
+│   ├── resume-views.php         defines the front-end views (CV / Resume) + `?view=` default
 │   ├── resume-entries.php       fetch + real-world-date ordering of résumé entries
 │   ├── bootstrap-icons.php      registers the Bootstrap Icons collection (Icons API)
 │   ├── section-icons.php        optional icon before each section title
@@ -105,10 +108,11 @@ All three are server-rendered (`render.php`), block API v3, and namespaced `resu
 |---|---|
 | `resume/resume-section` | Renders one résumé section (`<dl>` → entries) from a post type. Entries are ordered by menu order, then by their real-world date. Each entry declares its Resume/CV visibility and hides itself via an Interactivity binding. |
 | `resume/list-section` | Renders a repeater field from the *Resume Settings* options page, turning email / phone / URL rows into the right link. |
-| `resume/tab-switch` | The Resume / CV tablist. Writes the active view into the `resume/tabs` Interactivity store; `resume/resume-section` entries read it. |
+| `resume/tab-switch` | The CV / Resume tablist. Writes the active view into the `resume/tabs` Interactivity store (and the `?view=` URL parameter); `resume/resume-section` entries read it. |
 
 Views are defined once in `inc/resume-views.php` and consumed by both `tab-switch`
-and the per-entry "Resume Visibility" field. Add one from anywhere:
+and the per-entry "Resume Visibility" field. **Order matters** — the first view is
+the default one, shown when the URL carries no `?view=` parameter. Add one from anywhere:
 
 ```php
 add_filter( 'resume_views', fn( $v ) => $v + array( 'portfolio' => __( 'Portfolio', 'resume' ) ) );
