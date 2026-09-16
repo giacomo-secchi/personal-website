@@ -162,6 +162,15 @@
 				"typography": {
 					"fontFamily": "var:preset|font-family|noto-serif"
 				}
+			},
+			"button": {
+				"border": {
+					"radius": "8px"
+				},
+				"color": {
+					"background": "var:preset|color|primary",
+					"text": "var:preset|color|base"
+				}
 			}
 		},
 		"color": {
