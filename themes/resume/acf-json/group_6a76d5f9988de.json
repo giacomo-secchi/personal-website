@@ -41,39 +41,17 @@
             "pagination": 0,
             "min": 0,
             "max": 0,
-            "collapsed": "field_0f92b022bf3e",
+            "collapsed": "field_7e3a1c9d2b84",
             "button_label": "Add Info",
             "rows_per_page": 20,
             "sub_fields": [
-                {
-                    "key": "field_0f92b022bf3e",
-                    "label": "Info",
-                    "name": "info",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "The value shown in the listing, e.g. an email address, a phone number, a URL, a nationality...",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "parent_repeater": "field_3378c524491a",
-                    "prepend": "",
-                    "append": ""
-                },
                 {
                     "key": "field_7e3a1c9d2b84",
                     "label": "Type",
                     "name": "type",
                     "aria-label": "",
                     "type": "select",
-                    "instructions": "Controls how the Info value is linked in the listing.",
+                    "instructions": "Controls how the value is linked in the listing.",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -94,6 +72,63 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
+                    "allow_in_bindings": 0,
+                    "parent_repeater": "field_3378c524491a"
+                },
+                {
+                    "key": "field_0f92b022bf3e",
+                    "label": "Info",
+                    "name": "info",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "The value shown in the listing, e.g. an email address, a phone number, a nationality...",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_7e3a1c9d2b84",
+                                "operator": "!=",
+                                "value": "url"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_3378c524491a",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_9c3d7e1a4b56",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "The website URL, e.g. https://example.com. The protocol is stripped from the displayed link text automatically, and the link always opens in a new tab.",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_7e3a1c9d2b84",
+                                "operator": "==",
+                                "value": "url"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "https://example.com",
                     "allow_in_bindings": 0,
                     "parent_repeater": "field_3378c524491a"
                 }
@@ -279,5 +314,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1788566400
+    "modified": 1789637726
 }
