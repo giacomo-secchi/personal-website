@@ -21,21 +21,40 @@ if ( ! $value ) {
 $rows      = is_array( $value ) ? $value : array( array( $value ) );
 $is_single = count( $rows ) === 1;
 
+// Icon before the section title, tinted with the theme's `contrast` preset.
+$section_icon = '';
+if ( ! empty( $attributes['sectionIcon'] ) ) {
+	$section_icon = do_blocks( '<!-- wp:icon ' . wp_json_encode( array(
+		'icon'      => $attributes['sectionIcon'],
+		'className' => 'resume-icon',
+		'style'     => array( 'color' => array( 'text' => 'var:preset|color|contrast' ) ),
+	) ) . ' /-->' );
+}
+
 $render_item = function ( $row ) {
-	$text   = reset( $row );
-	$type   = $row['type'] ?? '';
+	$type   = $row['type'] ?? null;
 	$detail = $row['detail'] ?? '';
 
-	// A `type` subfield (Personal Informations) turns the value into the right link;
-	// other list sections fall back to an explicit `website_url`.
-	if ( 'email' === $type ) {
-		$url = $text ? 'mailto:' . $text : '';
-	} elseif ( 'phone' === $type ) {
-		$url = $text ? 'tel:' . preg_replace( '/[^\d+]/', '', $text ) : '';
-	} elseif ( 'url' === $type ) {
-		$url = $text;
+	// A `type` subfield (Personal Informations) turns the value into the right link, with a
+	// dedicated `url` field for the Website URL case; other list sections fall back to a
+	// generic first subfield plus an optional explicit `website_url`.
+	if ( null !== $type ) {
+		if ( 'url' === $type ) {
+			$url  = $row['url'] ?? '';
+			$text = $url ? preg_replace( '#^https?://#i', '', rtrim( $url, '/' ) ) : '';
+		} elseif ( 'email' === $type ) {
+			$text = $row['info'] ?? '';
+			$url  = $text ? 'mailto:' . $text : '';
+		} elseif ( 'phone' === $type ) {
+			$text = $row['info'] ?? '';
+			$url  = $text ? 'tel:' . preg_replace( '/[^\d+]/', '', $text ) : '';
+		} else {
+			$text = $row['info'] ?? '';
+			$url  = '';
+		}
 	} else {
-		$url = $row['website_url'] ?? '';
+		$text = reset( $row );
+		$url  = $row['website_url'] ?? '';
 	}
 	?>
 	<?php if ( $url ) : ?>
@@ -51,7 +70,7 @@ $render_item = function ( $row ) {
 };
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
-	<dt><?php echo resume_render_section_icon( $attributes['sectionIcon'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted inline SVG. ?><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
+	<dt><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
 
 	<dd>
 		<section id="<?php echo esc_attr( $field_name ); ?>">

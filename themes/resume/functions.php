@@ -3,11 +3,9 @@
 // Résumé views (front-end tabs) — shared by resume/tab-switch and the Resume Visibility field
 require get_stylesheet_directory() . '/inc/resume-views.php';
 
-// Bootstrap Icons collection for the core/icon block.
+// Bootstrap Icons for the core/icon block: collection registration, the
+// "Section icon" editor picker, and .resume-icon styling.
 require get_stylesheet_directory() . '/inc/bootstrap-icons.php';
-
-// Optional Bootstrap icon before each résumé section title.
-require get_stylesheet_directory() . '/inc/section-icons.php';
 
 // Custom Advanced Custom Fields Plugin settings
 if ( class_exists( 'ACF' ) ) {
