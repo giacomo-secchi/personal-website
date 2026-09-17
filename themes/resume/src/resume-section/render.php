@@ -13,6 +13,16 @@
 $post_type        = $attributes['postType'];
 $post_type_object = get_post_type_object( $post_type );
 
+// Icon before the section title, tinted with the theme's `contrast` preset.
+$section_icon = '';
+if ( ! empty( $attributes['sectionIcon'] ) ) {
+	$section_icon = do_blocks( '<!-- wp:icon ' . wp_json_encode( array(
+		'icon'      => $attributes['sectionIcon'],
+		'className' => 'resume-icon',
+		'style'     => array( 'color' => array( 'text' => 'var:preset|color|contrast' ) ),
+	) ) . ' /-->' );
+}
+
 // Newest first by Start Date; a non-zero menu_order (Page Attributes → Order) still pins.
 $items = get_posts( array(
 	'post_type'      => $post_type,
@@ -40,7 +50,7 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 };
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
-	<dt><?php echo resume_render_section_icon( $attributes['sectionIcon'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted inline SVG. ?><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
+	<dt><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
 
 	<dd>
 		<section id="<?php echo esc_attr( $post_type ); ?>" data-wp-interactive="resume/tabs">
