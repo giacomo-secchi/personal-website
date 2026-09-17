@@ -32,26 +32,32 @@ if ( ! empty( $attributes['sectionIcon'] ) ) {
 }
 
 $render_item = function ( $row ) {
-	$type   = $row['type'] ?? null;
-	$detail = $row['detail'] ?? '';
+	$type    = $row['type'] ?? null;
+	$detail  = $row['detail'] ?? '';
+	$tooltip = '';
 
-	// A `type` subfield (Personal Informations) turns the value into the right link, with a
-	// dedicated `url` field for the Website URL case; other list sections fall back to a
-	// generic first subfield plus an optional explicit `website_url`.
+	// A `type` subfield (Personal Informations) turns the value into the right link, with
+	// dedicated `email`/`url` fields and an optional `link_text` override and `tooltip`;
+	// other list sections fall back to a generic first subfield plus an explicit `website_url`.
 	if ( null !== $type ) {
+		$override = $row['link_text'] ?? '';
+		$tooltip  = $row['tooltip'] ?? '';
+
 		if ( 'url' === $type ) {
-			$url  = $row['url'] ?? '';
-			$text = $url ? preg_replace( '#^https?://#i', '', rtrim( $url, '/' ) ) : '';
+			$url     = $row['url'] ?? '';
+			$default = $url ? preg_replace( '#^https?://#i', '', rtrim( $url, '/' ) ) : '';
 		} elseif ( 'email' === $type ) {
-			$text = $row['info'] ?? '';
-			$url  = $text ? 'mailto:' . $text : '';
+			$default = $row['email'] ?? '';
+			$url     = $default ? 'mailto:' . $default : '';
 		} elseif ( 'phone' === $type ) {
-			$text = $row['info'] ?? '';
-			$url  = $text ? 'tel:' . preg_replace( '/[^\d+]/', '', $text ) : '';
+			$default = $row['info'] ?? '';
+			$url     = $default ? 'tel:' . preg_replace( '/[^\d+]/', '', $default ) : '';
 		} else {
-			$text = $row['info'] ?? '';
-			$url  = '';
+			$default = $row['info'] ?? '';
+			$url     = '';
 		}
+
+		$text = '' !== $override ? $override : $default;
 	} else {
 		$text = reset( $row );
 		$url  = $row['website_url'] ?? '';
@@ -59,7 +65,7 @@ $render_item = function ( $row ) {
 	?>
 	<?php if ( $url ) : ?>
 		<?php $is_external = (bool) preg_match( '#^https?://#i', $url ); ?>
-		<a href="<?php echo esc_url( $url ); ?>"<?php echo $is_external ? ' target="_blank" rel="noreferrer noopener"' : ''; ?>><?php echo esc_html( $text ); ?></a>
+		<a href="<?php echo esc_url( $url ); ?>"<?php echo $tooltip ? ' title="' . esc_attr( $tooltip ) . '"' : ''; ?><?php echo $is_external ? ' target="_blank" rel="noreferrer noopener"' : ''; ?>><?php echo esc_html( $text ); ?></a>
 	<?php else : ?>
 		<?php echo esc_html( $text ); ?>
 	<?php endif; ?>
