@@ -27,6 +27,9 @@ if ( defined( 'WPSEO_VERSION' ) ) {
     require get_stylesheet_directory() . '/inc/schema-jsonld.php';
 }
 
+// "Download printable version" — real PDF via DocRaptor (see inc/docraptor-pdf.php for setup)
+require get_stylesheet_directory() . '/inc/docraptor-pdf.php';
+
 add_action( 'init', function () {
     wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
 } );
