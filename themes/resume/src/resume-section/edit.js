@@ -14,6 +14,7 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ComboboxControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
+import ServerSideRender from '@wordpress/server-side-render';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -21,6 +22,7 @@ import { store as coreStore } from '@wordpress/core-data';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import metadata from './block.json';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -64,9 +66,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<p { ...useBlockProps() }>
-				{ __( 'Resume Section – lists entries from the selected post type.', 'resume-section' ) }
-			</p>
+			<div { ...useBlockProps() }>
+				<ServerSideRender block={ metadata.name } attributes={ attributes } />
+			</div>
 		</>
 	);
 }
