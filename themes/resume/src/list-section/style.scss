@@ -5,4 +5,12 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-resume-list-section {}
+.wp-block-resume-list-section {
+	> dt {
+		font-weight: bold;
+	}
+
+	> dd {
+		margin: 0;
+	}
+}

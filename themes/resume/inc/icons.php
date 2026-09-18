@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap Icons for the core/icon block (WordPress 7.1+ Icons API).
+ * Icons for the core/icon block (WordPress 7.1+ Icons API).
  *
  * Requires WordPress 7.1+; older versions have neither the API nor the
  * core/icon block, so the guard below simply no-ops.
@@ -94,15 +94,7 @@ add_action(
 	}
 );
 
-/**
- * `.resume-icon` styling: 1em size + a bit of trailing space before the text.
- *
- * Inlined onto the `global-styles` handle rather than a separate stylesheet —
- * it's two rules, and `global-styles` is the handle WP core itself uses for
- * small CSS fragments (Customizer "Additional CSS", duotone presets, block
- * style variations, …), always registered on `wp_enqueue_scripts` before
- * theme code runs.
- */
+// Two rules, so inlined onto core's `global-styles` handle instead of a dedicated stylesheet.
 add_action(
 	'wp_enqueue_scripts',
 	function () {

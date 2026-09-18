@@ -5,8 +5,21 @@
  */
 
 .wp-block-resume-resume-section {
+	> dd {
+		margin: 0;
+	}
+
 	.resume-entry[hidden] {
 		display: none;
+	}
+
+	.resume-entry h3 {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.resume-entry__time {
+		color: var(--wp--preset--color--contrast);
+		opacity: 0.6;
 	}
 }
 
