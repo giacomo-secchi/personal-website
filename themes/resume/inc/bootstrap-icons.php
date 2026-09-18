@@ -75,18 +75,20 @@ function resume_get_icon_choices( $collections = null ) {
 }
 
 /**
- * Exposes resume_get_icon_choices() to the block editor as `window.resumeBootstrapIcons`.
+ * Exposes resume_get_icon_choices() to the block editor as `window.resumeIconChoices`.
  *
- * Scoped to the "bootstrap" collection for now — pass an array here
- * (e.g. array( 'bootstrap', 'core' )) to widen it once another collection exists.
+ * Only these collections back the "Section icon" picker — add a slug to the
+ * array below (once its collection is registered) to include it too.
  */
 add_action(
 	'enqueue_block_editor_assets',
 	function () {
+		$collections = array( 'bootstrap' );
+
 		// wp-blocks is a dependency of every block editor script, so this runs first.
 		wp_add_inline_script(
 			'wp-blocks',
-			'window.resumeBootstrapIcons = ' . wp_json_encode( resume_get_icon_choices( 'bootstrap' ) ) . ';',
+			'window.resumeIconChoices = ' . wp_json_encode( resume_get_icon_choices( $collections ) ) . ';',
 			'before'
 		);
 	}

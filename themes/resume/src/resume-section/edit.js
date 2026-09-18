@@ -32,8 +32,8 @@ import metadata from './block.json';
  *
  * @return {Element} Element to render.
  */
-const ICON_OPTIONS = typeof window !== 'undefined' && Array.isArray( window.resumeBootstrapIcons )
-	? window.resumeBootstrapIcons
+const ICON_OPTIONS = typeof window !== 'undefined' && Array.isArray( window.resumeIconChoices )
+	? window.resumeIconChoices
 	: [];
 
 export default function Edit( { attributes, setAttributes } ) {
