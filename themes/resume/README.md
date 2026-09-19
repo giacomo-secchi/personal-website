@@ -19,7 +19,7 @@ It is built and deployed by the monorepo's CI — see [Deployment](#deployment).
   default `cv` view) and kept in sync with `history.pushState()` — no reload,
   back / forward aware, canonical URL stays parameter-free
 - "Download printable version" button (`window.print()`) with dedicated `@media print` styles
-- Dark-mode support via the Tabor *Dark Mode Toggle* block and `assets/css/dark-mode.css`
+- Dark-mode support via the Tabor *Dark Mode Toggle* block and `build/css/dark-mode.css`
 - Bootstrap Icons available to the core Icon block, and an optional section icon per résumé section
 - Self-hosted fonts (Open Sans, Noto Serif) declared as `@font-face` in `theme.json`
 - Structured data: JSON-LD `Person` graph (extends Yoast SEO) + semantic HTML markup
@@ -36,16 +36,14 @@ It is built and deployed by the monorepo's CI — see [Deployment](#deployment).
 
 ## Getting started (local development)
 
-The site is developed with [Local](https://localwp.com/). Clone the monorepo inside
-`wp-content/` and expose the themes to WordPress with directory links:
+The site is developed against [`wp-env`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
+(see the monorepo's `.wp-env.json`), which mounts the theme straight from the repo —
+no manual linking into `wp-content/` needed:
 
 ```sh
-cd wp-content
 git clone https://github.com/giacomo-secchi/personal-website.git
-
-# Windows: create the junctions (no admin rights needed)
-personal-website/scripts/link-local.ps1
-# macOS/Linux: symlink personal-website/themes/* into wp-content/themes/ instead
+cd personal-website
+npx @wordpress/env start
 ```
 
 Then work on the theme itself:
@@ -66,9 +64,9 @@ npm run build   # production bundle in build/
 ```
 
 `npm run build` / `npm run start` wrap `@wordpress/scripts`. `webpack.config.js`
-adds one step: it copies the Bootstrap Icons SVGs from `node_modules/bootstrap-icons`
-into `build/bootstrap-icons/`, where `inc/bootstrap-icons.php` registers them with
-the Icons API.
+adds a copy step: Bootstrap Icons SVGs from `node_modules/bootstrap-icons` go into
+`build/bootstrap-icons/` (registered with the Icons API by `inc/icons.php`), and
+`src/fonts` / `src/css` are copied as-is into `build/fonts` / `build/css`.
 
 `build/` is git-ignored and produced by CI — see [Deployment](#deployment).
 
@@ -77,23 +75,22 @@ the Icons API.
 ```
 resume/
 ├── acf-json/            ACF local JSON — CPTs, field groups, options page
-├── assets/
-│   ├── css/dark-mode.css
-│   └── fonts/           self-hosted woff2 (Open Sans, Noto Serif)
-├── build/               compiled blocks + copied Bootstrap Icons (generated)
+├── build/                compiled blocks, copied fonts/css, copied Bootstrap Icons (generated)
 ├── inc/                 PHP modules, wired up in functions.php
 │   ├── resume-views.php         defines the front-end views (CV / Resume) + `?view=` default
 │   ├── resume-entries.php       fetch + real-world-date ordering of résumé entries
-│   ├── bootstrap-icons.php      registers the Bootstrap Icons collection (Icons API)
+│   ├── icons.php                registers the Bootstrap Icons collection (Icons API)
 │   ├── section-icons.php        optional icon before each section title
 │   ├── schema-jsonld.php        extends Yoast's Person schema from the CPTs
 │   ├── acf.php                  enables ACF shortcodes inside block templates
 │   ├── language-switcher.php    inline TranslatePress language switcher shortcode
 │   └── dark-mode-toggle-block.php
-├── src/                 block sources (built to build/)
+├── src/                 everything built to build/
 │   ├── resume-section/  dynamic block — one résumé section from a CPT
 │   ├── list-section/    dynamic block — a repeater from the options page (skills, languages…)
-│   └── tab-switch/      Resume / CV toggle (Interactivity API)
+│   ├── tab-switch/      Resume / CV toggle (Interactivity API)
+│   ├── css/dark-mode.css
+│   └── fonts/           self-hosted woff2 (Open Sans, Noto Serif)
 ├── patterns/hidden-home.php     the home layout, composed of the blocks above
 ├── templates/ · parts/          FSE template + footer / utilities parts
 ├── theme.json                   palette, fonts, layout, dark tokens
@@ -147,12 +144,12 @@ Two complementary layers:
 
 - **Colours, fonts, spacing, layout** — `theme.json` (`settings.color.palette`,
   `settings.typography.fontFamilies`, `settings.layout`). Dark-mode overrides live
-  in `settings.custom.color.*-dark` and are mapped in `assets/css/dark-mode.css`.
+  in `settings.custom.color.*-dark` and are mapped in `build/css/dark-mode.css`.
 - **Per-block styles** — `src/<block>/style.scss` (front end) and
   `src/<block>/editor.scss` (editor). Rebuild after editing.
 - **Home layout** — `patterns/hidden-home.php` decides which sections appear and
   in which column, and picks each section's Bootstrap icon.
-- **Fonts** — drop a `.woff2` in `assets/fonts/` and add a `fontFace` entry in `theme.json`.
+- **Fonts** — drop a `.woff2` in `src/fonts/` and add a `fontFace` entry in `theme.json`.
 
 ## Deployment
 

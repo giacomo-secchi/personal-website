@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/wp-env.json",
+  "core": null,
+  "port": 8890,
+  "testsEnvironment": false,
+  "multisite": true,
+  "themes": [
+    "https://downloads.wordpress.org/theme/frost.zip",
+    "./themes/personal-theme",
+    "./themes/resume"
+  ],
+  "plugins": [
+    "https://downloads.wordpress.org/plugin/dark-mode-toggle-block.zip",
+    "https://downloads.wordpress.org/plugin/translatepress-multilingual.zip",
+    "https://downloads.wordpress.org/plugin/wordpress-seo.zip"
+  ],
+  "mappings": {
+    "wp-content/mu-plugins": "./mu-plugins"
+  },
+  "lifecycleScripts": {
+    "afterStart": "wp-env run cli wp site create --slug=resume --title=Resume & wp-env run cli wp theme activate personal-theme && wp-env run cli wp plugin activate --network advanced-custom-fields-pro dark-mode-toggle-block wordpress-seo translatepress-multilingual && wp-env run cli wp theme activate resume --url=http://localhost:8890/resume/ && npm --prefix themes/personal-theme ci && npm --prefix themes/personal-theme run build && npm --prefix themes/resume ci && npm --prefix themes/resume run build"
+  }
+}

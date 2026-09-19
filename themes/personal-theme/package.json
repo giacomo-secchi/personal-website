@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "wp-scripts build --webpack-src-dir=resources --output-path=assets  --experimental-modules",
+    "build": "wp-scripts build --experimental-modules",
     "packages-update": "wp-scripts packages-update",
-    "start": "wp-scripts start --webpack-src-dir=resources --output-path=assets  --experimental-modules"
+    "start": "wp-scripts start --experimental-modules"
   },
   "author": "",
   "license": "ISC",

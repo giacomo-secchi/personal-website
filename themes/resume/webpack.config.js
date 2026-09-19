@@ -12,6 +12,14 @@ const patch = ( config ) => {
 					from: 'node_modules/bootstrap-icons/icons',
 					to: 'bootstrap-icons',
 				},
+				{
+					from: './src/fonts',
+					to: './fonts',
+				},
+				{
+					from: './src/css',
+					to: './css',
+				},
 			],
 		} )
 	);

@@ -9,8 +9,8 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function auto_register_block_types() {
-	if ( file_exists( dirname( __DIR__ ) . '/assets/blocks/' ) ) {
-		$block_json_files = glob( dirname( __DIR__ ) . '/assets/blocks/*/block.json' );
+	if ( file_exists( dirname( __DIR__ ) . '/build/blocks/' ) ) {
+		$block_json_files = glob( dirname( __DIR__ ) . '/build/blocks/*/block.json' );
 
 		// auto register all blocks that were found.
 		foreach ( $block_json_files as $filename ) {

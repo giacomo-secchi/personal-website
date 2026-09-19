@@ -13,7 +13,7 @@
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"width":40,"height":40,"sizeSlug":"full","linkDestination":"custom"} -->
-			<figure class="wp-block-image size-full is-resized"><a href="/"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ) . '/assets/images/giacomo-secchi-logo-inverted.svg'; ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="40" height="40"/></a></figure>
+			<figure class="wp-block-image size-full is-resized"><a href="/"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ) . '/build/images/giacomo-secchi-logo-inverted.svg'; ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="40" height="40"/></a></figure>
 			<!-- /wp:image -->
 			<!-- wp:site-title /-->
 		</div>

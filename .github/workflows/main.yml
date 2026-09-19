@@ -49,7 +49,6 @@ jobs:
             !**/node_modules
             !**/.git
             !themes/**/src
-            !themes/personal-theme/resources
             !**/*.map
           retention-days: 1
 

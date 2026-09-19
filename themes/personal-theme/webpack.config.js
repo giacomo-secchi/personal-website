@@ -37,11 +37,11 @@ const patchConfig = ( config ) => {
 		new CopyPlugin( {
 			patterns: [
 				{
-					from: './resources/fonts',
+					from: './src/fonts',
 					to: './fonts',
 				},
 				{
-					from: './resources/images',
+					from: './src/images',
 					to: './images',
 				}
 			],
