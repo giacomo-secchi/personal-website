@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ComboboxControl } from '@wordpress/components';
+import { PanelBody, TextControl, ComboboxControl, SelectControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -35,7 +35,7 @@ const ICON_OPTIONS = typeof window !== 'undefined' && Array.isArray( window.resu
 	: [];
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { fieldName, sectionIcon } = attributes;
+	const { fieldName, sectionIcon, bulletStyle } = attributes;
 
 	return (
 		<>
@@ -54,6 +54,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						options={ ICON_OPTIONS }
 						onChange={ ( newIcon ) => setAttributes( { sectionIcon: newIcon || '' } ) }
 						allowReset
+					/>
+					<SelectControl
+						label={ __( 'Bullet color', 'resume-section' ) }
+						help={ __( 'Applies the matching core/list-item style to every item in this list.', 'resume-section' ) }
+						value={ bulletStyle }
+						options={ [
+							{ label: __( 'Default', 'resume-section' ), value: '' },
+							{ label: __( 'Primary', 'resume-section' ), value: 'primary-bullet' },
+							{ label: __( 'Secondary', 'resume-section' ), value: 'secondary-bullet' },
+						] }
+						onChange={ ( newBulletStyle ) => setAttributes( { bulletStyle: newBulletStyle } ) }
 					/>
 				</PanelBody>
 			</InspectorControls>

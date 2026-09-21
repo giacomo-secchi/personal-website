@@ -41,8 +41,8 @@
 	<!-- wp:column -->
 	<div class="wp-block-column">
 		<!-- wp:resume/list-section {"fieldName":"personal_information","sectionIcon":"bootstrap/person-lines-fill"} /-->
-		<!-- wp:resume/list-section {"fieldName":"skills","sectionIcon":"bootstrap/tools"} /-->
-		<!-- wp:resume/list-section {"fieldName":"soft_skills","sectionIcon":"bootstrap/people"} /-->
+		<!-- wp:resume/list-section {"fieldName":"skills","sectionIcon":"bootstrap/tools","bulletStyle":"primary-bullet"} /-->
+		<!-- wp:resume/list-section {"fieldName":"soft_skills","sectionIcon":"bootstrap/people","bulletStyle":"secondary-bullet"} /-->
 		<!-- wp:resume/list-section {"fieldName":"languages","sectionIcon":"bootstrap/translate"} /-->
 	</div>
 	<!-- /wp:column -->

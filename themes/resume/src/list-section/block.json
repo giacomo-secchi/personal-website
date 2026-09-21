@@ -16,6 +16,10 @@
 		"sectionIcon": {
 			"type": "string",
 			"default": ""
+		},
+		"bulletStyle": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

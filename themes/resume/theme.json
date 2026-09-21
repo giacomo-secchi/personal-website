@@ -179,6 +179,23 @@
 		},
 		"typography": {
 			"fontFamily": "var:preset|font-family|open-sans"
+		},
+		"blocks": {
+			"core/list": {
+				"spacing": {
+					"padding": {
+						"left": "var:preset|spacing|40"
+					}
+				}
+			},
+			"core/list-item": {
+				"spacing": {
+					"padding": {
+						"top": "var:preset|spacing|20",
+						"bottom": "var:preset|spacing|20"
+					}
+				}
+			}
 		}
 	},
 	"templateParts": [

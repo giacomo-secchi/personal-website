@@ -32,6 +32,7 @@ if ( ! empty( $attributes['sectionIcon'] ) ) {
 }
 
 $render_item = function ( $row ) {
+	ob_start();
 	$type    = $row['type'] ?? null;
 	$detail  = $row['detail'] ?? '';
 	$tooltip = '';
@@ -70,10 +71,26 @@ $render_item = function ( $row ) {
 		<?php echo esc_html( $text ); ?>
 	<?php endif; ?>
 	<?php if ( $detail ) : ?>
-		— <?php echo esc_html( $detail ); ?>
+		: <?php echo esc_html( $detail ); ?>
 	<?php endif; ?>
 	<?php
+	return ob_get_clean();
 };
+
+// Rendered through core/list + core/list-item (rather than plain <ul><li>) so the
+// listing stays block-compliant and inherits the theme.json list styling/supports.
+// `bulletStyle` (set per block instance, e.g. from patterns/hidden-home.php) applies the
+// matching core/list-item style — see inc/block-styles.php — to every item in the list.
+$list_markup = '';
+if ( ! $is_single ) {
+	$li_class = ! empty( $attributes['bulletStyle'] ) ? ' class="is-style-' . esc_attr( $attributes['bulletStyle'] ) . '"' : '';
+
+	$items = '';
+	foreach ( $rows as $row ) {
+		$items .= '<!-- wp:list-item --><li' . $li_class . '>' . $render_item( $row ) . '</li><!-- /wp:list-item -->';
+	}
+	$list_markup = do_blocks( '<!-- wp:list --><ul class="wp-block-list">' . $items . '</ul><!-- /wp:list -->' );
+}
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
 	<dt><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
@@ -81,13 +98,9 @@ $render_item = function ( $row ) {
 	<dd>
 		<section id="<?php echo esc_attr( $field_name ); ?>">
 			<?php if ( $is_single ) : ?>
-				<?php $render_item( reset( $rows ) ); ?>
+				<?php echo $render_item( reset( $rows ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already escaped field by field above. ?>
 			<?php else : ?>
-				<ul>
-					<?php foreach ( $rows as $row ) : ?>
-						<li><?php $render_item( $row ); ?></li>
-					<?php endforeach; ?>
-				</ul>
+				<?php echo $list_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from do_blocks() + already-escaped item markup above. ?>
 			<?php endif; ?>
 		</section>
 	</dd>
