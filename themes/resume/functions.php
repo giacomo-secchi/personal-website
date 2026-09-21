@@ -27,9 +27,4 @@ if ( defined( 'WPSEO_VERSION' ) ) {
 }
 
 // PDF generator.
-// require get_stylesheet_directory() . '/inc/pdf.php';
-
-add_action( 'init', function () {
-    wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
-} );
-
+require get_stylesheet_directory() . '/inc/pdf.php';

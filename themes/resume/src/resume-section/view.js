@@ -136,7 +136,7 @@ const { state } = store( 'resume/tabs', {
 } );
 
 // Non-block wiring done once: resolve initial view, normalise the address bar,
-// sync with back / forward, and turn the print button into window.print().
+// sync with back / forward, and turn the print button into a real PDF download.
 function init() {
 	state.activeView = resolveView();
 
@@ -151,7 +151,9 @@ function init() {
 	if ( printButton ) {
 		printButton.addEventListener( 'click', ( event ) => {
 			event.preventDefault();
-			window.print();
+			const url = new URL( window.location.href );
+			url.searchParams.set( 'format', 'pdf' );
+			window.location.assign( url.toString() );
 		} );
 	}
 }

@@ -17,6 +17,9 @@
   "mappings": {
     "wp-content/mu-plugins": "./mu-plugins"
   },
+  "config": {
+    "DOCRAPTOR_TEST_MODE": true
+  },
   "lifecycleScripts": {
     "afterStart": "wp-env run cli wp site create --slug=resume --title=Resume & wp-env run cli wp theme activate personal-theme && wp-env run cli wp plugin activate --network advanced-custom-fields-pro dark-mode-toggle-block wordpress-seo translatepress-multilingual && wp-env run cli wp theme activate resume --url=http://localhost:8890/resume/ && npm --prefix themes/personal-theme ci && npm --prefix themes/personal-theme run build && npm --prefix themes/resume ci && npm --prefix themes/resume run build"
   }
