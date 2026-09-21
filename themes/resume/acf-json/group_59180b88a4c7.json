@@ -4,11 +4,11 @@
     "fields": [
         {
             "key": "field_fee5b9cc3fba",
-            "label": "Company Name",
+            "label": "Company",
             "name": "company_name",
             "aria-label": "",
-            "type": "text",
-            "instructions": "",
+            "type": "link",
+            "instructions": "Leave the link empty to show just the company name as plain text.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,10 +16,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 1,
-            "placeholder": ""
+            "return_format": "array",
+            "allow_in_bindings": 0
         }
     ],
     "location": [

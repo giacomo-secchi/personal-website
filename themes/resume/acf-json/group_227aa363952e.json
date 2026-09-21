@@ -7,8 +7,8 @@
             "label": "Publisher / Event",
             "name": "company_name",
             "aria-label": "",
-            "type": "text",
-            "instructions": "e.g. WordCamp Europe 2026, or Nettuts+",
+            "type": "link",
+            "instructions": "e.g. WordCamp Europe 2026, or Nettuts+. Leave the link empty to show just the name as plain text.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,28 +16,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 1,
-            "placeholder": ""
-        },
-        {
-            "key": "field_831b889422a0",
-            "label": "URL",
-            "name": "website_url",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "allow_in_bindings": 1
+            "return_format": "array",
+            "allow_in_bindings": 0
         }
     ],
     "location": [

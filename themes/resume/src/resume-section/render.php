@@ -61,13 +61,21 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 					$views = array( 'resume', 'cv' );
 				}
 
-				$organization = get_field( 'company_name', $item );
-				$summary      = has_excerpt( $item ) ? get_the_excerpt( $item ) : '';
-				$start        = $format_entry_date( get_field( 'start_date', $item, false ) );
-				$end          = $format_entry_date( get_field( 'end_date', $item, false ) );
-				$address      = get_field( 'address', $item );
-				$website_url  = get_field( 'website_url', $item );
-				$description  = $item->post_content;
+				// `company_name` is a Link field (name + optional URL): the org line renders
+				// as plain text when no URL is set, or as a link when one is.
+				$organization    = get_field( 'company_name', $item );
+				$org_name        = $organization['title'] ?? '';
+				$org_url         = $organization['url'] ?? '';
+				$org_target      = $organization['target'] ?? '';
+				$summary         = has_excerpt( $item ) ? get_the_excerpt( $item ) : '';
+				$start           = $format_entry_date( get_field( 'start_date', $item, false ) );
+				$end             = $format_entry_date( get_field( 'end_date', $item, false ) );
+				$address         = get_field( 'address', $item );
+				$website         = get_field( 'website_url', $item );
+				$website_url     = $website['url'] ?? '';
+				$website_text    = $website['title'] ?? '';
+				$website_target  = $website['target'] ?? '';
+				$description     = $item->post_content;
 
 				if ( ! $start ) {
 					$time_text = '';
@@ -86,8 +94,14 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 				>
 					<h3><?php echo esc_html( get_the_title( $item ) ); ?></h3>
 
-					<?php if ( $organization ) : ?>
-						<p class="resume-entry__org"><?php echo esc_html( $organization ); ?></p>
+					<?php if ( $org_name ) : ?>
+						<p class="resume-entry__org">
+							<?php if ( $org_url ) : ?>
+								<a href="<?php echo esc_url( $org_url ); ?>"<?php echo $org_target ? ' target="' . esc_attr( $org_target ) . '" rel="noreferrer noopener"' : ''; ?>><?php echo esc_html( $org_name ); ?></a>
+							<?php else : ?>
+								<?php echo esc_html( $org_name ); ?>
+							<?php endif; ?>
+						</p>
 					<?php endif; ?>
 
 					<?php if ( $summary ) : ?>
@@ -120,7 +134,7 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 
 					<?php if ( $website_url ) : ?>
 						<p class="resume-entry__link">
-							<a href="<?php echo esc_url( $website_url ); ?>" target="_blank" rel="noreferrer noopener"><?php echo esc_html( preg_replace( '#^https?://#', '', untrailingslashit( $website_url ) ) ); ?></a>
+							<a href="<?php echo esc_url( $website_url ); ?>"<?php echo $website_target ? ' target="' . esc_attr( $website_target ) . '" rel="noreferrer noopener"' : ''; ?>><?php echo esc_html( $website_text ? $website_text : preg_replace( '#^https?://#', '', untrailingslashit( $website_url ) ) ); ?></a>
 						</p>
 					<?php endif; ?>
 				</div>

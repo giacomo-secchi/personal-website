@@ -39,10 +39,12 @@ function resume_schema_list_values( $option_field_name, $type ) {
 add_filter( 'wpseo_schema_person_data', function ( $data ) {
 	$occupations = array();
 	foreach ( get_posts( array( 'post_type' => array( 'experience', 'internship' ), 'posts_per_page' => -1 ) ) as $experience ) {
+		$company = get_field( 'company_name', $experience );
+
 		$occupations[] = array_filter( array(
 			'@type'     => 'EmployeeRole',
 			'roleName'  => get_the_title( $experience ),
-			'name'      => get_field( 'company_name', $experience ),
+			'name'      => $company['title'] ?? '',
 			'startDate' => get_field( 'start_date', $experience ),
 			'endDate'   => get_field( 'end_date', $experience ),
 		) );
@@ -79,18 +81,19 @@ add_filter( 'wpseo_schema_person_data', function ( $data ) {
 		$raw_date  = get_field( 'start_date', $event, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
 		$date_time = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
 
+		$organizer = get_field( 'company_name', $event );
+
 		$entry = array_filter( array(
 			'@type'     => 'Event',
 			'name'      => get_the_title( $event ),
 			'startDate' => $date_time ? $date_time->format( 'Y-m-d' ) : null,
-			'url'       => get_field( 'website_url', $event ),
+			'url'       => $organizer['url'] ?? '',
 		) );
 
-		$organizer_name = get_field( 'company_name', $event );
-		if ( $organizer_name ) {
+		if ( ! empty( $organizer['title'] ) ) {
 			$entry['organizer'] = array(
 				'@type' => 'Organization',
-				'name'  => $organizer_name,
+				'name'  => $organizer['title'],
 			);
 		}
 
@@ -158,21 +161,22 @@ class Resume_Publications_Schema_Piece extends \Yoast\WP\SEO\Generators\Schema\A
 			$raw_date  = get_field( 'start_date', $publication, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
 			$date_time = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
 
+			$publisher = get_field( 'company_name', $publication );
+
 			$piece = array_filter( array(
 				'@type'         => 'Article',
 				'@id'           => $permalink . \Yoast\WP\SEO\Config\Schema_IDs::ARTICLE_HASH,
 				'headline'      => get_the_title( $publication ),
 				'name'          => get_the_title( $publication ),
-				'url'           => get_field( 'website_url', $publication ) ?: $permalink,
+				'url'           => ( $publisher['url'] ?? '' ) ?: $permalink,
 				'datePublished' => $date_time ? $date_time->format( 'Y-m-d' ) : null,
 				'author'        => array( '@id' => $person_id ),
 			) );
 
-			$publisher_name = get_field( 'company_name', $publication );
-			if ( $publisher_name ) {
+			if ( ! empty( $publisher['title'] ) ) {
 				$piece['publisher'] = array(
 					'@type' => 'Organization',
-					'name'  => $publisher_name,
+					'name'  => $publisher['title'],
 				);
 			}
 
