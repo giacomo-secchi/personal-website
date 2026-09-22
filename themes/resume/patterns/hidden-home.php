@@ -16,17 +16,29 @@
 	<!-- wp:column {"width":"67%"} -->
 	<div class="wp-block-column" style="flex-basis:67%">
 
-		<!-- wp:image {"align":"center","width":160,"height":160,"sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
-		<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 160 ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" width="160" height="160"/></figure>
-		<!-- /wp:image -->
+	
 
-		<!-- wp:heading {"level":1} -->
-		<h1 class="wp-block-heading">Giacomo Secchi</h1>
-		<!-- /wp:heading -->
+		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group">
+			<!-- wp:image {"align":"center","width":120,"height":120,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"34px","topRight":"34px","bottomLeft":"34px","bottomRight":"34px"}}}} -->
+			<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 120 ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" style="border-top-left-radius:34px;border-top-right-radius:34px;border-bottom-left-radius:34px;border-bottom-right-radius:34px;" width="120" height="120"/></figure>
+			<!-- /wp:image -->
 
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Web Developer / Ecommerce Specialist</h2>
-		<!-- /wp:heading -->
+		 
+
+			<!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+			<div class="wp-block-group">
+				<!-- wp:heading {"level":1} -->
+				<h1 class="wp-block-heading">Giacomo Secchi</h1>
+				<!-- /wp:heading -->
+
+				<!-- wp:heading {"style":{"typography":{"fontStyle":"normal","fontWeight":"400"}},"fontFamily":"open-sans"} -->
+				<h2 class="wp-block-heading has-open-sans-font-family" style="font-style:normal;font-weight:400">Web Developer / <br>Ecommerce Specialist</h2>
+				<!-- /wp:heading -->
+			</div>
+			<!-- /wp:group -->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:resume/list-section {"fieldName":"profile_description","sectionIcon":"bootstrap/person-vcard"} /-->
 		<!-- wp:resume/resume-section {"postType":"experience","sectionIcon":"bootstrap/briefcase-fill"} /-->
