@@ -25,6 +25,21 @@ add_action( 'init', function () {
 } );
 
 
+// Global front-end + editor styles, shared across the résumé blocks (src/css/global.css).
+add_action( 'wp_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'resume-global',
+        get_template_directory_uri() . '/build/css/global.css',
+        array(),
+        filemtime( get_template_directory() . '/build/css/global.css' )
+    );
+} );
+
+add_action( 'after_setup_theme', function () {
+    add_editor_style( 'build/css/global.css' );
+} );
+
+
 // Custom Dark Mode Toggle Block.
 if ( function_exists( 'tabordarkmodetoggleblock_init' ) ) {
     add_action('wp_enqueue_scripts', function () {

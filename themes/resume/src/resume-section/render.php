@@ -50,7 +50,7 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 };
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
-	<dt><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
+	<dt class="resume-subtitle"><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $post_type_object->labels->name ); ?></dt>
 
 	<dd>
 		<section id="<?php echo esc_attr( $post_type ); ?>" data-wp-interactive="resume/tabs">
@@ -92,7 +92,7 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 					<?php echo wp_interactivity_data_wp_context( array( 'views' => array_values( $views ) ) ); ?>
 					data-wp-bind--hidden="state.isEntryHidden"
 				>
-					<h3><?php echo esc_html( get_the_title( $item ) ); ?></h3>
+					<h3 class="resume-entry__title"><?php echo esc_html( get_the_title( $item ) ); ?></h3>
 
 					<?php if ( $org_name ) : ?>
 						<p class="resume-entry__org">

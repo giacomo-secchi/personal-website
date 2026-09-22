@@ -13,8 +13,8 @@
 <div class="wp-block-group has-white-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--70);box-shadow:var(--wp--preset--shadow--small)">
 	<!-- wp:columns -->
 	<div class="wp-block-columns">
-	<!-- wp:column -->
-	<div class="wp-block-column">
+	<!-- wp:column {"width":"67%"} -->
+	<div class="wp-block-column" style="flex-basis:67%">
 
 		<!-- wp:image {"align":"center","width":160,"height":160,"sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
 		<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 160 ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" width="160" height="160"/></figure>
@@ -38,8 +38,8 @@
 	</div>
 	<!-- /wp:column -->
 
-	<!-- wp:column -->
-	<div class="wp-block-column">
+	<!-- wp:column {"width":"33%"} -->
+	<div class="wp-block-column" style="flex-basis:33%">
 		<!-- wp:resume/list-section {"fieldName":"personal_information","sectionIcon":"bootstrap/person-lines-fill"} /-->
 		<!-- wp:resume/list-section {"fieldName":"skills","sectionIcon":"bootstrap/tools","bulletStyle":"primary-bullet"} /-->
 		<!-- wp:resume/list-section {"fieldName":"soft_skills","sectionIcon":"bootstrap/people","bulletStyle":"secondary-bullet"} /-->

@@ -18,7 +18,8 @@ It is built and deployed by the monorepo's CI — see [Deployment](#deployment).
   query parameter (`?view=resume` for the condensed view, no parameter for the
   default `cv` view) and kept in sync with `history.pushState()` — no reload,
   back / forward aware, canonical URL stays parameter-free
-- "Download printable version" button (`window.print()`) with dedicated `@media print` styles
+- "Download printable version" button, rendered as a real PDF via DocRaptor
+  (`?format=pdf`, cached per view/language) — see `inc/pdf.php`
 - Dark-mode support via the Tabor *Dark Mode Toggle* block and `build/css/dark-mode.css`
 - Bootstrap Icons available to the core Icon block, and an optional section icon per résumé section
 - Self-hosted fonts (Open Sans, Noto Serif) declared as `@font-face` in `theme.json`
@@ -33,6 +34,7 @@ It is built and deployed by the monorepo's CI — see [Deployment](#deployment).
 | PHP | 7.4+ |
 | Node.js | 22 (build tooling only) |
 | Plugins | Advanced Custom Fields (content model). Yoast SEO, TranslatePress and the *Dark Mode Toggle* block are optional — each integration is feature-guarded in `functions.php`. |
+| PDF export | Optional — needs a `DOCRAPTOR_API_KEY` and public reachability (DocRaptor fetches the page itself). |
 
 ## Getting started (local development)
 
@@ -54,8 +56,8 @@ npm ci
 npm run start   # wp-scripts watch build → build/
 ```
 
-Activate **Résumé** under *Appearance → Themes*, import the ACF field groups from
-`acf-json/` (they load automatically when ACF is active), and add some entries.
+Activate **Résumé** under *Appearance → Themes* and add some entries — the ACF
+field groups load automatically, see [Content model](#content-model-acf).
 
 ## Build
 
@@ -68,32 +70,30 @@ adds a copy step: Bootstrap Icons SVGs from `node_modules/bootstrap-icons` go in
 `build/bootstrap-icons/` (registered with the Icons API by `inc/icons.php`), and
 `src/fonts` / `src/css` are copied as-is into `build/fonts` / `build/css`.
 
-`build/` is git-ignored and produced by CI — see [Deployment](#deployment).
+`build/` is git-ignored — see [Deployment](#deployment) for how it reaches production.
 
 ## Project structure
 
 ```
 resume/
-├── acf-json/            ACF local JSON — CPTs, field groups, options page
-├── build/                compiled blocks, copied fonts/css, copied Bootstrap Icons (generated)
-├── inc/                 PHP modules, wired up in functions.php
-│   ├── resume-views.php         defines the front-end views (CV / Resume) + `?view=` default
-│   ├── resume-entries.php       fetch + real-world-date ordering of résumé entries
-│   ├── icons.php                registers the Bootstrap Icons collection (Icons API)
-│   ├── section-icons.php        optional icon before each section title
-│   ├── schema-jsonld.php        extends Yoast's Person schema from the CPTs
-│   ├── acf.php                  enables ACF shortcodes inside block templates
+├── acf-json/             ACF local JSON, auto-loaded — see Content model
+├── build/                compiled blocks, fonts/css, Bootstrap Icons (generated)
+├── inc/                  PHP modules, required from functions.php
+│   ├── config.php               résumé views + ACF shortcode settings
+│   ├── icons.php                Bootstrap Icons collection + editor icon picker
+│   ├── load-assets.php          favicon, block registration, dark-mode CSS, block styles
 │   ├── language-switcher.php    inline TranslatePress language switcher shortcode
-│   └── dark-mode-toggle-block.php
-├── src/                 everything built to build/
-│   ├── resume-section/  dynamic block — one résumé section from a CPT
-│   ├── list-section/    dynamic block — a repeater from the options page (skills, languages…)
-│   ├── tab-switch/      Resume / CV toggle (Interactivity API)
+│   ├── schema-jsonld.php        extends Yoast's Person schema — see Structured data
+│   └── pdf.php                  PDF export via DocRaptor — see Features
+├── src/                  everything built to build/ — see Custom blocks
+│   ├── resume-section/ · list-section/ · tab-switch/
 │   ├── css/dark-mode.css
-│   └── fonts/           self-hosted woff2 (Open Sans, Noto Serif)
+│   └── fonts/            self-hosted woff2 (Open Sans, Noto Serif)
 ├── patterns/hidden-home.php     the home layout, composed of the blocks above
 ├── templates/ · parts/          FSE template + footer / utilities parts
 ├── theme.json                   palette, fonts, layout, dark tokens
+├── favicon.png · screenshot.png
+├── style.css · readme.txt       theme header / WordPress.org-style readme (license)
 └── functions.php
 ```
 
@@ -107,7 +107,7 @@ All three are server-rendered (`render.php`), block API v3, and namespaced `resu
 | `resume/list-section` | Renders a repeater field from the *Resume Settings* options page, turning email / phone / URL rows into the right link. |
 | `resume/tab-switch` | The CV / Resume tablist. Writes the active view into the `resume/tabs` Interactivity store (and the `?view=` URL parameter); `resume/resume-section` entries read it. |
 
-Views are defined once in `inc/resume-views.php` and consumed by both `tab-switch`
+Views are defined once in `inc/config.php` and consumed by both `tab-switch`
 and the per-entry "Resume Visibility" field. **Order matters** — the first view is
 the default one, shown when the URL carries no `?view=` parameter. Add one from anywhere:
 
@@ -161,9 +161,6 @@ Pushing to `main` on the monorepo triggers
    minus `node_modules/`, `src/`, source maps and VCS files).
 2. **deploy** — `WritePoetry/reusable-workflows/.github/workflows/deploy.yml@v3`
    ships the artifact to Cloudways over SFTP.
-
-Building in CI is what puts the compiled `build/` (blocks + Bootstrap Icons) on
-the server, since it is git-ignored.
 
 ## Built with
 

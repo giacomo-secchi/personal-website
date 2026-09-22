@@ -93,7 +93,7 @@ if ( ! $is_single ) {
 }
 ?>
 <dl <?php echo get_block_wrapper_attributes(); ?>>
-	<dt><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
+	<dt class="resume-subtitle"><?php echo $section_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- rendered by core/icon. ?><?php echo esc_html( $field_object['label'] ?? '' ); ?></dt>
 
 	<dd>
 		<section id="<?php echo esc_attr( $field_name ); ?>">

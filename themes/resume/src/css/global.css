@@ -1,0 +1,7 @@
+dd {
+    margin-left: var(--wp--preset--spacing--20);
+}
+
+.resume-subtitle {
+    font-weight: bold;
+}

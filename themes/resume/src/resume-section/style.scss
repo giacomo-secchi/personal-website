@@ -5,20 +5,18 @@
  */
 
 .wp-block-resume-resume-section {
-	> dd {
-		margin: 0;
-	}
-
 	.resume-entry[hidden] {
 		display: none;
 	}
-
-	.resume-entry h3 {
+	
+	.resume-entry__title {
 		color: var(--wp--preset--color--primary);
+		margin: var(--wp--preset--spacing--20) 0;
 	}
 
 	.resume-entry__time {
 		color: var(--wp--preset--color--contrast);
+		margin: var(--wp--preset--spacing--20) 0;
 		opacity: 0.6;
 	}
 }
