@@ -28,6 +28,6 @@
 	"textdomain": "resume-section",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
+	"style": [ "file:./style-index.css", "resume-global" ],
 	"render": "file:./render.php"
 }

@@ -1,7 +1,15 @@
 dd {
-    margin-left: var(--wp--preset--spacing--20);
+    margin-left: var(--wp--preset--spacing--50);
+}
+
+a {
+    color: var(--wp--preset--color--primary);
+    text-decoration: underline;
+    text-decoration-color: var(--wp--preset--color--secondary);
+    text-decoration-thickness: .125em;
+    text-underline-offset: 4px;
 }
 
 .resume-subtitle {
-    font-weight: bold;
+    font-weight: 700;
 }

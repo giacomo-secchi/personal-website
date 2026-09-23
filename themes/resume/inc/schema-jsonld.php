@@ -52,10 +52,16 @@ add_filter( 'wpseo_schema_person_data', function ( $data ) {
 
 	$alumni_of = array();
 	foreach ( get_posts( array( 'post_type' => 'education', 'posts_per_page' => -1 ) ) as $education ) {
-		$entry = array(
+		$institution = get_field( 'company_name', $education );
+		// Falls back to the post title (the old behavior) until the Organization field is
+		// filled in on entries that still only have the pre-merge `website_url` data.
+		$institution_name = ! empty( $institution['title'] ) ? $institution['title'] : get_the_title( $education );
+
+		$entry = array_filter( array(
 			'@type' => 'EducationalOrganization',
-			'name'  => get_the_title( $education ),
-		);
+			'name'  => $institution_name,
+			'url'   => $institution['url'] ?? '',
+		) );
 
 		$address = get_field( 'address', $education );
 		if ( $address ) {

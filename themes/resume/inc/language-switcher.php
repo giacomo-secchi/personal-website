@@ -35,7 +35,7 @@ add_action( 'wp_head', function() {
             padding: 0;
         }
         .trp-custom-language-switcher li {
-            list-style-position: inside;
+            list-style: none;
         }
         .trp-custom-language-switcher li:not(:last-child)::after {
             content: "/";

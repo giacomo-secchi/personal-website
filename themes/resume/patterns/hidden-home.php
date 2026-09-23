@@ -13,18 +13,13 @@
 <div class="wp-block-group has-white-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--70);box-shadow:var(--wp--preset--shadow--small)">
 	<!-- wp:columns -->
 	<div class="wp-block-columns">
-	<!-- wp:column {"width":"67%"} -->
-	<div class="wp-block-column" style="flex-basis:67%">
-
-	
-
+	<!-- wp:column {"width":"65%"} -->
+	<div class="wp-block-column" style="flex-basis:65%">
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"align":"center","width":120,"height":120,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"34px","topRight":"34px","bottomLeft":"34px","bottomRight":"34px"}}}} -->
 			<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 120 ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" style="border-top-left-radius:34px;border-top-right-radius:34px;border-bottom-left-radius:34px;border-bottom-right-radius:34px;" width="120" height="120"/></figure>
 			<!-- /wp:image -->
-
-		 
 
 			<!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group">
@@ -50,8 +45,8 @@
 	</div>
 	<!-- /wp:column -->
 
-	<!-- wp:column {"width":"33%"} -->
-	<div class="wp-block-column" style="flex-basis:33%">
+	<!-- wp:column {"width":"35%"} -->
+	<div class="wp-block-column" style="flex-basis:35%">
 		<!-- wp:resume/list-section {"fieldName":"personal_information","sectionIcon":"bootstrap/person-lines-fill"} /-->
 		<!-- wp:resume/list-section {"fieldName":"skills","sectionIcon":"bootstrap/tools","bulletStyle":"primary-bullet"} /-->
 		<!-- wp:resume/list-section {"fieldName":"soft_skills","sectionIcon":"bootstrap/people","bulletStyle":"secondary-bullet"} /-->

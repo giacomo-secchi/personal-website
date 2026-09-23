@@ -25,19 +25,22 @@ add_action( 'init', function () {
 } );
 
 
-// Global front-end + editor styles, shared across the résumé blocks (src/css/global.css).
-add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_style(
-        'resume-global',
-        get_template_directory_uri() . '/build/css/global.css',
-        array(),
-        filemtime( get_template_directory() . '/build/css/global.css' )
-    );
-} );
-
-add_action( 'after_setup_theme', function () {
-    add_editor_style( 'build/css/global.css' );
-} );
+// Global styles shared across the résumé blocks (src/css/global.css). Registered only —
+// not enqueued here — because it's declared as a "style" dependency in resume-section's
+// and list-section's block.json, so core loads it automatically (front end and editor)
+// only when one of those blocks is actually present, instead of on every page.
+add_action(
+	'init',
+	function () {
+		wp_register_style(
+			'resume-global',
+			get_template_directory_uri() . '/build/css/global.css',
+			array(),
+			filemtime( get_template_directory() . '/build/css/global.css' )
+		);
+	},
+	5
+);
 
 
 // Custom Dark Mode Toggle Block.

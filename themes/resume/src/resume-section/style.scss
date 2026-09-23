@@ -5,8 +5,11 @@
  */
 
 .wp-block-resume-resume-section {
-	.resume-entry[hidden] {
-		display: none;
+	.resume-entry {
+		&[hidden] {
+			display: none;
+		}
+		margin-bottom: var(--wp--preset--spacing--50);
 	}
 	
 	.resume-entry__title {

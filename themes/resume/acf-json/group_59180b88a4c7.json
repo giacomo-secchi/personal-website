@@ -1,15 +1,15 @@
 {
     "key": "group_59180b88a4c7",
-    "title": "Experience / Internship Details",
+    "title": "Organization Details",
     "fields": [
         {
             "key": "field_fee5b9cc3fba",
-            "label": "Company",
+            "label": "Organization",
             "name": "company_name",
             "aria-label": "",
             "type": "link",
-            "instructions": "Leave the link empty to show just the company name as plain text.",
-            "required": 1,
+            "instructions": "The company, school, or client this entry is credited to. Leave the link empty to show just the name as plain text.",
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -34,6 +34,20 @@
                 "operator": "==",
                 "value": "internship"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "education"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
         ]
     ],
     "menu_order": 0,
@@ -46,5 +60,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1789018518
+    "modified": 1790150946
 }
