@@ -11,7 +11,8 @@ must-use plugins, deployed together to a single Cloudways-hosted WordPress site:
 - `themes/resume` — a standalone CV/résumé theme (serves `cv.giacomosecchi.com`;
   see [themes/resume/README.md](themes/resume/README.md) for its full documentation).
 - `mu-plugins/` — must-use plugins shared by both themes (admin settings, user
-  profile fields, block bindings sources).
+  profile fields, block bindings sources). Files prefixed with `_` in this folder are
+  git-ignored (local-only mu-plugins).
 
 Each theme is built independently (separate `package.json`/`webpack.config.js`) but
 both are built and deployed together by the same CI workflow.
@@ -24,9 +25,18 @@ The site is developed against [`wp-env`](https://developer.wordpress.org/block-e
 into a `wp-content/` folder is needed:
 
 ```sh
-npx @wordpress/env start   # first run also activates the theme/plugins and runs a
-                            # one-off production build for both themes, see lifecycleScripts
+npm ci                     # repo root: installs @wordpress/env as a dev dependency
+npm run wp-env start       # (or `npx @wordpress/env start`) first run also activates the
+                           # themes/plugins and runs a one-off production build for both
+                           # themes, see lifecycleScripts
 ```
+
+The wp-env site is a **multisite** on port 8890, mirroring production's two-site
+setup: `personal-theme` is active on the main site (`http://localhost:8890/`) and
+`resume` on a `resume` subsite (`http://localhost:8890/resume/`) created by the
+`afterStart` script. Plugins are network-activated. WP-CLI runs through
+`npm run wp-env run cli wp …` (add `--url=http://localhost:8890/resume/` to target
+the résumé subsite).
 
 Per-theme build commands (run from inside `themes/personal-theme` or `themes/resume`):
 
@@ -36,8 +46,10 @@ npm run start   # wp-scripts watch build — run this for active development (li
 npm run build   # production build — what `wp-env start` already runs once via lifecycleScripts
 ```
 
-Both themes wrap `@wordpress/scripts`; `npm run test` is not implemented in either
-theme (it just exits with an error) — there is no test suite in this repo.
+Both themes wrap `@wordpress/scripts` (with `--experimental-modules`, needed for the
+Interactivity API view modules); `npm run test` is not implemented in either theme
+(it just exits with an error) and no lint script is defined — there is no test suite
+in this repo.
 
 - `themes/resume` builds `src/` → `build/` (git-ignored) and its webpack config
   additionally copies Bootstrap Icons SVGs into `build/bootstrap-icons/` for the
@@ -113,8 +125,15 @@ Structured data has two layers: JSON-LD (`inc/schema-jsonld.php`, extends Yoast'
 `Person` schema graph from the CPTs) and semantic HTML (`<dl>`-based microdata résumé
 markup in each block's `render.php`).
 
-`inc/pdf.php` (a DocRaptor-based PDF export) exists but is currently disabled — its
-`require` is commented out in `functions.php`.
+`inc/pdf.php` is a DocRaptor-based PDF export triggered by `?format=pdf` (the link is
+built in `src/resume-section/view.js`). It needs `DOCRAPTOR_API_KEY` (constant or env
+var, never committed) and only works on a publicly reachable URL, since DocRaptor
+fetches the page itself — not from wp-env. `DOCRAPTOR_TEST_MODE` (set to `true` in
+`.wp-env.json`) produces free watermarked PDFs instead of consuming paid credits.
+
+`inc/sitemap.php` serves a hand-written `/sitemap.xml` (home page + TranslatePress
+`/it/` variant with hreflang) and disables Yoast's sitemap, because all résumé CPTs
+are non-public and the plugin-generated sitemaps would be empty/EN-only.
 
 ### `themes/personal-theme` — portfolio and block bindings
 
