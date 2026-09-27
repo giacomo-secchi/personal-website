@@ -43,3 +43,13 @@ if ( class_exists( 'ACF' ) ) {
     // Allow ACF shortcodes in FSE templates (blocked by default outside the_content)
     add_filter( 'acf/shortcode/allow_in_block_themes_outside_content', '__return_true' );
 }
+
+// One-page site: there's no blog or search results to show, so send search
+// requests straight to the home page instead of falling through to the
+// generic index.html template.
+add_action( 'template_redirect', function () {
+    if ( is_search() ) {
+        wp_safe_redirect( home_url( '/' ) );
+        exit;
+    }
+} );

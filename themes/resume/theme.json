@@ -40,6 +40,9 @@
 			"contentSize": "920px",
 			"wideSize": "1400px"
 		},
+		"position": {
+			"sticky": true
+		},
 		"spacing": {
 			"units": [
 				"%",
