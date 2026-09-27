@@ -78,8 +78,16 @@ download URL with your license key embedded) via `mappings` in a local
 
 ## Code style
 
-- Comments must be in English, non-repetitive (don't restate what the code
-  already says), but exhaustive about non-obvious context (why, not what).
+- Comments must be in English and explain only the WHY that isn't obvious from the
+  code (a constraint, an edge case, a workaround) — never restate what the code says.
+- No "narrative" comments that recount what was changed/removed/fixed in the current
+  session: that belongs in the commit message, not the code.
+- No comments that justify a design decision (why it was done this way, why it
+  lives in its own file, which alternatives were considered or rejected): that
+  rationale also belongs in the commit message. This applies to every comment,
+  inline ones included, not just headers.
+- File/class/function header comments describe what that unit does and its role in
+  the project.
 
 ## Architecture
 
@@ -130,10 +138,6 @@ built in `src/resume-section/view.js`). It needs `DOCRAPTOR_API_KEY` (constant o
 var, never committed) and only works on a publicly reachable URL, since DocRaptor
 fetches the page itself — not from wp-env. `DOCRAPTOR_TEST_MODE` (set to `true` in
 `.wp-env.json`) produces free watermarked PDFs instead of consuming paid credits.
-
-`inc/sitemap.php` serves a hand-written `/sitemap.xml` (home page + TranslatePress
-`/it/` variant with hreflang) and disables Yoast's sitemap, because all résumé CPTs
-are non-public and the plugin-generated sitemaps would be empty/EN-only.
 
 ### `themes/personal-theme` — portfolio and block bindings
 
