@@ -61,15 +61,9 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 					$views = array( 'resume', 'cv' );
 				}
 
-				// `company_name` is a Link field (name + optional URL) shared by every post
-				// type (employer, school, client, event/publication venue...): the org line
-				// renders as plain text when no URL is set, as a link when one is, and falls
-				// back to the bare URL (protocol stripped) when only a URL was given.
 				$organization = get_field( 'company_name', $item );
-				$org_name     = $organization['title'] ?? '';
 				$org_url      = $organization['url'] ?? '';
-				$org_target   = $organization['target'] ?? '';
-				$org_text     = $org_name ? $org_name : ( $org_url ? preg_replace( '#^https?://#', '', untrailingslashit( $org_url ) ) : '' );
+				$org_text     = ! empty( $organization['title'] ) ? $organization['title'] : ( $org_url ? preg_replace( '#^https?://#', '', untrailingslashit( $org_url ) ) : '' );
 				$summary      = has_excerpt( $item ) ? get_the_excerpt( $item ) : '';
 				$start        = $format_entry_date( get_field( 'start_date', $item, false ) );
 				$end          = $format_entry_date( get_field( 'end_date', $item, false ) );
@@ -96,7 +90,7 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 					<?php if ( $org_text ) : ?>
 						<p class="resume-entry__org">
 							<?php if ( $org_url ) : ?>
-								<a href="<?php echo esc_url( $org_url ); ?>"<?php echo $org_target ? ' target="' . esc_attr( $org_target ) . '" rel="noreferrer noopener"' : ''; ?>><?php echo esc_html( $org_text ); ?></a>
+								<a href="<?php echo esc_url( $org_url ); ?>" rel="noreferrer noopener"><?php echo esc_html( $org_text ); ?></a>
 							<?php else : ?>
 								<?php echo esc_html( $org_text ); ?>
 							<?php endif; ?>

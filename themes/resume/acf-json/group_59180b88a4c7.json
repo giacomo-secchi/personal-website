@@ -7,8 +7,8 @@
             "label": "Organization",
             "name": "company_name",
             "aria-label": "",
-            "type": "link",
-            "instructions": "The company, school, or client this entry is credited to. Leave the link empty to show just the name as plain text.",
+            "type": "group",
+            "instructions": "The company, school, client, event or publisher this entry is credited to (e.g. WordCamp Europe 2026, or Nettuts+). Leave the website empty to show just the name as plain text.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,8 +16,48 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "allow_in_bindings": 0
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_3b8d51c07a42",
+                    "label": "Name",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_9e4f27a6d1c8",
+                    "label": "Website",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "https://"
+                }
+            ]
         }
     ],
     "location": [
@@ -48,6 +88,20 @@
                 "operator": "==",
                 "value": "project"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event_presentation"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "publication"
+            }
         ]
     ],
     "menu_order": 0,
@@ -60,5 +114,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1790150946
+    "modified": 1790494018
 }
