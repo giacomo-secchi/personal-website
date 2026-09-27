@@ -96,13 +96,13 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 							<?php endif; ?>
 						</p>
 					<?php endif; ?>
+					
+					<?php if ( $time_text ) : ?>
+						<p class="resume-entry__time"><?php echo esc_html( $time_text ); ?></p>
+					<?php endif; ?>
 
 					<?php if ( $summary ) : ?>
 						<p class="resume-entry__summary"><?php echo esc_html( $summary ); ?></p>
-					<?php endif; ?>
-
-					<?php if ( $time_text ) : ?>
-						<p class="resume-entry__time"><?php echo esc_html( $time_text ); ?></p>
 					<?php endif; ?>
 
 					<?php if ( $address ) : ?>

@@ -5,21 +5,42 @@
  */
 
 .wp-block-resume-resume-section {
+	dd > section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--50);
+	}
+
 	.resume-entry {
 		&[hidden] {
 			display: none;
 		}
-		margin-bottom: var(--wp--preset--spacing--50);
+
+		> * {
+			margin-block: 0;
+		}
+
+		> * + * {
+			margin-block-start: var(--wp--preset--spacing--30);
+		}
 	}
-	
+
+	.resume-entry__description {
+		> :first-child {
+			margin-block-start: 0;
+		}
+
+		> :last-child {
+			margin-block-end: 0;
+		}
+	}
+
 	.resume-entry__title {
 		color: var(--wp--preset--color--primary);
-		margin: var(--wp--preset--spacing--20) 0;
 	}
 
 	.resume-entry__time {
 		color: var(--wp--preset--color--contrast);
-		margin: var(--wp--preset--spacing--20) 0;
 		opacity: 0.6;
 	}
 }
