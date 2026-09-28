@@ -1,0 +1,47 @@
+{
+    "key": "group_presentation_details",
+    "title": "Presentation Details",
+    "fields": [
+        {
+            "key": "field_a4e81c3f6b27",
+            "label": "Location",
+            "name": "location",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "City and country, or \"Online\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "Basel, Switzerland",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event_presentation"
+            }
+        ]
+    ],
+    "menu_order": 2,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "modified": 1790575815
+}

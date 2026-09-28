@@ -64,6 +64,8 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 				$organization = get_field( 'company_name', $item );
 				$org_url      = $organization['url'] ?? '';
 				$org_text     = ! empty( $organization['title'] ) ? $organization['title'] : ( $org_url ? preg_replace( '#^https?://#', '', untrailingslashit( $org_url ) ) : '' );
+				$location     = get_field( 'location', $item );
+				$title_url    = get_field( 'entry_url', $item );
 				$summary      = has_excerpt( $item ) ? get_the_excerpt( $item ) : '';
 				$start        = $format_entry_date( get_field( 'start_date', $item, false ) );
 				$end          = $format_entry_date( get_field( 'end_date', $item, false ) );
@@ -85,14 +87,23 @@ $format_entry_date = static function ( $ymd ) use ( $entry_date_format ) {
 					<?php echo wp_interactivity_data_wp_context( array( 'views' => array_values( $views ) ) ); ?>
 					data-wp-bind--hidden="state.isEntryHidden"
 				>
-					<h3 class="resume-entry__title"><?php echo esc_html( get_the_title( $item ) ); ?></h3>
+					<h3 class="resume-entry__title">
+						<?php if ( $title_url ) : ?>
+							<a href="<?php echo esc_url( $title_url ); ?>" rel="noreferrer noopener"><?php echo esc_html( get_the_title( $item ) ); ?></a>
+						<?php else : ?>
+							<?php echo esc_html( get_the_title( $item ) ); ?>
+						<?php endif; ?>
+					</h3>
 
-					<?php if ( $org_text ) : ?>
+					<?php if ( $org_text || $location ) : ?>
 						<p class="resume-entry__org">
 							<?php if ( $org_url ) : ?>
 								<a href="<?php echo esc_url( $org_url ); ?>" rel="noreferrer noopener"><?php echo esc_html( $org_text ); ?></a>
 							<?php else : ?>
 								<?php echo esc_html( $org_text ); ?>
+							<?php endif; ?>
+							<?php if ( $location ) : ?>
+								<?php echo $org_text ? ' · ' : ''; ?><span class="resume-entry__location"><?php echo esc_html( $location ); ?></span>
 							<?php endif; ?>
 						</p>
 					<?php endif; ?>

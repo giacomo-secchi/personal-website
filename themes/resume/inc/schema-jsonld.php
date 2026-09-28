@@ -84,20 +84,26 @@ add_filter( 'wpseo_schema_person_data', function ( $data ) {
 		$raw_date  = get_field( 'start_date', $event, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
 		$date_time = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
 
-		$organizer = get_field( 'company_name', $event );
+		$host     = get_field( 'company_name', $event );
+		$location = get_field( 'location', $event );
+		$online   = $location && 0 === strcasecmp( trim( $location ), 'online' );
 
 		$entry = array_filter( array(
-			'@type'     => 'Event',
-			'name'      => get_the_title( $event ),
-			'startDate' => $date_time ? $date_time->format( 'Y-m-d' ) : null,
-			'url'       => $organizer['url'] ?? '',
+			'@type'               => 'Event',
+			'name'                => get_the_title( $event ),
+			'startDate'           => $date_time ? $date_time->format( 'Y-m-d' ) : null,
+			'url'                 => get_field( 'entry_url', $event ),
+			'eventAttendanceMode' => $online ? 'https://schema.org/OnlineEventAttendanceMode' : null,
+			'location'            => $location && ! $online ? array( '@type' => 'Place', 'name' => $location ) : null,
+			'superEvent'          => array_filter( array(
+				'@type' => 'Event',
+				'name'  => $host['title'] ?? '',
+				'url'   => $host['url'] ?? '',
+			) ),
 		) );
 
-		if ( ! empty( $organizer['title'] ) ) {
-			$entry['organizer'] = array(
-				'@type' => 'Organization',
-				'name'  => $organizer['title'],
-			);
+		if ( isset( $entry['superEvent'] ) && count( $entry['superEvent'] ) < 2 ) {
+			unset( $entry['superEvent'] );
 		}
 
 		$performer_in[] = $entry;
@@ -160,27 +166,29 @@ class Resume_Publications_Schema_Piece extends \Yoast\WP\SEO\Generators\Schema\A
 
 		$pieces = array();
 		foreach ( get_posts( array( 'post_type' => 'publication', 'posts_per_page' => -1 ) ) as $publication ) {
-			$permalink = get_permalink( $publication );
-			$raw_date  = get_field( 'start_date', $publication, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
-			$date_time = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
+			$article_url = get_field( 'entry_url', $publication );
+			$raw_date    = get_field( 'start_date', $publication, false ); // Raw ACF storage format ('Ymd'), for a reliable ISO 8601 conversion.
+			$date_time   = $raw_date ? DateTime::createFromFormat( 'Ymd', $raw_date ) : false;
 
 			$publisher = get_field( 'company_name', $publication );
 
 			$piece = array_filter( array(
 				'@type'         => 'Article',
-				'@id'           => $permalink . \Yoast\WP\SEO\Config\Schema_IDs::ARTICLE_HASH,
+				'@id'           => home_url( '/#publication-' . $publication->ID ),
 				'headline'      => get_the_title( $publication ),
 				'name'          => get_the_title( $publication ),
-				'url'           => ( $publisher['url'] ?? '' ) ?: $permalink,
+				'url'           => $article_url,
 				'datePublished' => $date_time ? $date_time->format( 'Y-m-d' ) : null,
 				'author'        => array( '@id' => $person_id ),
+				'publisher'     => array_filter( array(
+					'@type' => 'Organization',
+					'name'  => $publisher['title'] ?? '',
+					'url'   => $publisher['url'] ?? '',
+				) ),
 			) );
 
-			if ( ! empty( $publisher['title'] ) ) {
-				$piece['publisher'] = array(
-					'@type' => 'Organization',
-					'name'  => $publisher['title'],
-				);
+			if ( empty( $piece['publisher']['name'] ) ) {
+				unset( $piece['publisher'] );
 			}
 
 			$pieces[] = $piece;
