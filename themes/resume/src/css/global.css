@@ -12,4 +12,5 @@ a {
 
 .resume-subtitle {
     font-weight: 700;
+    margin-bottom: var(--wp--preset--spacing--40);
 }
