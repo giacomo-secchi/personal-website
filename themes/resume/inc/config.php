@@ -53,3 +53,5 @@ add_action( 'template_redirect', function () {
         exit;
     }
 } );
+
+add_filter( 'render_block_core/shortcode', 'do_shortcode' );
