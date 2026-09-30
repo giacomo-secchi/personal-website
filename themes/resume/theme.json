@@ -58,6 +58,9 @@
 			"sticky": true
 		},
 		"spacing": {
+			"spacingScale": {
+				"steps": 9
+			},
 			"units": [
 				"%",
 				"px",
@@ -208,8 +211,8 @@
 			"core/list-item": {
 				"spacing": {
 					"padding": {
-						"top": "var:preset|spacing|20",
-						"bottom": "var:preset|spacing|20"
+						"top": "var:preset|spacing|10",
+						"bottom": "var:preset|spacing|10"
 					}
 				}
 			}
