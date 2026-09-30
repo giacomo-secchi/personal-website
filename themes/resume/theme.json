@@ -3,6 +3,20 @@
 	"version": 3,
 	"settings": {
 		"appearanceTools": true,
+		"border": {
+			"radiusSizes": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "8px"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "34px"
+				}
+			]
+		},
 		"color": {
 			"palette": [
 				{
@@ -168,7 +182,7 @@
 			},
 			"button": {
 				"border": {
-					"radius": "8px"
+					"radius": "var:preset|border-radius|small"
 				},
 				"color": {
 					"background": "var:preset|color|primary",

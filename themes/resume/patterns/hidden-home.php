@@ -17,8 +17,8 @@
 	<div class="wp-block-column" style="flex-basis:65%">
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group">
-			<!-- wp:image {"width":"120px","height":"120px","aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"34px"}}} -->
-			<figure class="wp-block-image size-full is-resized has-custom-border"><img src="<?php echo esc_url( get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 240 ) ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" style="border-radius:34px;aspect-ratio:1;object-fit:cover;width:120px;height:120px"/></figure>
+			<!-- wp:image {"width":"120px","height":"120px","aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"var:preset|border-radius|large"}}} -->
+			<figure class="wp-block-image size-full is-resized has-custom-border"><img src="<?php echo esc_url( get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 240 ) ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" style="border-radius:var(--wp--preset--border-radius--large);aspect-ratio:1;object-fit:cover;width:120px;height:120px"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
