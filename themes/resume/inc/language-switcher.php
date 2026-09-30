@@ -15,7 +15,8 @@ add_shortcode( 'custom-language-switcher', function() {
             $is_current = ( $item['language_code'] === $TRP_LANGUAGE );
             $li_class = $is_current ? ' class="trp-custom-ls-current"' : '';
             $html .= "<li{$li_class}>";
-            $html .= "<a href='{$item['current_page_url']}' hreflang='{$item['language_code']}'>";
+            $aria_current = $is_current ? " aria-current='page'" : '';
+            $html .= "<a href='{$item['current_page_url']}' hreflang='{$item['language_code']}'{$aria_current}>";
             $html .= "<span>{$item['language_name']}</span></a></li>";
         }
         $html .= '</ul>';
@@ -30,7 +31,7 @@ add_action( 'wp_head', function() {
         .trp-custom-language-switcher {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--wp--preset--spacing--20);
             margin: 0;
             padding: 0;
         }
@@ -39,13 +40,20 @@ add_action( 'wp_head', function() {
         }
         .trp-custom-language-switcher li:not(:last-child)::after {
             content: "/";
-            margin-left: 10px;
+            margin-left: var(--wp--preset--spacing--20);
+            color: color-mix(in srgb, currentColor 70%, transparent);
         }
         .trp-custom-language-switcher a {
             text-decoration: none;
+            color: color-mix(in srgb, currentColor 70%, transparent);
+            transition: color 0.2s ease;
+        }
+        .trp-custom-language-switcher a:hover,
+        .trp-custom-language-switcher a:focus-visible,
+        .trp-custom-language-switcher li.trp-custom-ls-current a {
+            color: inherit;
         }
         .trp-custom-language-switcher li.trp-custom-ls-current a {
-            font-weight: 700;
             pointer-events: none;
         }
     </style>
