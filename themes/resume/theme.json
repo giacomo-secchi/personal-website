@@ -218,8 +218,8 @@
 	"templateParts": [
 		{
 			"area": "uncategorized",
-			"name": "utilities",
-			"title": "Utilities"
+			"name": "sidebar",
+			"title": "Sidebar"
 		},
 		{
 			"area": "footer",

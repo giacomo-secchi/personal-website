@@ -90,7 +90,7 @@ resume/
 │   ├── css/dark-mode.css
 │   └── fonts/            self-hosted woff2 (Open Sans, Noto Serif)
 ├── patterns/hidden-home.php     the home layout, composed of the blocks above
-├── templates/ · parts/          FSE template + footer / utilities parts
+├── templates/ · parts/          FSE template + footer / sidebar parts
 ├── theme.json                   palette, fonts, layout, dark tokens
 ├── favicon.png · screenshot.png
 ├── style.css · readme.txt       theme header / WordPress.org-style readme (license)
