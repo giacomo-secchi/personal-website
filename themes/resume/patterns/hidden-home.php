@@ -37,11 +37,11 @@
 
 		<!-- wp:resume/list-section {"fieldName":"profile_description","sectionIcon":"bootstrap/person-vcard"} /-->
 		<!-- wp:resume/resume-section {"postType":"experience","sectionIcon":"bootstrap/briefcase-fill"} /-->
-		<!-- wp:resume/resume-section {"postType":"internship","sectionIcon":"bootstrap/person-workspace"} /-->
 		<!-- wp:resume/resume-section {"postType":"project","sectionIcon":"bootstrap/kanban"} /-->
 		<!-- wp:resume/resume-section {"postType":"education","sectionIcon":"bootstrap/mortarboard-fill"} /-->
 		<!-- wp:resume/resume-section {"postType":"event_presentation","sectionIcon":"bootstrap/megaphone"} /-->
 		<!-- wp:resume/resume-section {"postType":"publication","sectionIcon":"bootstrap/journal-text"} /-->
+		<!-- wp:resume/resume-section {"postType":"internship","sectionIcon":"bootstrap/person-workspace"} /-->
 	</div>
 	<!-- /wp:column -->
 
