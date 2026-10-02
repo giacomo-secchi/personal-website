@@ -21,3 +21,6 @@ if ( defined( 'WPSEO_VERSION' ) ) {
 
 // PDF generator.
 require get_stylesheet_directory() . '/inc/pdf.php';
+
+// Static slide decks (slides/<slug>/) served at /<slug>/.
+require get_stylesheet_directory() . '/inc/slides.php';

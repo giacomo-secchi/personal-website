@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript Design Patterns – Sveliamo il Revealing Module Pattern</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+                    <h1>JavaScript Design Patterns</h1>
+                    <h3>Sveliamo il Revealing Module Pattern</h3>
+                    <p>
+                        <small>Created by <a href="http://giacomosecchi.it">Giacomo Secchi</a></small>
+                    </p>
+                    <p>
+                        Beer&amp;Learn - @GetConnected 20/4/2016 
+                    </p>
+                </section>
+
+                <section data-autoslide="4000">
+                    <h2>Cos'è un design pattern?</h2>
+                    <p class="fragment">Un design pattern è una soluzione software</p>
+                    <p class="fragment">riutilizzabile per uno specifico tipo di problema</p>
+                    <p class="fragment">che avviene frequentemente </p>
+                    <p class="fragment">durante lo sviluppo di un prodotto software</p>
+                </section>
+
+                <section data-autoslide="4000">
+                    <h2>Esisono tante tipologie di design pattern</h2>
+                    <p><span class="fragment">Builder pattern, </span><span class="fragment">Prototype pattern, </span><span class="fragment">Composite pattern, </span><span class="fragment">Facade pattern, </span><span class="fragment">Observer pattern, </span><span class="fragment">Mediator pattern,</span> <span class="fragment">ecc. ecc. ecc. ecc. ecc. ecc. ecc. ecc. </span></p>
+                </section>
+
+                <section>
+	                <section data-transition="slide">
+	                    <h2>JavaScript Module Pattern</h2>
+	                    <p><span class="fragment">Perché?</p>
+	                </section>
+
+	                <section data-transition="slide">
+	                    <h2>Vantaggi</h2>
+	                    <ul>
+	                        <li>Uno dei più usati e facilmente integrabile con le librerie più usate (jQuery, Dojo, ExtJS, YUI ecc.)</li>
+	                        <li>Approccio pulito per gli sviluppatori</a></li>
+	                        <li>Namespace più pulito (facile gestione di variabili locali e globali)</li>
+	                        <li>I componenti rimangono sempre ben separati</a></li>
+	                    </ul>
+	                </section>
+
+	                <section data-transition="slide">
+	                    <h2>Svantaggi</h2>
+	                    <ul>
+	                        <li>I metodi privati non sono accessibili (maggiori difficoltà nei test)</li>
+	                        <li>Esistono metodologie più recenti ed evolute per gestire progetti di grandi dimensioni (AMD, CommonJS)</li>
+	                    </ul>
+	                </section>
+	            </section>
+
+                <section>
+                	<section>
+	                	<h2>Esistono anche varie tipologie di Module Pattern</h2>
+	                    <p><span class="fragment">Anonymous closure, </span><span class="fragment">Global import, </span><span class="fragment">Object interface </span> <span class="fragment">Revealing module pattern</span></p>
+                	</section>
+                </section>
+
+
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <h2>Andiamo alla pratica</h2>
+                        <p>Questa è la struttua di un modulo</p>
+                        <p>
+                    <pre><code data-trim contenteditable>
+var Beer = {          // Oggetto 
+    pushOrSomething: function () { //public method
+        GoogleAnalytics.pushOrSomething.apply(this, arguments);
+    },
+    anotherOne: function (key) {   //altro public method
+        this.pushOrSomething('action', key);
+    }
+};          
+
+
+
+                    </code></pre>
+                    </p>
+                    <p>
+                    Sorge un problema: <br />il metodo <code>Beer.pushOrSomething()</code> rimane esposto
+                    	 
+                    </p>
+                    </section>
+
+                    <section>
+                    	<h2>Soluzione</h2>
+                    	<p>Usare una Self-Executing Anonymous Function</p>
+                    	<pre><code>
+var Beer = (function() {
+    var _pushOrSomething = function () { //private method
+        GoogleAnalytics.pushOrSomething.apply(this, arguments);
+    };
+
+    var anotherOne = function (key) {   //private method
+        _pushOrSomething('action', key);
+    };
+
+    return {
+    	anotherOne: anotherOne // we've defined what we want to return
+    };
+})();                    	</code></pre>
+						
+                    </section>
+					<section>
+						<h2>Module Pattern <br> + <br>Self-Executing Anonymous Function<br> = <br>  Revealing Module Pattern</h2>
+					</section>
+					<section>
+						<p>ATTENZIONE: la differenza fra Object interface e Revealing Module Pattern è molto labile</p>
+						<p>Object interface: all'interno dell'export (<code>return</code>) si possono trovare propietà e metodi che implementano le logiche del modulo stesso.</p><p> Revealing Module pattern: il <code>return</code> viene utilizzato esclusivamente per esporre metodi e proprietà all'esterno del modulo</p>
+					</section>
+					<section>
+						
+						notare:
+						<ul>
+							<li>per convenzione dichairo metodi e variabili privati con il prefix underscore</li>
+							<li>Tutto ciò che si trova all'interno del return è esposto</li>
+						</ul>
+					</section>
+                </section>
+
+                <section>
+                	<section>
+                		
+	                	<h2>Global Import</h2>
+	                	<p>Importiamo librerie esterne</p>	
+						<pre><code>
+(function ($, YAHOO) {
+	// now have access to globals jQuery (as $) and YAHOO in this code
+}(jQuery, YAHOO));
+						</code></pre>
+                	</section>
+                	<section>
+                		<h2>Un esempio pratico con Underscore e jQuery</h2>
+	                	<pre><code>
+var Beer = (function($, _) {
+    var _pushOrSomething = function () { //private method
+        GoogleAnalytics.pushOrSomething.apply(this, arguments);
+    };
+
+    var anotherOne = function (key) {   //private method
+        _pushOrSomething('action', key);
+    };
+
+    var format = function (el) {
+    	$('.container').html(el);
+    };
+
+    findAleBeers = function () {
+    	list = _pushOrSomething();
+    	_.filter(list, function(item){ return item === 'Ale'; }); 
+    }
+
+    return {
+    	anotherOne: anotherOne // we've defined what we want to return
+    };
+})( jQuery, _ );   
+	                	</code></pre>
+                	</section>
+                </section>
+
+                <section>
+                	<section>
+                		<h2>Augmentation</h2>
+                		<p>come far interagire più moduli fra di loro</p>
+                	</section>
+
+                	<section>
+						Per i progetti di medie e grandi dimensioni diventa indispensabile suddividere la propria code-base in più files.
+                	</section>
+
+                	<section>
+                		<h2>Strict augmentation</h2>
+	                	<p>
+	                	Esempio: Supponiamo di avere un modulo helper, alcune sue funzionalità sono necessare sia sul file cart.js (disponibile solo nella pagina http://miosito.com/cart/) che su account.js (disponibile solo nella pagina http://miosito.com/account/)
+	                	</p>
+                	</section>
+
+                	<section>
+                		<code>file: /helpers.js</code>
+                		<pre><code>
+var helperModule = (function() {
+    function logMultipleTimes (n) {
+        for (i = 0; i < n; i++) {
+        	console.log('La funzione logMultipleTimes è stata chiamata ' + n + ' volte dal modulo Beer');
+        }
+    }
+    
+    return {
+    	logMultipleTimes: logMultipleTimes
+    };
+})();
+                		</code></pre>
+                	</section>
+                	<section>
+                		<code>file: /cart.js</code>
+
+						<pre><code>
+var Cart = (function(h) {
+
+    function productsAddedToCart (key) {
+        // Do some stuff
+        helperTest();
+        h.logMultipleTimes(2);
+    }
+    
+    function helperTest () {
+    	// Do other stuff
+    	h.logMultipleTimes(6);
+    }
+
+    return {
+    	productsAddedToCart: productsAddedToCart
+    }
+})(helperModule);
+
+						</code></pre>
+                	</section>
+                	<section>
+                	<code>file: /account.js</code>
+					<pre><code>
+var User = (function(h) {
+
+    function logUserName (key) {
+        // log user credit cards number
+        h.logMultipleTimes(key);
+    }
+    
+    function listCreditCards (key) {
+    	// Do some stuff with my helper and underscore libray
+    	h.logMultipleTimes(_.size(key));
+    }
+
+    return {
+    	logUserName: username
+    	listCreditCards: listCreditCards
+    }
+})(helperModule, _);
+
+User.listCreditCards({one: 1, two: 2, three: 3});
+						
+					</code></pre>
+                	</section>
+            		<section>
+                        <section>
+                            <h2>Extending Module Pattern</h2>
+                        </section>
+            			<h2>Loose Augmentation</h2>
+            			<p>A differenza della Strict augmentation, la Loose augmentation ti permette di caricare i moduli in modo asincrono (ordine a piacere nella chiamata ai files)</p>
+                        <pre><code>
+var MODULE = (function (my) {
+	// add capabilities...
+
+	return my;
+}(MODULE || {}));
+                        </code></pre>
+						
+            		</section>
+                    <section>
+                        Fra i problemi di quest'approccio c'è la difficoltà di override dei metodi ereditati, per risolvere questo problema è indicato usare la Tight Augmentation
+                    </section>
+                    <section>
+                        <h2>Esempio di Thight Augmentation</h2>
+                        <pre><code>
+var MODULE = (function (my) {
+    var old_moduleMethod = my.moduleMethod;
+
+    my.moduleMethod = function () {
+        // method override, has access to old through old_moduleMethod...
+    };
+
+    return my;
+}(MODULE));
+                        </code></pre>
+                    </section>
+                </section>
+
+            	<!--section>
+            		<section>
+            			<h2>Conclusioni</h2>
+                        <p>
+                            
+                        </p>
+            		</section-->
+            	</section>
+
+                <section>
+                	<h2>Credits</h2>
+                    <p>
+                         https://carldanley.com/javascript-design-patterns/
+                    </p>
+                    <p>
+                    	http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html
+                    	-> approfondimento per i test http://www.adequatelygood.com/Writing-Testable-JavaScript.html
+                    </p>
+                    <p>
+                        http://www.raymondcamden.com/2013/05/13/JavaScript-Design-Patterns-The-Revealing-Module-Pattern/
+
+                    </p>
+                    <p>
+                        https://addyosmani.com/resources/essentialjsdesignpatterns/book/
+                    </p>
+                    <p>
+                       https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.k4vjrukps 
+                    </p>
+                    <p>
+                        w2ui.com/web/blog/1/A-Variation-of-JavaScript-Module-Pattern
+                    </p>
+                </section>
+
+							
+				<section>
+					<h2>Grazie e buona birra!!!!!</h2>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
