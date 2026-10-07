@@ -21,7 +21,7 @@
 		}
 
 		> * + * {
-			margin-block-start: var(--wp--preset--spacing--20);
+			margin-block-start: var(--wp--preset--spacing--10);
 		}
 	}
 
@@ -37,6 +37,7 @@
 
 	.resume-entry__title {
 		color: var(--wp--preset--color--primary);
+		font-weight: 400;
 	}
 
 	.resume-entry__time {

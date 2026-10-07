@@ -34,6 +34,7 @@
 
 	&[aria-selected="true"] {
 		translate: none;
+		cursor: default;
 		background: var(--wp--preset--color--white);
 		box-shadow: var(--wp--preset--shadow--small);
 	}
