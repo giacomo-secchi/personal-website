@@ -41,7 +41,7 @@ add_action( 'template_redirect', function () {
 		$pdf       = resume_fetch_pdf_from_docraptor( $source_url, $filename, $api_key, $test_mode );
 
 		if ( is_wp_error( $pdf ) ) {
-			wp_die( esc_html( $pdf->get_error_message() ), 'DocRaptor', array( 'response' => 502 ) );
+			wp_die( esc_html( $pdf->get_error_message() ), 'DocRaptor', array( 'response' => 500 ) );
 		}
 
 		wp_mkdir_p( dirname( $cache_file ) );
@@ -57,18 +57,6 @@ add_action( 'template_redirect', function () {
 } );
 
  
-// `cv` vs `resume`, matching src/resume-section/view.js's `?view=` + first-view default.
-function resume_pdf_view() {
-	$views     = array_keys( resume_get_views() );
-	$requested = isset( $_GET['view'] ) ? sanitize_key( wp_unslash( $_GET['view'] ) ) : '';
-
-	if ( $requested && in_array( $requested, $views, true ) ) {
-		return $requested;
-	}
-
-	return $views[0] ?? 'cv';
-}
-
 // TranslatePress's current language, falling back to the site locale when TRP is off.
 function resume_pdf_language() {
 	global $TRP_LANGUAGE;
@@ -82,7 +70,7 @@ function resume_pdf_language() {
 
 // e.g. "giacomo-secchi-cv-it.pdf" / "giacomo-secchi-resume-en.pdf".
 function resume_pdf_filename() {
-	$view  = resume_pdf_view();
+	$view  = resume_get_active_view();
 	$label = resume_get_views()[ $view ] ?? $view;
 	$lang  = resume_pdf_language();
 
@@ -111,7 +99,7 @@ function resume_fetch_pdf_from_docraptor( $url, $filename, $api_key, $test_mode 
 						'document_type'  => 'pdf',
 						'document_url'   => $url,
 						'name'           => $filename, // helps find the doc later in the DocRaptor dashboard
-						'javascript'     => true,
+						'javascript'     => false,
 						'prince_options' => array(
 							// Reuses the @media print rules in src/resume-section/style.scss
 							// and src/tab-switch/style.scss (hide nav/switch/button, collapse columns).

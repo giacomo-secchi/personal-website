@@ -28,6 +28,42 @@ function resume_get_views() {
 	);
 }
 
+// `?view=` when valid, otherwise the first registered view; mirrors resolveView() in src/resume-section/view.js.
+function resume_get_active_view() {
+	$views     = array_keys( resume_get_views() );
+	$requested = isset( $_GET['view'] ) ? sanitize_key( wp_unslash( $_GET['view'] ) ) : '';
+
+	if ( $requested && in_array( $requested, $views, true ) ) {
+		return $requested;
+	}
+
+	return $views[0] ?? 'cv';
+}
+
+// Server-side counterpart of the `resume/tabs` store, so entries and tabs are rendered
+// for the right view before (or without) JavaScript — e.g. when DocRaptor builds the PDF.
+add_action( 'wp', function () {
+	$is_selected_view = function () {
+		$context = wp_interactivity_get_context( 'resume/tabs' );
+		return isset( $context['view'] ) && wp_interactivity_state( 'resume/tabs' )['activeView'] === $context['view'];
+	};
+
+	wp_interactivity_state(
+		'resume/tabs',
+		array(
+			'activeView'           => resume_get_active_view(),
+			'isSelectedView'       => $is_selected_view,
+			'selectedViewTabIndex' => function () use ( $is_selected_view ) {
+				return $is_selected_view() ? 0 : -1;
+			},
+			'isEntryHidden'        => function () {
+				$views = wp_interactivity_get_context( 'resume/tabs' )['views'] ?? array();
+				return ! empty( $views ) && ! in_array( wp_interactivity_state( 'resume/tabs' )['activeView'], $views, true );
+			},
+		)
+	);
+} );
+
 // Custom Advanced Custom Fields Plugin settings.
 if ( class_exists( 'ACF' ) ) {
     // acf-json choices can't be dynamic, so keep them in sync at load time.
