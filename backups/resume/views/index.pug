@@ -1,0 +1,82 @@
+extends layout
+include mixins
+block content
+    .p-md-4
+    .container-fluid
+        .row.flex-md-row-reverse.d-print-block
+            .col-md-3.helper-menu.sticky-top.h-100.d-print-none
+                ul.nav.justify-content-between.align-items-center.align-items-md-start.flex-md-column
+                    li.nav-item
+                        +customIcon('translate', 'text-black-50')
+                        ul.nav.nav-divider.mx-n3(style={'--bs-nav-link-color': 'var(--bs-gray)'})
+                            each lang, code in (typeof languageNames !== 'undefined' && Object.keys(languageNames).length ? languageNames : [['No languages available', '']])
+                                - var currentLang = (code == language)
+                                li.nav-item
+                                    a.nav-link(href=`/?lang=${code}`, class=(currentLang && "active"), aria-current=(currentLang && "page"))= lang
+                    li.nav-item
+                        div.btn-group.py-md-3(role="group" aria-label="Change color theme")
+                            button.btn.btn-sm.bg-dark-subtle.text-light(type="button" data-bs-theme-value="light")
+                                +customIcon('sun')
+                            button.btn.btn-sm.bg-dark-subtle.text-light(type="button" data-bs-theme-value="dark")
+                                +customIcon('moon-stars-fill')
+                    li.nav-item
+                        a.btn.btn-primary.text-light(href=t('download_file') role="button", target="_blank")
+                            span.d-none.d-sm-inline-block.align-middle= t('download_button') 
+                            | &nbsp;
+                          
+                            +customIcon('file-earmark-pdf-fill', undefined, '32px', '32px')
+            .col-md-8.col-lg-6.shadow-sm.p-4.p-sm-5.bg-white.paper
+                header
+                    .row
+                        .col
+                            img.rounded-circle(
+                            src="https://s.gravatar.com/avatar/cacd939ed4fbbea7e739d737e3411dc3?s=300",
+                            width="150",
+                            alt="Giacomo Secchi"
+                            )
+                            h1.fw-bold.mt-4(style="font-family: var(--bs-font-sans-serif);") Giacomo Secchi
+                            h3 Web Developer / Ecommerce Specialist
+                        .col
+                            ul.list-group.list-group-flush.rounded-4.mt-4.mt-sm-0.contact-infos
+                                li.list-group-item
+                                    +customIcon('geo-alt-fill', 'text-dark-subtle', '1.4em', '1.4em')
+                                    span Modena, IT
+                                                                            
+                                li.list-group-item
+                                    +customIcon('telephone-fill', 'text-dark-subtle me-2')
+                                    a(href="+393407119634") (0039) 340 7119634
+                                
+                                li.list-group-item
+                                    +customIcon('envelope-at-fill', 'text-dark-subtle me-2')
+                                    a(href="mailto:info@giacomosecchi.com") info@giacomosecchi.com
+                                
+                                li.list-group-item
+                                    +customIcon('globe2', 'text-dark-subtle me-2')
+                                    a(href="https://giacomosecchi.com" title="Giacomo Secchi Website") giacomosecchi.com
+
+                                li.list-group-item
+                                    +customIcon('briefcase-fill', 'text-dark-subtle me-2')
+                                    a(href="https://giacomosecchi.com/portfolio" title="Giacomo Secchi Portfolio")= t('portfolio_link')                   
+
+                                li.list-group-item
+                                    +customIcon('person-lines-fill', 'text-dark-subtle me-2')
+                                    a(href=`https://resume.giacomosecchi.com?lang=${language}` title="Giacomo Secchi Resume") Curriculum Vitae
+                                                                
+                                li.list-group-item
+                                    +customIcon('github', 'text-dark-subtle me-2')
+                                    a(href="https://github.com/giacomo-secchi" title="Follow Me on GitHub") @giacomo-secchi
+                                
+                                li.list-group-item.align-items-start
+                                    +customIcon('linkedin', 'text-dark-subtle me-2')
+                                    a(href="https://www.linkedin.com/in/giacomosecchi/" title="Follow Me on LinkedIn") Giacomo Secchi
+
+                each section, index in sections
+                    +definitionList(section, index)
+                p
+                    small.text-muted= t('privacy_text')
+
+
+block scripts
+    script(src='/main.min.js')
+    //- script 
+    //-     | console.log(!{JSON.stringify(languageNames)})

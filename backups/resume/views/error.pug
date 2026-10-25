@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  if error.status == 404
+    .container.bg-white.shadow.p-5.my-5(style={'max-width': '794px'})  
+      h1= message
+      h2= error.status
+      pre #{error.stack}
+      a(href= "/") Read the resume
+

@@ -1,0 +1,235 @@
+{
+    "404_message": "404 page not found",
+    "download_button": "View Printable CV",
+    "download_file": "resume_giacomo_secchi.pdf",
+    "title": "Resumé | Giacomo Secchi | Frontend Web Developer",
+    "privacy_text": "",
+    "portfolio_link": "Personal Portfolio",
+    "certificate_title": "Certificate:",
+    "certificate_label": "View Certificate",
+    "project_label": "Project link:",
+    "sections": [{
+        "title": "Profile",
+        "icon": "person",
+        "description": "T-shaped professional with a deep knowledge of front-end web development and user experience for e-commerce websites. Experienced Software Developer adept in bringing forth expertise in design, installation, testing and maintenance of software systems. Adept in using digital marketing platforms to increase sales and overall company productivity."
+    }, {
+        "title": "Professional experience",
+        "icon": "briefcase",
+        "organizations": [{
+            "title": "E-Commerce Technical Business Analyst",
+            "name": "Digital Boîte",
+            "date": {
+                "start": "may 2023",
+                "end": "july 2025"
+            },
+            "description": "Agile project management on Salesforce Commerce Cloud and Service Cloud platforms; Requirements gathering, functional analysis, and release sprint planning activities. Set-up and monitoring of project activities on Jira Software."
+        }, {
+            "title": "E-commerce Manager",
+            "name": "Francocantiere S.r.l.",
+            "date": {
+                "start": "february 2020",
+                "end": "may 2023"
+            },
+            "description": "Work 360 degree to improve the overall experience of <a href='https://www.francocantiere.it' target='_blank'>Francocantiere</a> e-commerce platform; from Interface to marketing ads and make agreements with local couriers in order to improve the website sales."
+        }, {
+            "title": "Front-end web developer",
+            "name": "YOOX NET-A-PORTER Group",
+            "date": {
+                "start": "june 2015",
+                "end": "february 2020"
+            },
+            "description": "Create and mantain the interface for some major luxury brands: <a href='https://www.ysl.com/' target='_blank'>YSL</a>, <a href='https://www.stellamccartney.com/' target='_blank'>Stella McCartney</a>, <a href='https://www.therow.com/' target='_blank'>The Row</a>."
+
+        }, {
+            "title": "Magento Frontend Developer",
+            "name": "MilkyWay S.r.l.",
+            "date": {
+                "start": "may 2014",
+                "end": "june 2015"
+            },
+            "description": "Active developing the Magento based ecommerce platform for MilkyWay, a startup project focused on action and extreme sports."
+
+        }, {
+            "title": "Web Developer",
+            "name": "Freelance",
+            "date": {
+                "start": "march 2014",
+                "end": "may 2014"
+            },
+            "description": "www.floch.it e-commerce Website implementation. Blog development (WordPress) and e-commerce implementation (WooCommerce)."
+        }, {
+            "title": "Web Developer / Programmer",
+            "name": "Gruppo Ciemme Srl",
+            "date": {
+                "start": "may 2012",
+                "end": "february 2013"
+            },
+            "description": "Creation of showcase and corporate websites: from the graphic proposal to the frontend in HTML and CSS, creation of layout structure for Joomla! CMS templates. Integrated mail sending, latest tweets, and content updating functionality through the Joomla back office."
+        }]
+    }, {
+        "title": "Personal Projects",
+        "icon": "journal-code",
+        "projects": [{
+            "title": "WritePoetry WordPress Plugin", 
+            "description": "I am the author of <a href='https://github.com/WritePoetry/wordpress-plugin/'>WritePoetry</a>, a WordPress plugin designed to empower developers by streamlining the website creation process. This plugin simplifies daily tasks and optimizes workflow, leaving developers free to focus solely on configurations.",
+            "link": {
+                "text": "Write Poetry website",
+                "url": "https://write-poetry.com"
+            }
+        }, {
+            "title": "BlankSpace WordPress Theme",
+            "description": "I created a block theme alongside WritePoetry to provide a skeleton theme and a solid foundation, with added features like automatic frontend asset loading. The theme is still in beta.",
+            "link": {
+                "text": "BlankSpace Block Theme",
+                "url": "https://github.com/writePoetry/blankspace-theme/"
+            }
+        }]
+    },
+    {
+        "title": "Technical Skills",
+        "icon": "tools",
+        "lists": [
+            [
+                "CSS/CSS3/LESS/Media queries",
+                "JavaScript",
+                "HTML5/SVG",
+                "Node.js",
+                "PHP",
+                "ReactJS",
+                "Python"
+            ], [
+                "Illustrator/Photoshop/Figma",
+                "PrestaShop",
+                "WP/Gutenberg/WooCommerce"
+            ]
+        ],
+        "color": "primary"
+    }, {
+        "title": "Soft Skills",
+        "icon": "diagram-2",
+        "lists": [
+            [
+                "Ability to Work in a Team",
+                "Exellent Communication",
+                "Customer Service",
+                "Business Development",
+                "Organizational skills",
+                "Problem solving",
+                "Networking",
+                "Critical thinking"
+            ]
+        ],
+        "color": "secondary"
+    }, {
+        "title": "Education",
+        "icon": "mortarboard",
+        "organizations": [{
+            "type": "Educational",
+            "name": "Università degli studi di Modena e Reggio Emilia",
+            "address": {
+                "streetAddress": "Viale Allegri 9",
+                "addressLocality": "Reggio Emilia",
+                "postalCode": "42121",
+                "addressCountry": "IT"
+            },
+            "course": "Bachelor's Degree in Communication Science (Media studies)",
+            "date": {
+                "start": "AY 2007/2008",
+                "end": "AY 2011/2012"
+            },
+            "description": "Ebooks creation in PDF format, Multimedia Publishing exam (30L), Course for librarians at the University of Modena and Reggio Emilia \"Ebook : the characteristics, the market, integration in the library\", development of small publishing applications in HTML5 code. Thesis subject: Text reorganization in digital books.",
+            "link": {
+                "text": "Facoltà di Scienze della Comunicazione e dell’Economia",
+                "url": "https://www.dce.unimore.it/it"
+            }
+        }, {
+            "type": "Educational",
+            "name": "Studio Samo",
+            "course": "Masterclass Rivoluzione E-Commerce",
+            "date": {
+                "start": "7 maggio 2021",
+                "end": "30 maggio 2021"
+            },
+            "description": "Course focused on E-commerce, 72 hours of virtual classroom training. Course topics: Digital Business Strategy, Digital Strategy, Business Model and Branding, E-commerce Platforms: the main ones, pros and cons, Business Plan for E-commerce, Facebook and Instagram Ads for E-commerce, Instagram and Influencer Marketing for E-commerce, Introduction to Google Ads for E-commerce, Google Search and Display for E-commerce, Google Shopping, YouTube for E-commerce, SEO for E-commerce, Copywriting for product sheets, CRO (Conversion Rate Optimization), E-mail Marketing for E-commerce, Marketing Automation, Analytics for E-commerce, Visual for E-commerce, Logistics for E-commerce, Legal Aspects of E-commerce, Selling on Amazon.",
+            "link": {
+                "text": "Rivoluzione E-commerce",
+                "url": "https://www.studiosamo.it/"
+            },
+            "certificate": {
+                "url": "https://resume.giacomosecchi.com/certificates/Giacomo%20Secchi.pdf"
+            }
+        }, {
+            "type": "Educational",
+            "name": "Agile42",
+            "course": "eXtreme Programming and Test-driven development Training",
+            "date": {
+                "start": "november 2018",
+                "end": "april 2019"
+            },
+            "description": "Training Course lended by YNAP group to me and the Service Team to develop a better software. Starting to apply metodologies like Test-driven development. After I took part at a follow up course focused on Agile Scrum methodology (project manager oriented).",
+            "link": {
+                "text": "agile42",
+                "url": "https://www.agile42.com/"
+            }
+        }, {
+            "type": "Educational",
+            "name": "terrelibere.org",
+            "address": {
+                "streetAddress": "Via Acciaioli 7",
+                "addressLocality": "Roma"
+            },
+            "course": "HTML 5. Un codice per fare tutto. Per editori e giornalisti",
+            "date": {
+                "start": "dicembre 2011",
+                "end": "marzo 2012"
+            },
+            "description": "Main new features introduced by HTML5, type-quality graphics, basic layout, techniques advanced CSS, inserting or embedding sheets for different media, introduction to CSS3, use of fonts typography, Google Web Fonts, grid page layout, the navigation bar/summary, managing photographs, slideshows for monitors and tablets, infographics with CSS3, managing of videos, native player against YouTube, audio management, maps, making magazine multimedia through the Laker framework, unified workflow management of the house publisher, cover creation, the e-book as a downloadable product in HTML5, animated graphics, the multilingual book, the table of contents, distribution and marketing, from the HTML5 object to the PDF, Integrating the ePub format, promotion on 'social' and advertising on Facebook, social readers. trainer Antonello Mangano.",
+            "link": {
+                "text": "terrelibere.org",
+                "url": "http://terrelibere.org"
+            },
+            "certificate": {
+                "url": "https://resume.giacomosecchi.com/certificates/secchi.pdf"
+            } 
+        }]
+    }, {
+        "title": "Event presentations",
+        "type": "Article",
+        "icon": "easel2",
+        "organizations": [{
+            "title": "JavaScript Design Patterns - Sveliamo il Revealing Module Pattern",
+            "name": "Beer&Learn - @GetConnected",
+            "date": {
+                "start": "20 april 2016"
+            },
+            "description": "These events are promoted by the GetConnected team, who choose the topics themselves. At the end of the day, everyone meets up and watches a presentation, which is followed by a discussion about the subject at hand. <a href='https://resume.giacomosecchi.com/sveliamo-rmp/'>Slides link</a>.",
+            
+            "link": {
+                "text": "Link evento",
+                "url": "https://www.getconnected.it/2015/12/18/beer-learn-event/"
+            }
+        }]
+    }, {
+        "title": "Internships",
+        "icon": "person-workspace",
+        "organizations": [{
+            "title": "Intern Frontend Developer",
+            "name": "Caffeina | Ideas Never Sleep",
+            "date": {
+                "start": "april 2013",
+                "end": "october 2013"
+            },
+            "description": "I started my first approach to Front-end technologies with some youth but sharp-minded team. In no time by demonstrating attention to details it was gave to me the ability to work on production websites.",
+            "link": {
+                "url": "https://caffeina.com/"
+            }
+        }]
+    }, {
+        "title": "Languages",
+        "icon": "globe2",
+        "languages": [
+            { "name": "Italian:", "level": "Native", "code": "IT" },
+            { "name": "English:", "level": "Fluent (B2)", "code": "EN" }
+        ]
+    }]
+}

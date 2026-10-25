@@ -1,0 +1,119 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "~bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+$enable-negative-margins: true;
+
+$font-family-sans-serif: "Open Sans";
+$headings-font-family: 'Noto Serif';
+$primary: #058ed9;
+$secondary: #06D6A0;
+$headings-color: $primary; 
+
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/variables-dark";
+$body-bg: $gray-200;
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+// @import "~bootstrap/scss/images"; 
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+// @import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/list-group";
+
+// @import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+
+@import "~bootstrap/scss/helpers";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "~bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+a {
+    text-decoration-color: $secondary;
+    text-decoration-thickness: .125em;
+    text-underline-offset: 4px;
+    
+    &:hover {
+        text-decoration-color: shift-color($secondary, -40%);
+    }
+}
+
+
+ 
+
+@each $color, $hex in $theme-colors {
+    .marker-list-#{$color} {
+    
+        li {
+            &::marker {
+                color: $hex;
+            }
+        }
+    }
+}
+
+
+.nav {
+    .active {
+        color: $primary;
+    }
+    &-divider {
+        .nav-item + .nav-item::before {
+            float: left;
+            text-indent: -3px;
+            padding-top: var(--bs-nav-link-padding-y);
+            content: var(--bs-breadcrumb-divider, "/");      
+        }
+    }
+}
+
+.helper-menu {
+    backdrop-filter: saturate(180%) blur(1.44px);
+    background: transparent;
+}
+
+// Color mode variables in _root.scss
+@include color-mode(dark) {
+    // CSS variable overrides here...
+    .paper {
+        background-color: var(--bs-primary-bg-subtle) !important;
+    }
+}
+ 
+@include color-mode(light) {
+    .contact-infos .list-group-item {
+       background-color: var(--bs-white);
+    }
+}
+
+[data-bs-theme-value="light"].active {
+    color: var(--bs-yellow) !important;
+    background-color: white !important;
+}
+
+[data-bs-theme-value="dark"].active {
+    color: var(--bs-blue) !important;
+    background-color: white !important;
+}

@@ -1,0 +1,82 @@
+mixin customIcon(iconName, classNames, width = '1em', height = '1em', fill = 'currentColor')
+    svg(class=`bi${classNames ? ' ' + classNames : ''}` width=width height=height fill=fill)
+        use(xlink:href=`/bootstrap-icons.svg#${iconName}`)
+
+
+mixin definitionList(s, index)
+        dl.mt-5
+            if s.title
+                dt.text-capitalize.mb-3
+                    +customIcon(s.icon, 'text-dark-subtle me-2')
+                    = s.title
+                dd !{s.description}
+                    if s.organizations
+                        each o in s.organizations
+                            div.mb-4
+                                h2.h4.mb-1
+                                    if o.title
+                                        = o.title
+                                    if o.course
+                                        = o.course
+                                p.mb-1
+                                    if o.link
+                                        a(href=o.link.url, target="_blank", title=o.link.text)= o.name
+                                            +customIcon('box-arrow-up-right', 'text-dark-subtle')
+
+                                    else
+                                        = o.name
+
+
+                                if o.address
+                                        = o.address.streetAddress
+                                        |,&nbsp;
+                                        = o.address.addressLocality 
+                                        |,&nbsp;
+                                        = o.address.addressRegion
+                                        |,&nbsp;
+                                        = o.address.postalCode
+                                        |&nbsp;
+                                        = o.address.addressCountry
+                                p
+                                    span.text-muted #{o.date.start} 
+                                        if o.date.end
+                                            | — #{o.date.end}
+                                p !{o.description}
+
+                                if o.certificate
+                                    span
+                                        = t('certificate_title')
+                                        |&nbsp;
+                                        a(href=o.certificate.url, target="_blank", title=t('certificate_label'))=t('certificate_label')
+                                            +customIcon('filetype-pdf', 'text-dark-subtle')
+                    if s.lists
+                        .row
+                            each l in s.lists
+                                - var chunkSize = 4;
+                                - for(var i = 0; i < l.length; i += chunkSize)
+                                    .col
+                                        ul(class=`marker-list-${s.color}`)
+                                            - var chunk = l.slice(i, i + chunkSize);
+                                            each item in chunk
+                                                li !{item}
+                    if s.languages
+                        .col
+                            ul
+                                each item in s.languages
+                                    li= `${item.name}  ${item.level}`
+                                        
+                    
+                    if s.projects
+                            each p in s.projects
+                                .mb-4
+                                    h2.h4
+                                        span= p.title
+                                    p.mb-1 !{p.description}
+
+                                    if p.link
+                                        span
+                                            = t('project_label')
+                                            |&nbsp;
+                                            a(href=p.link.url, target="_blank", title=p.link.text)= p.link.text
+                                                +customIcon('box-arrow-up-right', 'text-dark-subtle')
+                                        

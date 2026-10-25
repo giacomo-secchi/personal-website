@@ -1,0 +1,223 @@
+{
+    "404_message": "404 pagina non trovata",
+    "download_button": "Visualizza versione stampabile",
+    "download_file": "Giacomo_Secchi_CV.pdf",
+    "privacy_text": "Ai sensi del D.L. 196/2003 denominato “Codice in materia di protezione dei dati personali” autorizzo al trattamento dei dati personali contenuti nel presente curriculum.",
+    "portfolio_link": "Portfolio Personale",
+    "title": "Curriculum Vitae | Giacomo Secchi | Frontend Web Developer",
+    "certificate_title": "Certificato:",
+    "certificate_label": "Visualizza Certificato",
+    "project_label": "Link al Progetto:",
+    "sections": [{
+        "title": "Profilo",
+        "icon": "person",
+        "description": "Professionista \"T-shaped\" con una profonda conoscenza dello sviluppo front-end web e dell'esperienza utente per siti di e-commerce. Sviluppatore software capace di fornire competenze in progettazione, installazione, test e manutenzione di sistemi software. Esperto nell'utilizzo di piattaforme di marketing digitale per aumentare le vendite e la produttività aziendale."
+    }, {
+        "title": "Esperienze professionali",
+        "icon": "briefcase",
+        "organizations": [{
+            "title": "Analista tecnico funzionale",
+            "name": "Digital Boîte",
+            "date": {
+                "start": "maggio 2023",
+                "end": "luglio 2025"
+            },
+            "description": "Gestione progetti Agile su piattaforme Salesforce Commerce Cloud e Service Cloud; Attività di raccolta requisiti, analisi funzionale e pianificazione sprint di rilascio. Set-up e monitoraggio attività di progetto su Jira Software;"
+        }, {
+            "title": "E-commerce Manager",
+            "name": "Francocantiere S.r.l.",
+            "date": {
+                "start": "febbraio 2020",
+                "end": "maggio 2023"
+            },
+            "description": "Lavoro a 360 gradi per migliorare l'esperienza complessiva della piattaforma di vendita online <a href='https://www.francocantiere.it' target='_blank'>Francocantiere</a>; dall'interfaccia agli annunci di marketing e stringere accordi con i corrieri locali al fine di migliorare le vendite del sito web."
+        }, {
+            "title": "Front-end web developer",
+            "name": "YOOX NET-A-PORTER Group",
+            "date": {
+                "start": "giugno 2015",
+                "end": "febbraio 2020"
+            },
+            "description": "Creazione e mantenimento di interfacce web per le piattaforme ecommerce ufficiali di: <a href='https://www.ysl.com/' target='_blank'>YSL</a>, <a href='https://www.stellamccartney.com/' target='_blank'>Stella McCartney</a>, <a href='https://www.therow.com/' target='_blank'>The Row</a>."
+        }, {
+            "title": "Magento Frontend Developer",
+            "name": "MilkyWay S.r.l.",
+            "date": {
+                "start": "maggio 2014",
+                "end": "giugno 2015"
+            },
+            "description": "Sviluppo della piattaforma e-commerce www.milkywayshop.it. e del sito corporate milkywaysport.com. Sviluppo e debugging degli elementi frontend dello shop MilkyWay. Sviluppo moduli ed estensioni Magento. Consulenza su UX e design."
+        }, {
+            "title": "Web Developer",
+            "name": "Freelance",
+            "date": {
+                "start":  "marzo 2014",
+                "end": "maggio 2014"
+            },
+            "description": "Realizzazione sito www.floch.it. Sviluppo blog (WordPress) ed implementazione e-commerce (WooCommerce)."
+        }, {
+            "title": "Web Developer / Programmer",
+            "name": "Gruppo Ciemme Srl",
+            "date": {
+                "start": "maggio 2012",
+                "end": "febbraio 2013"
+            },
+            "description": "Realizzazione siti vetrina e aziendali: dalla proposta grafica al frontend in html e css, creazione struttura layout per template Joomla! CMS. Funzionalità integrate di invio mail, latest tweets e aggiornamento dei contenuti tramite back office Joomla."
+        }]
+    }, {
+        "title": "Progetti Personali",
+        "icon": "journal-code",
+        "projects": [{
+            "title": "WritePoetry WordPress Plugin", 
+            "description": "Sono l'autore di <a href='https://github.com/WritePoetry/wordpress-plugin/' target='_blank'>WritePoetry</a>, un plugin per WordPress pensato per aiutare gli sviluppatori a realizzare progetti complessi senza dover scrivere codice. Attualmente in fase di sviluppo, il suo obiettivo è semplificare e velocizzare la creazione di siti web tramite configurazioni intuitive.",
+            "link": {
+                "text": "Write Poetry website",
+                "url": "https://write-poetry.com"
+            }
+        }, {
+            "title": "Tema a blocchi per WordPress",
+            "description": "Insieme a WritePoetry, ho creato Write Blank: un tema a blocchi per fornire una una solida base ai progetti web su cui ho lavorato, ho inserito funzionalità aggiuntive come il caricamento automatico delle risorse frontend. Il tema è ancora in beta.",
+            "link": {
+                "text": "BlankSpace Block Theme",
+                "url": "https://github.com/writePoetry/blankspace-theme/"
+            }
+        }]
+    }, {
+        "title": "Competenze tecniche",
+        "icon": "tools",
+        "lists": [
+            [
+                "CSS/CSS3/LESS/Media queries",
+                "JavaScript",
+                "HTML5/SVG",
+                "Node.js",
+                "PHP",
+                "ReactJS",
+                "Python",
+                "Illustrator/Photoshop/Figma",
+                "PrestaShop",
+                "WP/Gutenberg/WooCommerce"
+            ]
+        ],
+        "color": "primary"
+    }, {
+        "title": "Studi e Formazione",
+        "icon": "mortarboard",
+        "organizations": [{
+            "type": "Educational",
+            "name": "Università degli studi di Modena e Reggio Emilia",
+            "address": {
+                "streetAddress": "Viale Allegri 9",
+                "addressLocality": "Reggio Emilia",
+                "postalCode": "42121",
+                "addressCountry": "IT"
+            },
+            "course": "Laurea in Scienze della Comunicazione",
+            "date": {
+                "start": "a.a. 2007/2008",
+                "end": "a.a. 2011/2012"
+            },
+            "description": "Realizzazione di libri elettronici in formato PDF, esame di Editoria multimediale (30/30 cum laude), Corso per i bibliotecari dell’Università di Modena e Reggio Emilia “Ebook : le caratteristiche, il mercato, l’integrazione in biblioteca”, sviluppo di piccole applicazioni editoriali in codice HTML5. Titolo testi: Riorganizzazione del testo nei libri digitali.",
+            "link": {
+                "text": "Facoltà di Scienze della Comunicazione e dell’Economia",
+                "url": "https://www.dce.unimore.it/it"
+            }
+        }, {
+            "type": "Educational",
+            "name": "Studio Samo",
+            "course": "Masterclass Rivoluzione E-Commerce",
+            "date": {
+                "start": "7 maggio 2021",
+                "end": "30 maggio 2021"
+            },
+            "description": "Corso interamente dedicato all'E-commerce, 72 ore di formazione in aula virtuale. Argomenti del corso: Digital Business Strategy, Strategia digitale, business model e branding, Piattaforme e-commerce: le principali, pro e contro, Business Plan per e-commerce, Facebook e Instagram Ads per E-commerce, Instagram e Influencer Marketing per E-commerce, Introduzione a Google Ads per E-commerce, Google Search e Display per E-commerce, Google Shopping, YouTube per E-commerce, SEO per e-commerce, Copywriting per schede prodotto, CRO (Conversion Rate Optimization), E-mail Marketing per E-commerce, Marketing Automation, Analytics per E-commerce, Visual per E-commerce, Logistica per E-commerce, Aspetti legali dell’E-commerce, Vendere su Amazon.",
+            "link": {
+                "text": "Rivoluzione E-commerce",
+                "url": "https://www.studiosamo.it/"
+            },
+            "certificate": {
+                "url": "https://resume.giacomosecchi.com/certificates/Giacomo%20Secchi.pdf"
+            }
+        }, {
+            "type": "Educational",
+            "name": "Agile42",
+            "course": "Corso di Formazione: eXtreme Programming and Test-driven development",
+            "date": {
+                "start": "novembere 2018",
+                "end": "aprile 2019"
+            },
+            "description": "Corso di formazione aziendale del Service Team YNAP focalizzato sullo sviluppo di un software di migliore qualità. Abbiamo visto nel dettaglio come applicare metodologie SOLID e come lo sviluppo TDD (guidato dai test) può aiutarci nella scrittura di un codice più mantenibile. Dopo ho partecipato ad un corso di follow-up focalizzato sulla metodologia Agile Scrum (orientato al project management).",
+            "link": {
+                "text": "agile42",
+                "url": "https://www.agile42.com/"
+            }
+        }, {
+            "type": "Educational",
+            "name": "terrelibere.org",
+            "address": {
+                "streetAddress": "Via Acciaioli 7",
+                "addressLocality": "Roma"
+            },
+            "course": "HTML 5. Un codice per fare tutto. Per editori e giornalisti",
+            "date": {
+                "start": "dicembre 2011",
+                "end": "marzo 2012"
+            },
+            "description": "Principali novità introdotte da HTML5, grafica di qualità tipografica, layout di base, tecniche CSS avanzate, inserire o incorporare fogli per diversi media, introduzione a CSS3, uso di font tipografici, Google Web Font, impaginazione a colonne, la barra di navigazione / sommario, gestione delle fotografie, slideshow per monitor e tablet, le infografiche con CSS3, gestione dei video, player nativo contro YouTube, gestione audio, mappe, realizzazione magazine multimediale attraverso il framework Laker, gestione unificata del flusso di lavoro della casa editrice, realizzazione della copertina, il libro elettronico come prodotto scaricabile in HTML5, grafica animata, il libro multilingue, il sommario, la distribuzione e la commercializzazione, dall’oggetto HTML5 al PDF, Integrare il formato ePub, promozione sui ‘social’ e pubblicità su Facebook, i social reader. docente Antonello Mangano.",
+            "link": {
+                "text": "terrelibere.org",
+                "url": "http://terrelibere.org"
+            },
+            "certificate": {
+                "url": "https://resume.giacomosecchi.com/certificates/secchi.pdf"
+            } 
+        }]
+    }, {
+        "title": "Presentazioni",
+        "type": "Article",
+        "icon": "easel2",
+        "organizations": [{
+            "title": "JavaScript Design Patterns - Sveliamo il Revealing Module Pattern",
+            "name": "Beer&Learn - @GetConnected",
+            "date": {
+                "start": "20 aprile 2016"
+            },
+            "description": "Questi eventi sono promossi dal team di GetConnected, che sceglie autonomamente gli argomenti. Al termine della giornata, tutti si incontrano e guardano una presentazione, seguita da una discussione sull'argomento trattato. <a href='https://resume.giacomosecchi.com/sveliamo-rmp/'>Link presentazione</a>.",
+            "link": {
+                "text": "Link evento",
+                "url": "https://www.getconnected.it/2015/12/18/beer-learn-event/"
+            }
+        }]  
+    }, {
+        "title": "Tirocini e stage",
+        "icon": "person-workspace",
+        "organizations": [{
+            "title": "Intern Frontend Developer",
+            "name": "Caffeina S.r.l.",
+            "date": {
+                "start": "aprile 2013",
+                "end": "ottobre 2013"
+            },
+            "description": "<strong>Obiettivi e modalità del tirocinio</strong>: Lo stagista entrerà attivamente all'interno del flusso di lavoro aziendale relativo a piccoli progetti, nei quali avrà parte sia nella fase di progettazione chi di quella di esecuzione e testing. <br> <br> <strong>Attività</strong>: Sarà assegnato allo stagista il ruolo di Frontend Developer orientato ai servizi Web. <br> Rafforzerà la conoscenza dell'ECMAScript 5+ con particolare attenzione alla cross-compatibilità tra i maggiori browser. <br>Sfrutterà noti framework per il DOM Handling (jQuery, Zepto) e per il CSS Scaffolding (Twitter Bootstrap). Imparerà l'utilizzo delle ultime definizioni degli standard HTML5 e CSS Level 3, utilizzando attivamente alcune delle più moderne API disponibili sui browser di ultima generazione. <br> Imparerà un meta-linguaggio per il CSS (LESS) che velocizzerà la sua operatività nella definizione degli stili. Parteciperà attivamente allo sviluppo fi applicazioni social-oriented soprattutto relativi alla Facebook Platform. Gli verranno indicate risorse, tutorial, e potrà consultare materiale di addestramento aziendale, nonchè avvalersi, durante tutta la durata dello stage, dell'esperienza diretta dei colleghi.",
+            "link": {
+                "url": "https://caffeina.com/"
+            }
+        }, {
+            "title": "Tirocinante",
+            "name": "Mister Web S.r.l.",
+            "date": {
+                "start": "dicembre 2010",
+                "end": "febbraio 2011"
+            },
+            "description": "<strong>Obiettivi e modalità del tirocinio</strong>: conoscere gli aspetti operatvi di un’agenzia di comunicazione che lavora soprattutto per il Web ma si occupa anche di comunicazione a 360° (stampa, soluzioni promozionali, pubblicità ecc.). <br><br><strong>Attività</strong>: affiancamento alla resp. uff. marketing nell’attuazione delle operazioni di marketing pianificate (anche tramite CRM) e nella realizzazione dei supporti alla vendita. <br>affiancamento agli operatori della web agency per lo sviluppo dei progetti, soprattutto web (aggiornamento siti, inserimento contenuti nelle piattaforme CMS, preparazione foto ed immagini, produzione e controllo testi, ecc.)."
+        }]
+    }, {
+        "title": "Lingue straniere",
+        "type": "Language",
+        "icon": "globe2",
+        "languages": [
+            { "name": "Italiano:", "level": "Nativo", "code": "IT" },
+            { "name": "Inglese:", "level": "Fluente (livello B2)", "code": "EN"  }
+        ]
+    }]
+}

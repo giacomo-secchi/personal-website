@@ -1,0 +1,151 @@
+-
+    const occupations = [];
+    const education = [];
+    const skills = [];
+    const languages = [];
+
+    // Process each section
+    (Array.isArray(sections) ? sections : []).forEach(section => {
+        if (section.type === "Article") {
+            return;
+        }
+    
+        processOrganizations(section);
+        processLists(section);
+        processLanguages(section);
+    });
+
+    function iterate(array, requiredProps, callback) {
+        if (!Array.isArray(array)) {
+            return;
+        }
+     
+        array.forEach(item => {
+            if (!item) {
+                return;
+            }
+            
+            if (Array.isArray(requiredProps) && typeof item === 'object' &&
+                !requiredProps.every(prop => item[prop])) {
+                return;
+            }
+
+            callback(item);
+        });
+
+    }
+    
+    /**
+    * Process languages from the section
+    */
+    function processLanguages(section) {
+        iterate(section.languages, ['name'], language => {
+            languages.push(language.code);
+        });
+    }
+
+    /**
+    * Process organizations from the section
+    */
+    function processOrganizations(section) {
+
+        iterate(section.organizations, ['name'], organization => {
+            if (organization.type) {
+                processEducationalOrganization(organization);
+            } else {
+                processEmployeeRole(organization);
+            }
+        });
+    }
+
+    /**
+    * Create and add an educational organization
+    */
+    function processEducationalOrganization(org) {
+        const educationalOrg = {
+            "@type": "EducationalOrganization",
+            "name": org.name
+        };
+
+        if (org.address) {
+            educationalOrg.address = createPostalAddress(org.address);
+        }
+
+        education.push(educationalOrg);
+    }
+
+    /**
+    * Create and add a job role
+    */
+    function processEmployeeRole(org) {
+        const employeeRole = {
+            "@type": "EmployeeRole",
+            "roleName": org.title || "",
+            "startDate": org.date?.start,
+            "endDate": org.date?.end,
+            "name": org.name
+        };
+
+        occupations.push(employeeRole);
+    }
+
+    /**
+    * Create a structured postal address
+    */
+    function createPostalAddress(address) {
+        const postalAddress = { "@type": "PostalAddress" };
+        
+        const addressFields = {
+            streetAddress: address.streetAddress,
+            addressLocality: address.addressLocality,
+            addressRegion: address.addressRegion,
+            postalCode: address.postalCode,
+            addressCountry: address.addressCountry
+        };
+
+        Object.entries(addressFields).forEach(([key, value]) => {
+            if (value) postalAddress[key] = value;
+        });
+
+        return postalAddress;
+    }
+
+    /**
+    * Process skill lists
+    */
+    function processLists(section) {
+        iterate(section.lists, [], list => {
+             iterate(list, ['item'], item => {
+                skills.push(item);
+            });
+        });
+    }
+
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Giacomo Secchi",
+        "jobTitle": "Web Developer / Ecommerce Specialist",
+        "url": "https://giacomosecchi.com",
+        "sameAs": [
+            "https://giacomosecchi.com/portfolio",
+            "https://github.com/giacomo-secchi",
+            "https://www.linkedin.com/in/giacomosecchi/"
+        ],
+        "image": "https://www.gravatar.com/avatar/cacd939ed4fbbea7e739d737e3411dc3",   
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Modena",
+            "postalCode": "41121",
+            "addressCountry": "IT"
+        },
+        "telephone": "+393407119634",
+        "email": "info@giacomosecchi.com",
+        "hasOccupation": occupations,
+        "alumniOf": education,
+        "skills": skills,
+        "knowsLanguage": languages
+    }
+
+script(type="application/ld+json").
+    !{JSON.stringify(schemaData, null, 2)}
