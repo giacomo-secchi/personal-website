@@ -153,7 +153,7 @@ function init() {
 			event.preventDefault();
 			const url = new URL( window.location.href );
 			url.searchParams.set( 'format', 'pdf' );
-			window.location.assign( url.toString() );
+			window.open( url.toString(), '_blank', 'noopener' );
 		} );
 	}
 }

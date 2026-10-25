@@ -28,7 +28,7 @@
 				<!-- /wp:heading -->
 
 				<!-- wp:heading {"style":{"typography":{"fontStyle":"normal","fontWeight":"400"}},"fontFamily":"open-sans"} -->
-				<h2 class="wp-block-heading has-open-sans-font-family" style="font-style:normal;font-weight:400">Web Developer / <br>Ecommerce Specialist</h2>
+				<h2 class="wp-block-heading has-open-sans-font-family" style="font-style:normal;font-weight:400">Web&nbsp;Developer&nbsp;/ Ecommerce&nbsp;Specialist</h2>
 				<!-- /wp:heading -->
 			</div>
 			<!-- /wp:group -->

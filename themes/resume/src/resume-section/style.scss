@@ -46,6 +46,11 @@
 	}
 }
 
+@page {
+	size: A4;
+	margin: 14mm 12mm;
+}
+
 @media print {
 	.wp-block-template-part,
 	.resume-tab-switch,
@@ -53,9 +58,49 @@
 		display: none !important;
 	}
 
-	// The utility rail lives in the right column; once it is hidden the empty
-	// column would still reserve its flex-basis, so collapse the columns layout.
+	body {
+		background: #fff !important;
+	}
+
 	.wp-block-columns {
 		display: block !important;
+		margin: 0 !important;
+	}
+
+	main .has-background {
+		padding: 0 !important;
+		box-shadow: none !important;
+	}
+
+	// Prince doesn't fragment flex containers across pages and the page box is
+	// narrower than the 782px columns breakpoint, so lay the two columns out with floats.
+	main .wp-block-columns {
+		&::after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		> .wp-block-column {
+			float: left;
+			width: 64%;
+		}
+
+		> .wp-block-column:last-child {
+			float: right;
+			width: 32%;
+		}
+	}
+
+	.wp-block-resume-resume-section dd > section {
+		display: block;
+
+		> .resume-entry + .resume-entry {
+			margin-block-start: var(--wp--preset--spacing--40);
+		}
+	}
+
+	.resume-entry {
+		break-inside: avoid;
 	}
 }

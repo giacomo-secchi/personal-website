@@ -28,7 +28,7 @@ add_action( 'template_redirect', function () {
 	}
 
 	// Same page the visitor is on (view, language, …), minus our own trigger param.
-	$source_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . remove_query_arg( 'format', $_SERVER['REQUEST_URI'] ) );
+	$source_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . remove_query_arg( array( 'format', 'fresh' ), $_SERVER['REQUEST_URI'] ) );
 	$filename   = resume_pdf_filename();
 
 	$force_fresh = ! empty( $_GET['fresh'] ) && current_user_can( 'manage_options' );
@@ -50,7 +50,7 @@ add_action( 'template_redirect', function () {
 
 	nocache_headers();
 	header( 'Content-Type: application/pdf' );
-	header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
+	header( 'Content-Disposition: inline; filename="' . $filename . '"' );
 	header( 'Content-Length: ' . filesize( $cache_file ) );
 	readfile( $cache_file );
 	exit;
@@ -97,6 +97,7 @@ function resume_fetch_pdf_from_docraptor( $url, $filename, $api_key, $test_mode 
 					'doc'              => array(
 						'test'           => $test_mode,
 						'document_type'  => 'pdf',
+						'pipeline'       => '10.1',
 						'document_url'   => $url,
 						'name'           => $filename, // helps find the doc later in the DocRaptor dashboard
 						'javascript'     => false,
