@@ -9,14 +9,14 @@
 
 <!-- wp:resume/tab-switch /-->
 
-<!-- wp:group {"style":{"shadow":"var:preset|shadow|small","spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|70","right":"var:preset|spacing|70"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
+<!-- wp:group {"style":{"shadow":"var:preset|shadow|small","spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|70","right":"var:preset|spacing|70"}},"@mobile":{"spacing":{"padding":{"left":"var:preset|spacing|60","right":"var:preset|spacing|60"}}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-white-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--70);box-shadow:var(--wp--preset--shadow--small)">
 	<!-- wp:columns -->
 	<div class="wp-block-columns">
 	<!-- wp:column {"width":"65%"} -->
 	<div class="wp-block-column" style="flex-basis:65%">
-		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group">
+		<!-- wp:group {"className":"resume-header","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group resume-header">
 			<!-- wp:image {"width":"120px","height":"120px","aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":"var:preset|border-radius|large"}}} -->
 			<figure class="wp-block-image size-full is-resized has-custom-border"><img src="<?php echo esc_url( get_avatar_url( 'giacomosecchi@gmail.com', array( 'size' => 240 ) ) ); ?>" alt="<?php echo esc_attr__( 'Giacomo Secchi Photo', 'resume' ); ?>" style="border-radius:var(--wp--preset--border-radius--large);aspect-ratio:1;object-fit:cover;width:120px;height:120px"/></figure>
 			<!-- /wp:image -->

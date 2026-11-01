@@ -24,6 +24,8 @@ add_shortcode( 'custom-language-switcher', function() {
     }
 } );
 
+add_filter( 'render_block_core/shortcode', 'shortcode_unautop', 9 );
+
 // Inline styles for the custom language switcher above
 add_action( 'wp_head', function() {
     ?>

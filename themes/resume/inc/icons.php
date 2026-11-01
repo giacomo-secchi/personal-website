@@ -94,13 +94,12 @@ add_action(
 	}
 );
 
-// Two rules, so inlined onto core's `global-styles` handle instead of a dedicated stylesheet.
 add_action(
 	'wp_enqueue_scripts',
 	function () {
 		wp_add_inline_style(
 			'global-styles',
-			'.resume-icon{display:inline-flex;align-items:center;margin-inline-end:.5em}.resume-icon svg{width:1em;height:1em}'
+			'.resume-icon{display:inline-flex;align-items:center;margin-inline-end:.5em}:where(.resume-icon svg){width:1em;height:auto}'
 		);
 	}
 );

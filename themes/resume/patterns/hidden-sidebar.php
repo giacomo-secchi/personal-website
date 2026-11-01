@@ -6,8 +6,8 @@
  */
 
 ?>
-<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"style":{"spacing":{"blockGap":"16px","padding":{"right":"var:preset|spacing|40"}}}} -->
-<div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--40)">
+<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"},"style":{"spacing":{"blockGap":"16px"}}} -->
+<div class="wp-block-group">
 
 	<!-- wp:shortcode -->
 	[custom-language-switcher]
@@ -27,8 +27,8 @@
 <!-- /wp:tabor/dark-mode-toggle -->
 
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"stretch"}} -->
-	<div class="wp-block-buttons"><!-- wp:button {"width":100,"anchor":"resume-print-button"} -->
-		<div id="resume-print-button" class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link wp-element-button" href="?format=pdf"><!-- wp:icon {"icon":"bootstrap/file-earmark-pdf-fill","className":"resume-icon"} /--><?php esc_html_e( 'Download printable version', 'resume' ); ?></a></div>
+	<div class="wp-block-buttons"><!-- wp:button {"width":100,"anchor":"resume-print-button","style":{"@mobile":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20","right":"var:preset|spacing|0"}},"border":{"radius":{"topLeft":"0","topRight":"0"}}}}} -->
+		<div id="resume-print-button" class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link wp-element-button" href="?format=pdf"><!-- wp:icon {"icon":"bootstrap/file-earmark-pdf-fill","className":"resume-icon","style":{"dimensions":{"width":"1.5em"}}} /--><span class="resume-visually-hidden-mobile"><?php esc_html_e( 'Download printable version', 'resume' ); ?></span></a></div>
 
 	<!-- /wp:button --></div>
 	<!-- /wp:buttons -->

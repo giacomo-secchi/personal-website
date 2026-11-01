@@ -214,6 +214,12 @@
 			"background": "var:preset|color|base",
 			"text": "var:preset|color|contrast"
 		},
+		"spacing": {
+			"padding": {
+				"left": "clamp(1rem, 4vw, 2rem)",
+				"right": "clamp(1rem, 4vw, 2rem)"
+			}
+		},
 		"typography": {
 			"fontFamily": "var:preset|font-family|open-sans"
 		},
