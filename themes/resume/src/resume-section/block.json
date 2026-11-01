@@ -25,7 +25,7 @@
 	"textdomain": "resume-section",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": [ "file:./style-index.css", "resume-global" ],
+	"style": [ "file:./style-index.css", "resume-definition-list" ],
 	"render": "file:./render.php",
 	"viewScriptModule": "file:./view.js"
 }

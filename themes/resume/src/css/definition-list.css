@@ -1,0 +1,14 @@
+.resume-subtitle {
+    font-weight: 700;
+    margin-bottom: var(--wp--preset--spacing--40);
+}
+
+:where(.wp-block-resume-resume-section, .wp-block-resume-list-section) dd {
+    margin-inline-start: var(--wp--preset--spacing--50);
+}
+
+@media screen and (max-width: 781px) {
+    :where(.wp-block-resume-resume-section, .wp-block-resume-list-section) dd {
+        margin-inline-start: 0;
+    }
+}
