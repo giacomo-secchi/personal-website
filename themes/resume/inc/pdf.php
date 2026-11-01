@@ -10,15 +10,24 @@
  *   define( 'DOCRAPTOR_API_KEY', '...' );
  *   define( 'DOCRAPTOR_TEST_MODE', true ); // omit/false = live PDFs (uses paid credits); true = free watermarked test PDFs
  *
- * DocRaptor fetches `document_url` itself, so this only works once the site is
- * reachable from the public internet (staging/production) — not on *.local.
+ * The page is rendered server-side and sent to DocRaptor as `document_content`,
+ * so DocRaptor never requests the page itself (Cloudflare answers its datacenter
+ * IPs with 403). It still downloads stylesheets, fonts and images from the
+ * public site, so those must be reachable from the internet.
  */
 
+function resume_is_pdf_request() {
+	return isset( $_GET['format'] ) && 'pdf' === $_GET['format'];
+}
 
+// The admin bar is initialised before template_include, so it has to be disabled up front.
+add_filter( 'show_admin_bar', function ( $show ) {
+	return resume_is_pdf_request() ? false : $show;
+} );
 
-add_action( 'template_redirect', function () {
-	if ( ! isset( $_GET['format'] ) || 'pdf' !== $_GET['format'] ) {
-		return;
+add_filter( 'template_include', function ( $template ) {
+	if ( ! resume_is_pdf_request() ) {
+		return $template;
 	}
 
 	$api_key = defined( 'DOCRAPTOR_API_KEY' ) ? DOCRAPTOR_API_KEY : getenv( 'DOCRAPTOR_API_KEY' );
@@ -37,8 +46,15 @@ add_action( 'template_redirect', function () {
 	$cache_file = path_join( wp_upload_dir()['basedir'], 'resume-pdf-cache/' . md5( $source_url ) . '.pdf' );
 
 	if ( $force_fresh || ! file_exists( $cache_file ) || ( time() - filemtime( $cache_file ) ) > DAY_IN_SECONDS ) {
+		// Render as an anonymous visitor so no user-specific markup or nonces end up in the PDF.
+		wp_set_current_user( 0 );
+
+		ob_start();
+		include $template;
+		$html = ob_get_clean();
+
 		$test_mode = defined( 'DOCRAPTOR_TEST_MODE' ) ? (bool) DOCRAPTOR_TEST_MODE : (bool) getenv( 'DOCRAPTOR_TEST_MODE' );
-		$pdf       = resume_fetch_pdf_from_docraptor( $source_url, $filename, $api_key, $test_mode );
+		$pdf       = resume_fetch_pdf_from_docraptor( $html, $source_url, $filename, $api_key, $test_mode );
 
 		if ( is_wp_error( $pdf ) ) {
 			wp_die( esc_html( $pdf->get_error_message() ), 'DocRaptor', array( 'response' => 500 ) );
@@ -54,9 +70,9 @@ add_action( 'template_redirect', function () {
 	header( 'Content-Length: ' . filesize( $cache_file ) );
 	readfile( $cache_file );
 	exit;
-} );
+}, PHP_INT_MAX );
 
- 
+
 // TranslatePress's current language, falling back to the site locale when TRP is off.
 function resume_pdf_language() {
 	global $TRP_LANGUAGE;
@@ -85,7 +101,7 @@ function resume_pdf_filename() {
 /**
  * @return string|WP_Error Raw PDF bytes, or an error with DocRaptor's own message.
  */
-function resume_fetch_pdf_from_docraptor( $url, $filename, $api_key, $test_mode ) {
+function resume_fetch_pdf_from_docraptor( $html, $base_url, $filename, $api_key, $test_mode ) {
 	$response = wp_remote_post(
 		'https://api.docraptor.com/docs',
 		array(
@@ -95,16 +111,17 @@ function resume_fetch_pdf_from_docraptor( $url, $filename, $api_key, $test_mode 
 				array(
 					'user_credentials' => $api_key,
 					'doc'              => array(
-						'test'           => $test_mode,
-						'document_type'  => 'pdf',
-						'pipeline'       => '10.1',
-						'document_url'   => $url,
-						'name'           => $filename, // helps find the doc later in the DocRaptor dashboard
-						'javascript'     => false,
-						'prince_options' => array(
+						'test'             => $test_mode,
+						'document_type'    => 'pdf',
+						'pipeline'         => '10.1',
+						'document_content' => $html,
+						'name'             => $filename, // helps find the doc later in the DocRaptor dashboard
+						'javascript'       => false,
+						'prince_options'   => array(
 							// Reuses the @media print rules in src/resume-section/style.scss
 							// and src/tab-switch/style.scss (hide nav/switch/button, collapse columns).
-							'media' => 'print',
+							'media'   => 'print',
+							'baseurl' => $base_url,
 						),
 					),
 				)
